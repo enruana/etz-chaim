@@ -1,0 +1,17 @@
+# deps / build
+node_modules/
+.next/
+*.tsbuildinfo
+next-env.d.ts
+
+# local data (SQLite)
+data/
+
+# env
+.env
+.env.*
+
+# tooling local
+.claude/
+.claude-orka/
+.DS_Store

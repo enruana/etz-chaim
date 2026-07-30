@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+/* ————— Mañana en Brisbane (opción A) + Noche de cuento —————
+   Principios: luz dorada / sombra violeta; el cielo es el layout;
+   cubos redondeados sin aristas; plano con textura; movimiento lento. */
+
+:root {
+  --bg-a: #fffdfa;
+  --bg-b: #eaf4fd;
+  --surface: #ffffff;
+  --line: #ece3d2;
+  --ink: #404066;
+  --ink-2: #7a7a9d;
+  --sky: #5fb4f5;
+  --sky-ink: #2e7bb8;
+  --sky-soft: #d8ebfa;
+  --gold: #e2a94f;
+  --gold-soft: #f6e7c0;
+  --green: #9bc489;
+  --green-soft: #ddebd5;
+  --hl: #fdf3ce;
+  --track: #f0eae0;
+  --shadow: 0 10px 30px -12px rgba(64, 64, 102, 0.16);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-a: #23243a;
+    --bg-b: #2b2c41;
+    --surface: #35375a;
+    --line: #45476b;
+    --ink: #f2eee4;
+    --ink-2: #b8b5d1;
+    --sky: #88cafc;
+    --sky-ink: #a9d8ff;
+    --sky-soft: #3a4b6e;
+    --gold: #edcc6f;
+    --gold-soft: #4a4160;
+    --green: #8fb583;
+    --green-soft: #3c4b45;
+    --hl: rgba(237, 204, 111, 0.26);
+    --track: #3b3d61;
+    --shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.45);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  color: var(--ink);
+  background: linear-gradient(180deg, var(--bg-a), var(--bg-b));
+  background-attachment: fixed;
+  font-family: var(--font-ui), system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+/* grano de papel */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0.03;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+h1, h2, h3 { font-family: var(--font-display), serif; font-weight: 600; line-height: 1.18; text-wrap: balance; }
+
+a { color: inherit; }
+
+.card {
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+}
+
+.pill {
+  border-radius: 999px;
+  font-weight: 800;
+  transition: transform 0.45s ease-out, background 0.45s ease-out;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lift { transition: transform 0.45s ease-out; }
+  .lift:hover { transform: translateY(-3px); }
+}
+
+/* ————— Documento de estudio (markdown) ————— */
+.estudio {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 1.125rem;
+  line-height: 1.72;
+  max-width: 65ch;
+}
+.estudio h1, .estudio h2, .estudio h3 { font-family: var(--font-display), serif; line-height: 1.2; }
+.estudio h1 { font-size: 1.9rem; margin: 0 0 0.6em; }
+.estudio h2 { font-size: 1.45rem; margin: 2em 0 0.5em; }
+.estudio h3 { font-size: 1.15rem; margin: 1.6em 0 0.4em; }
+.estudio p { margin: 0.9em 0; }
+.estudio blockquote {
+  margin: 1.2em 0;
+  padding: 0.8em 1.2em;
+  background: var(--hl);
+  border: none;
+  border-radius: 14px;
+  font-style: normal;
+}
+.estudio blockquote p { margin: 0.3em 0; }
+.estudio table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 0.85rem;
+  margin: 1.2em 0;
+}
+.estudio th, .estudio td { padding: 0.5em 0.8em; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.estudio th { font-weight: 800; color: var(--ink-2); }
+.estudio code { font-size: 0.85em; background: var(--track); border-radius: 6px; padding: 0.1em 0.35em; }
+.estudio hr { border: none; border-top: 1.5px solid var(--line); margin: 2.2em 0; }
+.estudio ul, .estudio ol { padding-left: 1.4em; }
+.estudio li { margin: 0.35em 0; }
+.estudio a { color: var(--sky-ink); text-decoration-color: var(--sky); }
+.estudio strong { color: var(--ink); }
