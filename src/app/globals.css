@@ -23,26 +23,7 @@
   --shadow: 0 10px 30px -12px rgba(64, 64, 102, 0.16);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-a: #23243a;
-    --bg-b: #2b2c41;
-    --surface: #35375a;
-    --line: #45476b;
-    --ink: #f2eee4;
-    --ink-2: #b8b5d1;
-    --sky: #88cafc;
-    --sky-ink: #a9d8ff;
-    --sky-soft: #3a4b6e;
-    --gold: #edcc6f;
-    --gold-soft: #4a4160;
-    --green: #8fb583;
-    --green-soft: #3c4b45;
-    --hl: rgba(237, 204, 111, 0.26);
-    --track: #3b3d61;
-    --shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.45);
-  }
-}
+/* Tema único: claro («Mañana en Brisbane»). El modo oscuro queda para el futuro, si acaso. */
 
 * { box-sizing: border-box; }
 
@@ -56,6 +37,19 @@ body {
   background-attachment: fixed;
   font-family: var(--font-ui), system-ui, sans-serif;
   line-height: 1.6;
+}
+
+/* pradera al fondo: el mundo de la app es naturaleza — hojas, agua, árboles */
+body::after {
+  content: "";
+  position: fixed;
+  inset: auto 0 0 0;
+  height: 34dvh;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(120% 90% at 20% 100%, rgba(155, 196, 137, 0.22), transparent 60%),
+    radial-gradient(110% 80% at 85% 100%, rgba(134, 201, 170, 0.16), transparent 55%);
 }
 
 /* grano de papel */
