@@ -8,7 +8,7 @@ const ui = Nunito({ subsets: ["latin"], variable: "--font-ui" });
 const serif = Lora({ subsets: ["latin"], variable: "--font-serif" });
 
 export const metadata: Metadata = {
-  title: "Etz Chaim · estudio de la Biblia",
+  title: "La Biblia",
   description: "Árbol de vida es a los que de ella echan mano (Proverbios 3:18)",
 };
 

@@ -10,7 +10,7 @@ async function LoginForm({ searchParams }: { searchParams: Promise<{ error?: str
     <main className="mx-auto flex min-h-[70dvh] max-w-sm flex-col items-center justify-center gap-6 text-center">
       <div>
         <p className="text-5xl">🌳</p>
-        <h1 className="mt-3 text-4xl">Etz Chaim</h1>
+        <h1 className="mt-3 text-4xl">La Biblia</h1>
         <p className="mt-1 text-sm" style={{ color: "var(--ink-2)" }}>
           «Lámpara es a mis pies tu palabra» — Salmo 119:105
         </p>
