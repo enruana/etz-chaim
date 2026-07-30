@@ -55,7 +55,7 @@ export default function Hoy() {
         </p>
       </Link>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <Link href="/memoria" className="card lift block p-5" style={{ textDecoration: "none" }}>
           <div
             className="mb-3 grid h-11 w-11 place-items-center rounded-2xl text-xl"
@@ -79,19 +79,7 @@ export default function Hoy() {
           </div>
           <h3 className="text-xl">El mapa</h3>
           <p className="text-sm" style={{ color: "var(--ink-2)" }}>
-            66 libros en 7 fases — y tu árbol creciendo
-          </p>
-        </Link>
-        <Link href="/tierra" className="card lift block p-5" style={{ textDecoration: "none" }}>
-          <div
-            className="mb-3 grid h-11 w-11 place-items-center rounded-2xl text-xl"
-            style={{ background: "var(--gold-soft)" }}
-          >
-            ⛰️
-          </div>
-          <h3 className="text-xl">La Tierra</h3>
-          <p className="text-sm" style={{ color: "var(--ink-2)" }}>
-            Viaja por Galilea y Jerusalén en 3D
+            66 libros en 7 fases, iluminándose contigo
           </p>
         </Link>
       </div>

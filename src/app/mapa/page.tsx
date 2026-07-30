@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { CANON, FASES } from "@/lib/canon";
 import { resumenProgreso } from "@/lib/progreso";
-import TreeSection from "@/components/TreeSection";
 
 export const dynamic = "force-dynamic";
 
@@ -18,8 +17,6 @@ export default function Mapa() {
           {p.completados} de {p.total} capítulos · {librosCompletos} de 66 libros
         </p>
       </header>
-
-      <TreeSection capitulos={p.completados} libros={librosCompletos} />
 
       {fases.map((f) => {
         const libros = CANON.filter((l) => l.fase === f);
