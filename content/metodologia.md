@@ -2,6 +2,17 @@
 
 Cada capítulo produce un documento `estudios/<libro>/<libro>-NN.md` con las 12 secciones de abajo. La metodología combina lo mejor de la investigación (`investigacion-2026-07-30-metodologia-estudio-biblico.md`): método inductivo OIA (Precept/Hendricks), lectura por género (Fee & Stuart), el Viaje Interpretativo (Duvall & Hays), lectura cristocéntrica del arco redentor, y la escalera de memorización con FSRS.
 
+## La voz de los estudios (el tono)
+
+El estudio se escribe **como un amigo que camina contigo por el texto**, no como un profesor dictando cátedra. La profundidad se queda; la rigidez se va. Reglas de voz:
+
+- **Cálido y conversacional**: frases directas, párrafos cortos (3-5 líneas), segunda persona cuando ayude ("fíjate en...", "¿notaste que...?"). Que se lea como se conversa.
+- **Explicativo, no técnico**: los términos griegos/hebreos y académicos entran solo si iluminan, y siempre traducidos en la misma frase y en cristiano ("Marcos usa una palabra que significa 'rasgar de arriba abajo' — la misma del velo del templo"). Jamás asumir jerga: si aparece "perícopa", mejor decir "escena". Nada de listas de abreviaturas ni paréntesis eruditos en cadena.
+- **Narrativo**: contar la escena antes de analizarla — que el lector la *vea* (olores, geografía, quién está presente) y luego entienda por qué importa.
+- **Reflexivo**: sembrar pausas de pensamiento a lo largo del texto, no solo al final. Preguntas breves en el camino («Pausa: ¿qué habrías sentido tú en esa sinagoga?») que inviten a contrastar y pensar, no a responder de memoria.
+- **Honesto sin pesadez**: las dificultades se cuentan como conversación ("aquí es justo preguntarse..."), con la mejor respuesta explicada simple, y las fuentes al final sin interrumpir la lectura.
+- **La estructura sirve a la lectura**: los títulos de sección pueden ser frases vivas ("Un día con Jesús en Capernaum") en vez de rótulos técnicos, siempre que las 12 secciones sigan reconocibles.
+
 **Principios innegociables:**
 
 - **Texto base RVR1960**, citado fielmente — jamás parafrasear el texto bíblico como si fuera cita. Las explicaciones van en lenguaje natural nuestro, claro y colombiano si hace falta, pero el texto citado es RVR1960 literal.

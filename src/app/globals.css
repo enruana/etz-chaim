@@ -95,15 +95,21 @@ a { color: inherit; }
 /* ————— Documento de estudio (markdown) ————— */
 .estudio {
   font-family: var(--font-serif), Georgia, serif;
-  font-size: 1.125rem;
-  line-height: 1.72;
-  max-width: 65ch;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  max-width: 62ch;
+  letter-spacing: 0.001em;
 }
-.estudio h1, .estudio h2, .estudio h3 { font-family: var(--font-display), serif; line-height: 1.2; }
+.estudio h1, .estudio h2, .estudio h3 { font-family: var(--font-display), serif; line-height: 1.22; }
 .estudio h1 { font-size: 1.9rem; margin: 0 0 0.6em; }
-.estudio h2 { font-size: 1.45rem; margin: 2em 0 0.5em; }
-.estudio h3 { font-size: 1.15rem; margin: 1.6em 0 0.4em; }
-.estudio p { margin: 0.9em 0; }
+.estudio h2 {
+  font-size: 1.5rem;
+  margin: 2.4em 0 0.6em;
+  padding-top: 1.2em;
+  border-top: 1.5px solid var(--line);
+}
+.estudio h3 { font-size: 1.18rem; margin: 1.8em 0 0.4em; color: var(--sky-ink); }
+.estudio p { margin: 1.05em 0; }
 .estudio blockquote {
   margin: 1.2em 0;
   padding: 0.8em 1.2em;
