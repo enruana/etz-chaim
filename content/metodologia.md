@@ -1,6 +1,6 @@
 # Metodología de estudio por capítulo
 
-Cada capítulo produce un documento `estudios/<libro>/<libro>-NN.md` con las 12 secciones de abajo. La metodología combina lo mejor de la investigación (`investigacion-2026-07-30-metodologia-estudio-biblico.md`): método inductivo OIA (Precept/Hendricks), lectura por género (Fee & Stuart), el Viaje Interpretativo (Duvall & Hays), lectura cristocéntrica del arco redentor, y la escalera de memorización con FSRS.
+Cada capítulo produce un documento `estudios/<libro>/<libro>-NN.md` con las 8 secciones de abajo. La metodología combina lo mejor de la investigación (`investigacion-2026-07-30-metodologia-estudio-biblico.md`): método inductivo OIA (Precept/Hendricks), lectura por género (Fee & Stuart), el Viaje Interpretativo (Duvall & Hays), lectura cristocéntrica del arco redentor, y la escalera de memorización con FSRS.
 
 ## La voz de los estudios (el tono)
 
@@ -11,7 +11,7 @@ El estudio se escribe **como un amigo que camina contigo por el texto**, no como
 - **Narrativo**: contar la escena antes de analizarla — que el lector la *vea* (olores, geografía, quién está presente) y luego entienda por qué importa.
 - **Reflexivo**: sembrar pausas de pensamiento a lo largo del texto, no solo al final. Preguntas breves en el camino («Pausa: ¿qué habrías sentido tú en esa sinagoga?») que inviten a contrastar y pensar, no a responder de memoria.
 - **Honesto sin pesadez**: las dificultades se cuentan como conversación ("aquí es justo preguntarse..."), con la mejor respuesta explicada simple, y las fuentes al final sin interrumpir la lectura.
-- **La estructura sirve a la lectura**: los títulos de sección pueden ser frases vivas ("Un día con Jesús en Capernaum") en vez de rótulos técnicos, siempre que las 12 secciones sigan reconocibles.
+- **La estructura sirve a la lectura**: los títulos de sección pueden ser frases vivas ("Un día con Jesús en Capernaum") en vez de rótulos técnicos, siempre que las 8 secciones sigan reconocibles.
 
 **Principios innegociables:**
 
@@ -24,46 +24,31 @@ El estudio se escribe **como un amigo que camina contigo por el texto**, no como
 
 ## Estructura del documento de estudio
 
-### 1. Ubicación en el mapa 🗺️
-Libro, autor, fecha, audiencia original. En cuál de las 10 eras del arco redentor estamos. Qué pasó justo antes (capítulo anterior) y qué viene después. 3-5 líneas: el organizador previo de Ausubel.
+Ocho secciones (antes eran doce: se fusionaron las que se pisaban y se quitaron las que alargaban la lectura sin aportar — la "observación bajo la lupa" y las "claves de género" por capítulo). El corazón es el recorrido versículo a versículo; todo lo demás lo sirve. Meta de extensión: **~5.000 palabras** por capítulo.
 
-### 2. El texto (RVR1960) 📖
-Referencia del capítulo y su división en perícopas (secciones naturales) con títulos nuestros. No se copia el capítulo entero: se citan los versículos clave por sección; la lectura se hace en la Biblia.
+### 1. Dónde estamos 🗺️
+Libro, autor, audiencia, era del arco redentor, qué pasó antes y qué viene después — en 3-5 líneas. Luego la tabla de escenas del capítulo (referencia + título nuestro) como mapa de lo que se va a leer. Lectura completa del capítulo en la Biblia antes de seguir.
 
-### 3. Contexto 🏺
-Histórico-cultural: qué necesita saber un lector del siglo XXI que el lector original sabía sin que se lo dijeran (costumbres, geografía, política, religión de la época). Literario: dónde cae el capítulo en el argumento del libro.
+### 2. Contexto 🏺
+Lo que el lector original sabía sin que se lo dijeran: costumbres, geografía, política, religión, y dónde cae el capítulo en el argumento del libro. Si el género cambia respecto al capítulo anterior (p.ej. primera epístola, primer salmo), una nota breve de cómo se lee — no un módulo aparte.
 
-### 4. Observación (OIA paso 1) 🔍
-El capítulo interrogado con las herramientas de Precept:
-- **Palabras clave** (repeticiones — regla: si puedes quitarla sin perder el sentido, no es clave)
-- **5W+H**: quién, qué, cuándo, dónde, por qué, cómo
-- **Contrastes, comparaciones, conectores** ("pero", "por tanto", "para que"), expresiones de tiempo, listas
+### 3. Caminemos el capítulo 💬
+**El corazón del estudio.** Abre con 2-4 *hilos para ir siguiendo* (palabras que se repiten, contrastes, conectores — lo que antes era la "observación", ahora en tres líneas). Luego, escena por escena: primero se *ve* la escena, después qué dice el texto explicado en nuestra voz, y las pausas 🌿 sembradas en el camino. Las citas siempre RVR1960 literal.
 
-### 5. Explicación en nuestra versión (OIA paso 2) 💬
-El corazón del estudio: perícopa por perícopa, qué está diciendo el texto, explicado en lenguaje natural nuestro — como si se lo explicara a un amigo, sin jerga innecesaria, pero sin rebajar el contenido. Regla de oro de interpretación: el pasaje no puede significar hoy lo que nunca pudo significar para su autor y su audiencia original. Aquí se comparan pasajes (la Escritura interpreta la Escritura) y se resuelven las palabras difíciles del castellano de 1960.
+### 4. Lo que este capítulo dice de Jesús ✝️
+Cristo en el capítulo y la doctrina, en una sola sección: cómo apunta a Él (promesa, tipo, cumplimiento — sin forzar) y qué enseña sobre Dios, el hombre, el pecado, la salvación. Conciso: lo que el texto de verdad sostiene.
 
-### 6. Claves de género 📜
-Qué género es (narrativa, ley, poesía, sabiduría, profecía, evangelio, epístola, apocalíptica) y qué reglas de lectura aplican en este capítulo concreto. Trampas típicas de interpretación de este pasaje y cómo evitarlas.
+### 5. Hablemos de lo difícil ⚠️
+Solo las 2-3 dificultades que un lector honesto sí se va a preguntar, contadas como conversación, con la mejor respuesta explicada simple. Las menores se despachan en una línea dentro del recorrido.
 
-### 7. Cristo en el capítulo ✝️
-Lectura redentora: cómo este capítulo apunta a Cristo o se conecta con el evangelio — por promesa, tipo, contraste o cumplimiento. Sin forzar tipología: solo conexiones que el propio NT o el flujo claro del arco redentor respaldan.
+### 6. ¿Y ahora qué? 🌱
+2-3 preguntas de aplicación concretas, derivadas del punto teológico del capítulo. Sin moralismo.
 
-### 8. Doctrina 📚
-Qué enseña el capítulo sobre Dios, el hombre, el pecado, la salvación, la iglesia. Conexión con la fe histórica de la iglesia.
+### 7. Memoria 🧠
+Versículo(s) clave (RVR1960 literal) con 1-2 preguntas de significado que se responden antes de memorizar. Unidad de cadena si aplica. Alimenta el pool FSRS de la app.
 
-### 9. Dificultades honestas ⚠️
-Las preguntas difíciles que el capítulo levanta (aparentes contradicciones, pasajes duros, objeciones comunes) con las mejores respuestas de la erudición cristiana creyente. No se esconden los problemas.
-
-### 10. Aplicación (OIA paso 3) 🌱
-2-4 preguntas de aplicación personal, concretas, derivadas del punto teológico del texto (no moralismo superficial). El Viaje Interpretativo: principio teológico atemporal → nuestra ciudad.
-
-### 11. Memoria 🧠
-- **Versículo(s) clave del capítulo** para memorizar (RVR1960 literal), con 1-2 preguntas de significado que se responden antes de memorizar
-- Si el capítulo pertenece a un **pasaje largo encadenado** (ej. Salmo 23, Romanos 8, Mateo 5–7), se indica la unidad de la cadena
-- Estos ítems alimentarán el pool FSRS de la app (escalera: 3R → cloze 20-30% → cloze 50-70% → first-letter → recitación libre → referencia inversa)
-
-### 12. Preguntas de comprensión ❓
-5-10 preguntas con respuesta (mezcla de observación, interpretación y ubicación en el arco) — el banco de ejercicios curado a mano para la app futura. Formatos: pregunta directa, ordenar eventos, ¿quién dijo esto a quién?, verdadero/falso con justificación.
+### 8. Preguntas ❓
+6-8 preguntas con respuesta breve (1-2 líneas): observación, interpretación, ordenar eventos, ¿quién dijo?, V/F. Es el banco curado a mano de la app; en la lectura debe pesar poco.
 
 ---
 
