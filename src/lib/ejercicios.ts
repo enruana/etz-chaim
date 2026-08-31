@@ -16,6 +16,11 @@ const MC_2_17 =
 const MC_2_27_28 =
   "El día de reposo fue hecho por causa del hombre, y no el hombre por causa del día de reposo. Por tanto, el Hijo del Hombre es Señor aun del día de reposo.";
 
+const MC_3_35 =
+  "Porque todo aquel que hace la voluntad de Dios, ese es mi hermano, y mi hermana, y mi madre.";
+const MC_3_14_15 =
+  "Y estableció a doce, para que estuviesen con él, y para enviarlos a predicar, y que tuviesen autoridad para sanar enfermedades y para echar fuera demonios";
+
 export const EJERCICIOS: Ejercicio[] = [
   // ——— Escalera de memoria: Marcos 1:15 ———
   { id: "v-mc-1-15-c1", tipo: "cloze", origen: "Marcos 1", texto: MC_1_15, ocultas: ["reino", "arrepentíos"], ref: "Marcos 1:15" },
@@ -134,6 +139,65 @@ export const EJERCICIOS: Ejercicio[] = [
     id: "q-mc2-10", tipo: "qa", origen: "Marcos 2",
     front: "¿Qué defendió Jesús con el ejemplo de David y los panes (1 S 21), y qué declaró en 2:27-28?",
     back: "Que la ley ceremonial nunca fue diseñada para aplastar la necesidad humana: si David comió el pan reservado, con más razón los hombres del Ungido mayor que David. Luego declaró el diseño («el día de reposo fue hecho por causa del hombre» — regalo, no carga) y su autoridad («el Hijo del Hombre es Señor aun del día de reposo»).",
+  },
+  // ——— Escalera de memoria: Marcos 3:35 ———
+  { id: "v-mc-3-35-c1", tipo: "cloze", origen: "Marcos 3", texto: MC_3_35, ocultas: ["voluntad", "hermano"], ref: "Marcos 3:35" },
+  { id: "v-mc-3-35-c2", tipo: "cloze", origen: "Marcos 3", texto: MC_3_35, ocultas: ["todo", "hace", "voluntad", "hermano", "hermana", "madre"], ref: "Marcos 3:35" },
+  { id: "v-mc-3-35-rec", tipo: "recitar", origen: "Marcos 3", ref: "Marcos 3:35", texto: MC_3_35 },
+  { id: "v-mc-3-35-ref", tipo: "referencia", origen: "Marcos 3", texto: MC_3_35, ref: "Marcos 3:35" },
+  // ——— Marcos 3:14-15 ———
+  { id: "v-mc-3-14-c1", tipo: "cloze", origen: "Marcos 3", texto: MC_3_14_15, ocultas: ["doce", "estuviesen", "enviarlos", "autoridad"], ref: "Marcos 3:14-15" },
+  { id: "v-mc-3-14-rec", tipo: "recitar", origen: "Marcos 3", ref: "Marcos 3:14-15", texto: MC_3_14_15 },
+  // ——— Comprensión: Marcos 3 ———
+  {
+    id: "q-mc3-01", tipo: "qa", origen: "Marcos 3",
+    front: "¿Qué hizo Jesús con el hombre de la mano seca antes de sanarlo, y por qué importa?",
+    back: "Le dijo «Levántate y ponte en medio» (3:3): lo puso en el centro de la sinagoga. Convirtió la trampa secreta de los fariseos en escena pública, y al hombre-cebo en persona.",
+  },
+  {
+    id: "q-mc3-02", tipo: "qa", origen: "Marcos 3",
+    front: "¿Qué dos emociones tuvo Jesús en 3:5, y qué las provocó?",
+    back: "Enojo («mirándolos alrededor con enojo») y tristeza («entristecido»), a la vez. Las provocó «la dureza de sus corazones»: gente religiosa que prefería su reglamento a la restauración de un hombre.",
+  },
+  {
+    id: "q-mc3-03", tipo: "qa", origen: "Marcos 3",
+    front: "¿Por qué sorprende que los fariseos se aliaran con los herodianos (3:6)?",
+    back: "Eran enemigos políticos: los fariseos despreciaban a Herodes y a Roma; los herodianos eran partidarios de Herodes Antipas. Los unió un enemigo común — y la necesidad del poder del Estado para matar.",
+  },
+  {
+    id: "q-mc3-04", tipo: "qa", origen: "Marcos 3",
+    front: "Según 3:14-15, ¿para qué estableció Jesús a los doce? Los tres propósitos, en orden.",
+    back: "(1) «para que estuviesen con él»; (2) «para enviarlos a predicar»; (3) «que tuviesen autoridad para sanar enfermedades y para echar fuera demonios». Primero la comunión, después el envío.",
+  },
+  {
+    id: "q-mc3-05", tipo: "qa", origen: "Marcos 3",
+    front: "¿Quién dijo esto y de quién?: «Está fuera de sí».",
+    back: "«Los suyos» — la familia de Jesús — al enterarse de cómo vivía en Capernaúm (3:21). Vinieron «para prenderle»: llevárselo a casa creyendo que había perdido el juicio.",
+  },
+  {
+    id: "q-mc3-06", tipo: "qa", origen: "Marcos 3",
+    front: "¿De qué acusaron a Jesús los escribas de Jerusalén (3:22), y cómo lo refutó?",
+    back: "Que «tenía a Beelzebú» y echaba demonios por el príncipe de los demonios. Jesús: una casa dividida no permanece — Satanás no expulsa a Satanás — y con el hombre fuerte (3:27) explicó lo que pasaba: alguien más fuerte lo había atado y saqueaba su casa.",
+  },
+  {
+    id: "q-mc3-07", tipo: "qa", origen: "Marcos 3",
+    front: "Según el propio Marcos (3:30), ¿en qué consistía la blasfemia contra el Espíritu Santo en este pasaje?",
+    back: "En que los escribas «habían dicho: Tiene espíritu inmundo»: miraron la obra visible del Espíritu Santo en Jesús y la atribuyeron, con conocimiento y de forma sostenida, a un espíritu inmundo.",
+  },
+  {
+    id: "q-mc3-08", tipo: "qa", origen: "Marcos 3",
+    front: "V/F: «Quien teme haber cometido la blasfemia contra el Espíritu Santo probablemente la cometió».",
+    back: "Falso. Quien llegó a ese endurecimiento no se angustia por su alma; la angustia es obra del Espíritu. Jesús advirtió a los escribas — no se advierte a quien ya está perdido —, y 3:28 promete perdón de «todos los pecados… y las blasfemias cualesquiera que sean».",
+  },
+  {
+    id: "q-mc3-09", tipo: "qa", origen: "Marcos 3",
+    front: "Ordena: (a) Jesús establece a doce; (b) los escribas dicen que tiene a Beelzebú; (c) fariseos y herodianos traman destruirle; (d) la madre y los hermanos afuera; (e) los demonios gritan «Tú eres el Hijo de Dios».",
+    back: "c → e → a → b → d. El complot (3:6), los demonios junto al mar (3:11), los doce (3:13-19), Beelzebú (3:22-30), la familia afuera (3:31-35).",
+  },
+  {
+    id: "q-mc3-10", tipo: "qa", origen: "Marcos 3",
+    front: "¿Cómo se relacionan las dos «rebanadas» del sándwich (3:20-21 y 3:31-35) con el relleno (3:22-30), y qué enseña el conjunto?",
+    back: "La familia lo cree loco y se queda afuera; los escribas lo llaman endemoniado; adentro están los que lo escuchan. La cercanía a Jesús no viene por sangre ni credenciales sino por hacer la voluntad de Dios (3:35) — y la puerta siguió abierta: María y sus hermanos terminaron adentro (Hch 1:14).",
   },
 ];
 
