@@ -15,7 +15,7 @@ Conocer a Jesús primero: Él es la clave hermenéutica de toda la Escritura (Lu
 
 | # | Libro | Caps | Género | Estado | Por qué aquí |
 |---|---|---|---|---|---|
-| 1 | **Marcos** | 16 | Evangelio | 🔵 caps. 1-3 | El evangelio más corto, narrativo y de ritmo rápido: la puerta de entrada |
+| 1 | **Marcos** | 16 | Evangelio | 🔵 caps. 1-4 | El evangelio más corto, narrativo y de ritmo rápido: la puerta de entrada |
 | 2 | **Juan** | 21 | Evangelio | ⬜ | Quién es Jesús: autocontenido, escrito "para que creáis" (Jn 20:31) |
 | 3 | **Hechos** | 28 | Narrativa | ⬜ | La continuación natural: qué pasó con el evangelio |
 | 4 | **Santiago** | 5 | Epístola | ⬜ | Carta práctica y directa: primer contacto con el género epistolar |
@@ -164,7 +164,8 @@ Toda explicación de capítulo se ubica en una de estas eras:
 | 2026-07-30 | Marcos 1 | 📄 Borrador de estudio producido (`estudios/marcos/marcos-01.md`) — pendiente estudio personal |
 | 2026-07-30 | Marcos 2 | 📄 Borrador de estudio producido (`content/estudios/marcos/marcos-02.md`) — pendiente estudio personal |
 | 2026-08-31 | Marcos 3 | 📄 Borrador de estudio producido (`content/estudios/marcos/marcos-03.md`) — pendiente estudio personal |
+| 2026-09-03 | Marcos 4 | 📄 Borrador de estudio producido (`content/estudios/marcos/marcos-04.md`) — pendiente estudio personal |
 
-**Posición actual: Fase 1 · Marcos · capítulo 3.**
+**Posición actual: Fase 1 · Marcos · capítulo 4.**
 
 Nota de licencia: la RVR1960 es propiedad de Sociedades Bíblicas Unidas. Para este proyecto personal citar el texto no es problema; si algún día la app se publica, revisar licenciamiento del texto.

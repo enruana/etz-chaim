@@ -21,6 +21,11 @@ const MC_3_35 =
 const MC_3_14_15 =
   "Y estableció a doce, para que estuviesen con él, y para enviarlos a predicar, y que tuviesen autoridad para sanar enfermedades y para echar fuera demonios";
 
+const MC_4_39 =
+  "Y levantándose, reprendió al viento, y dijo al mar: Calla, enmudece. Y cesó el viento, y se hizo grande bonanza.";
+const MC_4_41 =
+  "Entonces temieron con gran temor, y se decían el uno al otro: ¿Quién es este, que aun el viento y el mar le obedecen?";
+
 export const EJERCICIOS: Ejercicio[] = [
   // ——— Escalera de memoria: Marcos 1:15 ———
   { id: "v-mc-1-15-c1", tipo: "cloze", origen: "Marcos 1", texto: MC_1_15, ocultas: ["reino", "arrepentíos"], ref: "Marcos 1:15" },
@@ -198,6 +203,65 @@ export const EJERCICIOS: Ejercicio[] = [
     id: "q-mc3-10", tipo: "qa", origen: "Marcos 3",
     front: "¿Cómo se relacionan las dos «rebanadas» del sándwich (3:20-21 y 3:31-35) con el relleno (3:22-30), y qué enseña el conjunto?",
     back: "La familia lo cree loco y se queda afuera; los escribas lo llaman endemoniado; adentro están los que lo escuchan. La cercanía a Jesús no viene por sangre ni credenciales sino por hacer la voluntad de Dios (3:35) — y la puerta siguió abierta: María y sus hermanos terminaron adentro (Hch 1:14).",
+  },
+  // ——— Escalera de memoria: Marcos 4:39 ———
+  { id: "v-mc-4-39-c1", tipo: "cloze", origen: "Marcos 4", texto: MC_4_39, ocultas: ["reprendió", "enmudece"], ref: "Marcos 4:39" },
+  { id: "v-mc-4-39-c2", tipo: "cloze", origen: "Marcos 4", texto: MC_4_39, ocultas: ["levantándose", "reprendió", "viento", "Calla", "enmudece", "bonanza"], ref: "Marcos 4:39" },
+  { id: "v-mc-4-39-rec", tipo: "recitar", origen: "Marcos 4", ref: "Marcos 4:39", texto: MC_4_39 },
+  { id: "v-mc-4-39-ref", tipo: "referencia", origen: "Marcos 4", texto: MC_4_39, ref: "Marcos 4:39" },
+  // ——— Marcos 4:41 ———
+  { id: "v-mc-4-41-c1", tipo: "cloze", origen: "Marcos 4", texto: MC_4_41, ocultas: ["temor", "viento", "obedecen"], ref: "Marcos 4:41" },
+  { id: "v-mc-4-41-rec", tipo: "recitar", origen: "Marcos 4", ref: "Marcos 4:41", texto: MC_4_41 },
+  // ——— Comprensión: Marcos 4 ———
+  {
+    id: "q-mc4-01", tipo: "qa", origen: "Marcos 4",
+    front: "¿Desde dónde enseñó Jesús la parábola del sembrador, y de dónde salió ese «púlpito»?",
+    back: "Desde una barca, sentado sobre el mar, con la multitud en la orilla (4:1). Es la barca que pidió tener «siempre lista» en 3:9: lo que fue salida de emergencia se volvió púlpito.",
+  },
+  {
+    id: "q-mc4-02", tipo: "qa", origen: "Marcos 4",
+    front: "¿Por qué la parábola del sembrador es la llave de todas las parábolas (4:13)?",
+    back: "Porque entrega la clave de lectura: la semilla es «la palabra» (4:14) y los terrenos son las maneras de oírla. Quien no entiende que el reino avanza por la palabra sembrada no podrá abrir las demás.",
+  },
+  {
+    id: "q-mc4-03", tipo: "qa", origen: "Marcos 4",
+    front: "Menciona los cuatro terrenos y qué impide (o produce) el fruto en cada uno.",
+    back: "Camino: Satanás quita la palabra en seguida (4:15). Pedregales: gozo sin raíz, tropiezan ante la tribulación (4:16-17). Espinos: afanes, engaño de las riquezas y codicias la ahogan (4:18-19). Buena tierra: oyen, reciben y dan fruto a treinta, sesenta y ciento por uno (4:20).",
+  },
+  {
+    id: "q-mc4-04", tipo: "qa", origen: "Marcos 4",
+    front: "¿Qué es el «misterio del reino de Dios» que «os es dado saber» (4:11)?",
+    back: "Algo que solo se conoce si Dios lo revela: el reino ya llegó en Jesús, pero en forma pequeña y sembrada — no con el estruendo que Israel esperaba. Y es «dado»: regalo recibido quedándose cerca a preguntar.",
+  },
+  {
+    id: "q-mc4-05", tipo: "qa", origen: "Marcos 4",
+    front: "V/F: «Según Marcos 4, Jesús usaba parábolas para que nadie pudiera entender ni salvarse».",
+    back: "Falso. Las parábolas revelan al que busca y velan al que ya se cerró: a los que preguntaban «les declaraba todo» (4:34). El velo de 4:11-12 es juicio sobre un rechazo ya consumado (los escribas del cap. 3), no una trampa para el que quiere oír.",
+  },
+  {
+    id: "q-mc4-06", tipo: "qa", origen: "Marcos 4",
+    front: "En la parábola exclusiva de Marcos (4:26-29), ¿qué hace el sembrador después de sembrar y qué hace la semilla?",
+    back: "El sembrador duerme y se levanta, «sin que él sepa cómo» crece lo sembrado; la semilla brota «de suyo» — por poder propio — hasta la siega. El crecimiento del reino es obra de Dios, no del músculo del sembrador.",
+  },
+  {
+    id: "q-mc4-07", tipo: "qa", origen: "Marcos 4",
+    front: "¿Quién dijo esto y a quién?: «Maestro, ¿no tienes cuidado que perecemos?»",
+    back: "Los discípulos a Jesús, al despertarlo en plena tormenta (4:38). Él dormía sobre un cabezal en la popa; el reclamo lleva un filo de acusación: el miedo les hizo dudar de que a Jesús le importaran.",
+  },
+  {
+    id: "q-mc4-08", tipo: "qa", origen: "Marcos 4",
+    front: "¿Qué conexión hay entre la orden «Calla, enmudece» (4:39) y el exorcismo de 1:25?",
+    back: "«Enmudece» traduce el mismo verbo griego — \"ponerse bozal\" — con que Jesús calló al demonio en la sinagoga, y en ambas escenas Marcos dice que «reprendió». La misma palabra con la misma autoridad somete a los demonios y al mar.",
+  },
+  {
+    id: "q-mc4-09", tipo: "qa", origen: "Marcos 4",
+    front: "¿Por qué los discípulos «temieron con gran temor» después de que cesó la tormenta (4:41)?",
+    back: "La calma les reveló algo más grande que la tormenta: alguien a quien «aun el viento y el mar le obedecen» — y en el AT solo Dios manda al mar (Sal 107:28-29; 89:9). El miedo a morir se volvió asombro ante quién viajaba en su barca.",
+  },
+  {
+    id: "q-mc4-10", tipo: "qa", origen: "Marcos 4",
+    front: "Ordena: (a) explica la parábola a los de adentro; (b) calma la tempestad; (c) enseña el sembrador desde la barca; (d) el grano de mostaza; (e) «Pasemos al otro lado».",
+    back: "c → a → d → e → b. El sembrador desde la barca (4:1-9), la explicación a solas (4:10-20), la mostaza (4:30-32), la orden de cruzar al caer la noche (4:35) y la tempestad calmada (4:37-41).",
   },
 ];
 
