@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { libro, FASES } from "@/lib/canon";
+import { ESPECIALES } from "@/lib/especiales";
 import { resumenProgreso } from "@/lib/progreso";
 import { syncItems, contarPendientes } from "@/lib/srs";
 import { hasStudy } from "@/lib/studies";
@@ -54,6 +55,23 @@ export default function Hoy() {
           {p.completados} de {p.total} capítulos · {pct}% del canon
         </p>
       </Link>
+
+      {ESPECIALES.filter((e) => hasStudy(e.libro, e.cap)).map((e) => (
+        <Link
+          key={`${e.libro}-${e.cap}`}
+          href={`/estudiar/${e.libro}/${e.cap}`}
+          className="card lift block p-5"
+          style={{ textDecoration: "none", borderLeft: "6px solid var(--gold)" }}
+        >
+          <p className="text-xs font-extrabold uppercase tracking-widest" style={{ color: "var(--gold)" }}>
+            ⭐ Estudio especial
+          </p>
+          <h3 className="mt-1 text-2xl">{e.titulo}</h3>
+          <p className="text-sm" style={{ color: "var(--ink-2)" }}>
+            {e.motivo}
+          </p>
+        </Link>
+      ))}
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <Link href="/memoria" className="card lift block p-5" style={{ textDecoration: "none" }}>

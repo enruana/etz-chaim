@@ -1,5 +1,5 @@
 // Banco de ejercicios curado a mano (nunca generado sin revisión).
-// Fuente: content/estudios/marcos/ — secciones 11 (Memoria) y 12 (Preguntas) de cada capítulo.
+// Fuente: content/estudios/ — secciones Memoria y Preguntas de cada capítulo estudiado.
 // Texto bíblico: RVR1960 literal.
 
 export type Ejercicio =
@@ -25,6 +25,11 @@ const MC_4_39 =
   "Y levantándose, reprendió al viento, y dijo al mar: Calla, enmudece. Y cesó el viento, y se hizo grande bonanza.";
 const MC_4_41 =
   "Entonces temieron con gran temor, y se decían el uno al otro: ¿Quién es este, que aun el viento y el mar le obedecen?";
+
+const PR_21_2 =
+  "Todo camino del hombre es recto en su propia opinión; Pero Jehová pesa los corazones.";
+const PR_21_31 =
+  "El caballo se alista para el día de la batalla; Mas Jehová es el que da la victoria.";
 
 export const EJERCICIOS: Ejercicio[] = [
   // ——— Escalera de memoria: Marcos 1:15 ———
@@ -262,6 +267,65 @@ export const EJERCICIOS: Ejercicio[] = [
     id: "q-mc4-10", tipo: "qa", origen: "Marcos 4",
     front: "Ordena: (a) explica la parábola a los de adentro; (b) calma la tempestad; (c) enseña el sembrador desde la barca; (d) el grano de mostaza; (e) «Pasemos al otro lado».",
     back: "c → a → d → e → b. El sembrador desde la barca (4:1-9), la explicación a solas (4:10-20), la mostaza (4:30-32), la orden de cruzar al caer la noche (4:35) y la tempestad calmada (4:37-41).",
+  },
+  // ——— Escalera de memoria: Proverbios 21:2 (estudio especial) ———
+  { id: "v-pr-21-2-c1", tipo: "cloze", origen: "Proverbios 21", texto: PR_21_2, ocultas: ["recto", "pesa"], ref: "Proverbios 21:2" },
+  { id: "v-pr-21-2-c2", tipo: "cloze", origen: "Proverbios 21", texto: PR_21_2, ocultas: ["camino", "recto", "opinión", "Jehová", "pesa", "corazones"], ref: "Proverbios 21:2" },
+  { id: "v-pr-21-2-rec", tipo: "recitar", origen: "Proverbios 21", ref: "Proverbios 21:2", texto: PR_21_2 },
+  { id: "v-pr-21-2-ref", tipo: "referencia", origen: "Proverbios 21", texto: PR_21_2, ref: "Proverbios 21:2" },
+  // ——— Proverbios 21:31 ———
+  { id: "v-pr-21-31-c1", tipo: "cloze", origen: "Proverbios 21", texto: PR_21_31, ocultas: ["alista", "victoria"], ref: "Proverbios 21:31" },
+  { id: "v-pr-21-31-rec", tipo: "recitar", origen: "Proverbios 21", ref: "Proverbios 21:31", texto: PR_21_31 },
+  // ——— Comprensión: Proverbios 21 ———
+  {
+    id: "q-pr21-01", tipo: "qa", origen: "Proverbios 21",
+    front: "¿Con qué verdad abre el capítulo (v.1) y con cuál cierra (vv.30-31)? ¿Qué tienen en común?",
+    back: "Abre con el corazón del rey como canal de riego en la mano de Jehová y cierra con «No hay sabiduría… contra Jehová» y la victoria que Él da, no el caballo. El mismo marco: la soberanía de Jehová sobre lo más poderoso del hombre.",
+  },
+  {
+    id: "q-pr21-02", tipo: "qa", origen: "Proverbios 21",
+    front: "¿Qué significa que «Jehová pesa los corazones» (21:2) y por qué hace falta?",
+    back: "Dios evalúa los motivos reales como en una balanza, sin apariencias. Hace falta porque «Todo camino del hombre es recto en su propia opinión»: el autoveredicto siempre sale absuelto; el veredicto verdadero viene de afuera.",
+  },
+  {
+    id: "q-pr21-03", tipo: "qa", origen: "Proverbios 21",
+    front: "Según 21:5, ¿quién tiende a la abundancia y quién a la pobreza?",
+    back: "«Los pensamientos del diligente» — el que planea con paciencia — tienden a la abundancia; «todo el que se apresura alocadamente» va a la pobreza. El contraste no es contra el perezoso sino contra el apurado.",
+  },
+  {
+    id: "q-pr21-04", tipo: "qa", origen: "Proverbios 21",
+    front: "Si Dios mandó los sacrificios, ¿por qué hacer justicia le es «más agradable que sacrificio» (21:3) y el del impío es «abominación» (21:27)?",
+    back: "El rito nunca fue moneda para comprar a Dios ni lavado de una vida injusta: sin justicia el culto se vuelve ofensa (1 S 15:22; Os 6:6). Dios pesa al oferente antes que la ofrenda.",
+  },
+  {
+    id: "q-pr21-05", tipo: "qa", origen: "Proverbios 21",
+    front: "V/F: «Proverbios 21:21 garantiza que a todo el que siga la justicia le irá bien en esta vida».",
+    back: "Falso. Un proverbio es máxima del orden general, no promesa incondicional — Job y Eclesiastés son el contrapeso canónico. Su cumplimiento pleno se ve en Cristo, que halló vida y honra pasando por la cruz.",
+  },
+  {
+    id: "q-pr21-06", tipo: "qa", origen: "Proverbios 21",
+    front: "¿Enseñan 21:9 y 21:19 que las esposas son el problema de los hogares?",
+    back: "No. Se formulan sobre una mujer porque el libro forma a un hijo varón que elegirá esposa; el principio es bidireccional — la casa la hace inhabitable cualquier cónyuge que le haga la guerra — y el libro corona a la mujer virtuosa (Pr 31). Se leen en el espejo, nunca como arma.",
+  },
+  {
+    id: "q-pr21-07", tipo: "qa", origen: "Proverbios 21",
+    front: "¿Qué le pasa al que «cierra su oído al clamor del pobre» (21:13)?",
+    back: "«También él clamará, y no será oído»: la misericordia que negó es la que le faltará en su día. El pecado no es hacer daño sino negarse a oír (cf. el rico y Lázaro, Lc 16).",
+  },
+  {
+    id: "q-pr21-08", tipo: "qa", origen: "Proverbios 21",
+    front: "¿Qué significa «Rescate del justo es el impío» (21:18)?",
+    back: "En los giros de la providencia, la calamidad tramada contra el justo cae sobre quien la tramó — como Amán en la horca de Mardoqueo (Est 7:10). Tendencia del orden moral, no ley mecánica; y el evangelio la invierte: el Justo se hizo rescate de los impíos (Mr 10:45).",
+  },
+  {
+    id: "q-pr21-09", tipo: "qa", origen: "Proverbios 21",
+    front: "Según 21:23, ¿qué guarda el que guarda su boca y su lengua?",
+    back: "«Su alma guarda de angustias»: hacer guardia en la boca le ahorra al alma los incendios que una frase suelta enciende. Reverso en 21:28: el testigo mentiroso perece; el que habla de lo que de verdad oyó «permanecerá en su dicho».",
+  },
+  {
+    id: "q-pr21-10", tipo: "qa", origen: "Proverbios 21",
+    front: "V/F: «Según 21:30-31, prepararse — alistar el caballo — es falta de fe: basta confiar en Jehová».",
+    back: "Falso. El versículo afirma las dos cosas: el caballo se alista (la diligencia es sabiduría) y «Jehová es el que da la victoria». Lo condenado no es prepararse sino confiar en lo preparado.",
   },
 ];
 

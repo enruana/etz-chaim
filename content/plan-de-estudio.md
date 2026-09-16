@@ -165,6 +165,7 @@ Toda explicación de capítulo se ubica en una de estas eras:
 | 2026-07-30 | Marcos 2 | 📄 Borrador de estudio producido (`content/estudios/marcos/marcos-02.md`) — pendiente estudio personal |
 | 2026-08-31 | Marcos 3 | 📄 Borrador de estudio producido (`content/estudios/marcos/marcos-03.md`) — pendiente estudio personal |
 | 2026-09-03 | Marcos 4 | 📄 Borrador de estudio producido (`content/estudios/marcos/marcos-04.md`) — pendiente estudio personal |
+| 2026-09-16 | Proverbios 21 | ⭐ Estudio especial producido (`content/estudios/proverbios/proverbios-21.md`) — salto temporal para el grupo de parejas; el plan sigue en Marcos 4 |
 
 **Posición actual: Fase 1 · Marcos · capítulo 4.**
 
