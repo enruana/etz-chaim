@@ -21,7 +21,7 @@ Un dato que lo resume: en el siglo II solo ~3% de los libros paganos eran códic
 
 Kitsch prohibido: pergamino quemado, bordes rasgados, sellos de cera, fuentes-disfraz (Papyrus, blackletter en la interfaz), marcos dorados, degradados metálicos, sepia extremo.
 
-## Tokens (`src/app/globals.css`)
+## Tokens (`src/app/globals.css`) — valores de la primera versión; los vigentes (más oscuros, de piedra) están en el CSS
 
 | Token | Hex | De dónde viene |
 |---|---|---|
@@ -54,6 +54,20 @@ Reservados, sin uso todavía (colores ceremoniales de los iluminadores): lapisl�
 7. **Numeración romana** — fases (Fase IV) y videos.
 8. **La cadena** — *Piedra · Arcilla · Papiro · Pergamino · Códice · Imprenta · **Pantalla*** al pie de Hoy y del login: la tesis, siempre a la vista.
 9. **Sin emojis** — los documentos de estudio los conservan (son parte de la metodología), pero `src/lib/studies.ts` los retira al componer la página.
+
+## Revisión del mismo día: la talla en piedra
+
+La primera versión (papel cálido, editorial, casi sin textura) le pareció a Felipe demasiado limpia: pidió **más textura, que parezca roca, más interesante** — y letra más pequeña en móvil para aprovechar el espacio. La línea se mantiene (la cadena de transmisión, rúbricas, capitulares, colofón) pero el material dominante pasa del papel a **la piedra**, el primer eslabón de la cadena:
+
+- **La pared de roca** — el fondo de la app es una sola pieza de caliza dorada (la piedra de Jerusalén), generada de forma procedural: ruido fractal en dos escalas (relieve + grano fino) con luz rasante (`feTurbulence` + `feDiffuseLighting` en un SVG inline) y manchas minerales. Relieve real, ~1 KB, sin imágenes ni costuras (una pieza fija del tamaño de la ventana).
+- **Las losas** (`.hoja`) — la misma piedra cortada y pulida: textura suave para que el texto largo se lea nítido, con aristas (luz arriba-izquierda, sombra abajo-derecha) y sombra de apoyo. Las etiquetas del mapa son teselas; la pausa es un nicho rebajado.
+- **La talla** — títulos en Cinzel como letra incisa (sombra arriba, luz en el borde inferior). El nombre de la app va tallado y **pintado de rojo**, como las inscripciones antiguas, cuyas letras se rellenaban con minio.
+- **Basalto** — botones primarios y la repisa de navegación, en piedra oscura con la letra clara.
+- **Texto sobre roca viva** (`.sobre-roca`): más oscuro y con halo de luz para que no pierda legibilidad.
+
+Esto contradice a sabiendas una regla de la investigación ("materialidad sugerida, nunca simulada"): la preferencia de Felipe manda. Se conserva lo esencial de esa regla donde importa — el texto de lectura va siempre sobre losa pulida, nunca sobre la roca rugosa.
+
+**Móvil compacto:** base 0.92rem, estudio 1.06rem/1.56 (antes 1.28rem), rótulos 0.62rem, márgenes y rellenos reducidos, Memoria y Mapa lado a lado en Hoy. En una pantalla de teléfono caben ~3 párrafos de estudio (antes 1) y 4 fases del mapa.
 
 ## Lo que sigue siendo cierto
 

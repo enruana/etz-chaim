@@ -14,14 +14,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f7f1e3",
+  themeColor: "#d9cbab",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
       <body className={`${display.variable} ${serif.variable} ${ui.variable}`}>
-        <div className="mx-auto max-w-3xl px-5 pb-28 pt-8">{children}</div>
+        <div className="mx-auto max-w-3xl px-3.5 pb-24 pt-5 sm:px-5 sm:pb-28 sm:pt-8">{children}</div>
         <BottomNav />
       </body>
     </html>

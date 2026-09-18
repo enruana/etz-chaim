@@ -23,7 +23,7 @@ export default function ReviewSession({ cards }: { cards: Card[] }) {
     return (
       <div className="hoja px-6 py-12 text-center">
         <p className="fleuron">❦</p>
-        <h2 className="mt-3 text-3xl">
+        <h2 className="mt-3 text-2xl sm:text-3xl">
           {hechas > 0 ? `${hechas} ${hechas === 1 ? "repaso hecho" : "repasos hechos"}` : "Nada pendiente"}
         </h2>
         <p className="nota mx-auto mt-2 max-w-sm">
@@ -49,16 +49,16 @@ export default function ReviewSession({ cards }: { cards: Card[] }) {
       <p className="rotulo">
         {i + 1} de {cards.length} · {card.etiqueta}
       </p>
-      <div className="hoja flex min-h-60 flex-col justify-center gap-5 p-6 sm:p-8">
-        <p className="serif" style={{ fontSize: "1.3rem", lineHeight: 1.6, margin: 0 }}>
+      <div className="hoja flex min-h-52 flex-col justify-center gap-4 p-4 sm:min-h-60 sm:gap-5 sm:p-8">
+        <p className="serif" style={{ fontSize: "clamp(1.08rem, 3.4vw, 1.3rem)", lineHeight: 1.55, margin: 0 }}>
           {card.front}
         </p>
         {reveal && (
           <p
             className="serif"
             style={{
-              fontSize: "1.2rem",
-              lineHeight: 1.6,
+              fontSize: "clamp(1.02rem, 3.2vw, 1.2rem)",
+              lineHeight: 1.55,
               margin: 0,
               paddingLeft: "1rem",
               borderLeft: "2px solid var(--rubrica)",

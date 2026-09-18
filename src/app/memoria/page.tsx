@@ -37,11 +37,11 @@ export default function Memoria() {
   });
 
   return (
-    <main className="flex flex-col gap-6">
+    <main className="flex flex-col gap-4 sm:gap-6">
       <header>
         <p className="rotulo">Repaso espaciado · FSRS</p>
-        <h1 className="mt-1.5 text-4xl">Memoria</h1>
-        <p className="nota mt-2">
+        <h1 className="mt-1 text-[1.7rem] sm:mt-1.5 sm:text-4xl">Memoria</h1>
+        <p className="nota sobre-roca mt-2">
           Así se guardó este texto durante siglos: repitiéndolo. El algoritmo decide cuándo; tú decides qué tan bien te
           fue.
         </p>

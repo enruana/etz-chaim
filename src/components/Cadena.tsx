@@ -5,9 +5,9 @@ const ESLABONES = ["Piedra", "Arcilla", "Papiro", "Pergamino", "Códice", "Impre
 
 export default function Cadena() {
   return (
-    <footer className="pt-4 text-center">
+    <footer className="pt-2 text-center sm:pt-4">
       <hr className="filete" />
-      <p className="rotulo mt-5" style={{ lineHeight: 2 }}>
+      <p className="rotulo sobre-roca mt-3.5 sm:mt-5" style={{ lineHeight: 1.9 }}>
         {ESLABONES.map((e, i) => (
           <span key={e}>
             <span style={i === ESLABONES.length - 1 ? { color: "var(--rubrica)" } : undefined}>{e}</span>
@@ -15,7 +15,7 @@ export default function Cadena() {
           </span>
         ))}
       </p>
-      <p className="serif nota mt-1 italic" style={{ fontSize: "1.05rem" }}>
+      <p className="serif sobre-roca mt-1 text-[0.95rem] italic sm:text-[1.05rem]" style={{ margin: "0.25rem 0 0" }}>
         Tres mil años de manos copiando este texto para que llegara a la tuya.
       </p>
     </footer>

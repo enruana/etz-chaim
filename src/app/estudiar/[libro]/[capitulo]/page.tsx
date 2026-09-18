@@ -23,13 +23,13 @@ export default async function Estudiar({ params }: { params: Promise<{ libro: st
   const desmarcar = desmarcarAction.bind(null, slug, cap);
 
   return (
-    <main className="flex flex-col gap-6">
+    <main className="flex flex-col gap-4 sm:gap-6">
       <header className="flex items-end justify-between gap-3">
         <div>
           <p className="rotulo">
             Fase {romano(l.fase)} · {fase.nombre} · {l.genero}
           </p>
-          <h1 className="mt-1.5 text-4xl">
+          <h1 className="mt-1 text-[1.7rem] sm:mt-1.5 sm:text-4xl">
             {l.nombre} {cap}
           </h1>
         </div>
@@ -48,7 +48,7 @@ export default async function Estudiar({ params }: { params: Promise<{ libro: st
       </header>
 
       {cap === 1 && l.videos.length > 0 && (
-        <div className="hoja p-5">
+        <div className="hoja p-3.5 sm:p-5">
           <p className="rotulo">Antes de empezar {l.nombre} · el panorama de Proyecto Biblia</p>
           <div className="mt-3 flex flex-wrap gap-2">
             {l.videos.map((v, i) => (
@@ -62,10 +62,10 @@ export default async function Estudiar({ params }: { params: Promise<{ libro: st
 
       {html ? (
         <>
-          <div className="hoja px-5 py-9 sm:px-10 sm:py-12">
+          <div className="hoja px-4 py-6 sm:px-10 sm:py-12">
             <article className="estudio" dangerouslySetInnerHTML={{ __html: html }} />
             {/* colofón: así cerraban los escribas su trabajo */}
-            <div className="mt-12 text-center">
+            <div className="mt-9 text-center sm:mt-12">
               <p className="fleuron">❦</p>
               <p className="rotulo mt-3">
                 Aquí termina el estudio de {l.nombre} {cap}

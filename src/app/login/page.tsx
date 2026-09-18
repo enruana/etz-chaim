@@ -7,8 +7,8 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
     <main className="mx-auto flex min-h-[80dvh] max-w-sm flex-col items-center justify-center gap-7 text-center">
       <div>
         <p className="fleuron">❦</p>
-        <h1 className="mt-4 text-5xl">La Biblia</h1>
-        <p className="serif mt-3 italic" style={{ fontSize: "1.1rem", color: "var(--tinta-suave)" }}>
+        <h1 className="tallada-roja mt-4 text-4xl sm:text-5xl">La Biblia</h1>
+        <p className="serif sobre-roca mt-3 text-base italic sm:text-lg">
           «Lámpara es a mis pies tu palabra» — Salmo 119:105
         </p>
       </div>
@@ -22,7 +22,8 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
           style={{
             border: "1px solid var(--filete-fuerte)",
             borderRadius: 3,
-            background: "var(--papel)",
+            background: "var(--papel-hundido)",
+            boxShadow: "inset 1px 2px 4px rgb(30 22 14 / 0.25)",
             color: "var(--tinta)",
             outline: "none",
           }}
