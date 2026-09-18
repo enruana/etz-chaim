@@ -1,29 +1,26 @@
 @import "tailwindcss";
 
-/* ————— Mañana en Brisbane (opción A) + Noche de cuento —————
-   Principios: luz dorada / sombra violeta; el cielo es el layout;
-   cubos redondeados sin aristas; plano con textura; movimiento lento. */
+/* ————— «El Códice» — línea de diseño histórica —————
+   La pantalla como el siguiente eslabón de la cadena de transmisión:
+   piedra → arcilla → papiro → pergamino → códice → imprenta → pantalla.
+   Regla de oro: heredar los oficios del libro (rúbricas, capitulares,
+   versalitas, filetes, márgenes) — nunca imitar materiales.
+   Papel cálido, tinta ferrogálica y un solo acento: el rojo de las rúbricas.
+   Ver docs/investigacion-2026-09-18-linea-historica.md */
 
 :root {
-  --bg-a: #fffdfa;
-  --bg-b: #eaf4fd;
-  --surface: #ffffff;
-  --line: #ece3d2;
-  --ink: #404066;
-  --ink-2: #7a7a9d;
-  --sky: #5fb4f5;
-  --sky-ink: #2e7bb8;
-  --sky-soft: #d8ebfa;
-  --gold: #e2a94f;
-  --gold-soft: #f6e7c0;
-  --green: #9bc489;
-  --green-soft: #ddebd5;
-  --hl: #fdf3ce;
-  --track: #f0eae0;
-  --shadow: 0 10px 30px -12px rgba(64, 64, 102, 0.16);
+  --papel: #f7f1e3;          /* vitela clara: el fondo */
+  --papel-hundido: #efe7d3;  /* un tono más: paneles, pistas, estados */
+  --hoja: #fbf7ec;           /* la hoja sobre la mesa: superficies */
+  --tinta: #2b231c;          /* ferrogálica: marrón-negro, nunca #000 */
+  --tinta-suave: #65594a;    /* sepia desvanecida: secundarios */
+  --rubrica: #9a3324;        /* el rojo de los títulos de los escribas — escaso */
+  --filete: rgb(43 35 28 / 0.2);
+  --filete-fuerte: rgb(43 35 28 / 0.5);
+  --ocre-suave: #efe2bf;     /* lo que está en curso */
+  --cardenillo: #4f7a6d;     /* verdigris: lo completado */
+  --cardenillo-suave: #dde6dc;
 }
-
-/* Tema único: claro («Mañana en Brisbane»). El modo oscuro queda para el futuro, si acaso. */
 
 * { box-sizing: border-box; }
 
@@ -32,100 +29,176 @@ html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   min-height: 100dvh;
-  color: var(--ink);
-  background: linear-gradient(180deg, var(--bg-a), var(--bg-b));
-  background-attachment: fixed;
+  color: var(--tinta);
+  background-color: var(--papel);
   font-family: var(--font-ui), system-ui, sans-serif;
+  font-size: 1.0625rem;
   line-height: 1.6;
 }
 
-/* pradera al fondo: el mundo de la app es naturaleza — hojas, agua, árboles */
-body::after {
-  content: "";
-  position: fixed;
-  inset: auto 0 0 0;
-  height: 34dvh;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    radial-gradient(120% 90% at 20% 100%, rgba(155, 196, 137, 0.22), transparent 60%),
-    radial-gradient(110% 80% at 85% 100%, rgba(134, 201, 170, 0.16), transparent 55%);
-}
-
-/* grano de papel */
+/* grano de vitela: 3%, nunca más */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
+  z-index: -1;
   pointer-events: none;
-  z-index: 40;
   opacity: 0.03;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-
-h1, h2, h3 { font-family: var(--font-display), serif; font-weight: 600; line-height: 1.18; text-wrap: balance; }
 
 a { color: inherit; }
 
-.card {
-  background: var(--surface);
-  border: 1.5px solid var(--line);
-  border-radius: 22px;
-  box-shadow: var(--shadow);
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+
+/* Piedra: capitales lapidarias, solo para los nombres grandes */
+h1, .lapidaria {
+  font-family: var(--font-display), serif;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  line-height: 1.15;
 }
 
-.pill {
-  border-radius: 999px;
-  font-weight: 800;
-  transition: transform 0.45s ease-out, background 0.45s ease-out;
+/* Imprenta: la garalda de los primeros libros, para todo lo que se lee */
+h2, h3, .serif {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .lift { transition: transform 0.45s ease-out; }
-  .lift:hover { transform: translateY(-3px); }
+/* Rótulo: la versalita espaciada de las portadillas */
+.rotulo {
+  font-family: var(--font-ui), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  margin: 0;
 }
+.rotulo-rubrica { color: var(--rubrica); }
 
-/* ————— Documento de estudio (markdown) ————— */
+.nota { color: var(--tinta-suave); font-size: 0.95rem; margin: 0; }
+
+/* La hoja: filete en vez de sombra */
+.hoja {
+  background: var(--hoja);
+  border: 1px solid var(--filete);
+  border-radius: 3px;
+}
+a.hoja, button.hoja { transition: background 0.15s ease-out; }
+a.hoja:hover { background: var(--papel-hundido); }
+
+.filete { border: 0; border-top: 1px solid var(--filete); margin: 0; }
+.filete-doble { border: 0; border-top: 4px double var(--filete-fuerte); margin: 0; }
+
+/* Botones: tinta llena o línea */
+.boton {
+  display: inline-block;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 3px;
+  padding: 0.95rem 1.4rem;
+  cursor: pointer;
+  transition: background 0.15s ease-out, color 0.15s ease-out;
+}
+.boton-tinta { background: var(--tinta); color: var(--papel); border: 1px solid var(--tinta); }
+.boton-tinta:hover { background: #40352b; }
+.boton-linea { background: transparent; color: var(--tinta); border: 1px solid var(--filete-fuerte); }
+.boton-linea:hover { background: var(--papel-hundido); }
+
+.etiqueta {
+  display: inline-block;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: var(--tinta);
+  background: var(--hoja);
+  border: 1px solid var(--filete);
+  border-radius: 2px;
+  padding: 0.45rem 0.8rem;
+  transition: background 0.15s ease-out;
+}
+a.etiqueta:hover { background: var(--papel-hundido); }
+
+.fleuron { color: var(--tinta-suave); font-size: 1.5rem; line-height: 1; }
+
+/* ————— El estudio: una página compuesta como libro ————— */
 .estudio {
   font-family: var(--font-serif), Georgia, serif;
-  font-size: 1.15rem;
-  line-height: 1.8;
-  max-width: 62ch;
-  letter-spacing: 0.001em;
+  font-size: 1.28rem;
+  line-height: 1.68;
+  max-width: 36rem;
+  margin-inline: auto;
+  hyphens: auto;
+  text-wrap: pretty;
+  font-variant-numeric: oldstyle-nums proportional-nums;
 }
-.estudio h1, .estudio h2, .estudio h3 { font-family: var(--font-display), serif; line-height: 1.22; }
-.estudio h1 { font-size: 1.9rem; margin: 0 0 0.6em; }
+.estudio h1 { font-size: 1.75rem; text-align: center; margin: 0 0 0.4em; }
 .estudio h2 {
-  font-size: 1.5rem;
-  margin: 2.4em 0 0.6em;
-  padding-top: 1.2em;
-  border-top: 1.5px solid var(--line);
+  font-size: 1.62rem;
+  color: var(--rubrica);           /* rúbrica: el título en rojo, como los escribas */
+  margin: 2.6em 0 0.7em;
+  padding-top: 1.3em;
+  border-top: 4px double var(--filete-fuerte);
+  hyphens: manual;
 }
-.estudio h3 { font-size: 1.18rem; margin: 1.8em 0 0.4em; color: var(--sky-ink); }
-.estudio p { margin: 1.05em 0; }
+.estudio h3 { font-size: 1.36rem; font-style: italic; margin: 2em 0 0.4em; hyphens: manual; }
+.estudio p { margin: 0.95em 0; }
+
+/* capitular: solo el primer párrafo del estudio */
+.estudio > p:first-of-type::first-letter {
+  float: left;
+  font-family: var(--font-display), serif;
+  font-size: 3.35em;
+  line-height: 0.82;
+  padding: 0.06em 0.1em 0 0;
+  color: var(--rubrica);
+}
+
+/* la Escritura citada: sangría y filete rojo */
 .estudio blockquote {
-  margin: 1.2em 0;
-  padding: 0.8em 1.2em;
-  background: var(--hl);
-  border: none;
-  border-radius: 14px;
+  margin: 1.4em 0;
+  padding: 0.1em 0 0.1em 1.1em;
+  border-left: 2px solid var(--rubrica);
   font-style: normal;
+  hyphens: manual;
 }
-.estudio blockquote p { margin: 0.3em 0; }
+.estudio blockquote p { margin: 0.35em 0; }
+
+/* la pausa y las notas: recuadro hundido entre filetes */
+.estudio blockquote:has(> p > strong:first-child) {
+  border-left: 0;
+  border-block: 1px solid var(--filete);
+  background: var(--papel-hundido);
+  padding: 0.9em 1.1em;
+  font-size: 0.96em;
+}
+
+/* el separador es un fleuron; si lo que sigue es una sección, basta su doble filete */
+.estudio hr { border: 0; height: auto; overflow: visible; text-align: center; margin: 2.2em 0; }
+.estudio hr::after { content: "❦"; color: var(--tinta-suave); font-size: 1.3rem; }
+.estudio hr:has(+ h2) { display: none; }
+
 .estudio table {
   display: block;
   overflow-x: auto;
   border-collapse: collapse;
   font-family: var(--font-ui), sans-serif;
-  font-size: 0.85rem;
-  margin: 1.2em 0;
+  font-size: 0.92rem;
+  font-variant-numeric: lining-nums tabular-nums;
+  hyphens: manual;
+  margin: 1.4em 0;
 }
-.estudio th, .estudio td { padding: 0.5em 0.8em; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
-.estudio th { font-weight: 800; color: var(--ink-2); }
-.estudio code { font-size: 0.85em; background: var(--track); border-radius: 6px; padding: 0.1em 0.35em; }
-.estudio hr { border: none; border-top: 1.5px solid var(--line); margin: 2.2em 0; }
-.estudio ul, .estudio ol { padding-left: 1.4em; }
-.estudio li { margin: 0.35em 0; }
-.estudio a { color: var(--sky-ink); text-decoration-color: var(--sky); }
-.estudio strong { color: var(--ink); }
+.estudio th, .estudio td { padding: 0.55em 0.9em 0.55em 0; border-bottom: 1px solid var(--filete); text-align: left; vertical-align: top; }
+.estudio th { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tinta-suave); border-bottom: 1px solid var(--filete-fuerte); }
+.estudio code { font-size: 0.82em; background: var(--papel-hundido); border-radius: 2px; padding: 0.1em 0.3em; }
+.estudio ul, .estudio ol { padding-left: 1.3em; }
+.estudio li { margin: 0.4em 0; }
+.estudio a { color: var(--rubrica); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+.estudio strong { font-weight: 600; }
+.estudio em { font-style: italic; }

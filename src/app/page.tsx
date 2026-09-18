@@ -2,8 +2,10 @@ import Link from "next/link";
 import { libro, FASES } from "@/lib/canon";
 import { ESPECIALES } from "@/lib/especiales";
 import { resumenProgreso } from "@/lib/progreso";
+import { romano } from "@/lib/romano";
 import { syncItems, contarPendientes } from "@/lib/srs";
 import { hasStudy } from "@/lib/studies";
+import Cadena from "@/components/Cadena";
 
 export const dynamic = "force-dynamic";
 
@@ -27,31 +29,30 @@ export default function Hoy() {
   const listo = hasStudy(p.actual.libro, p.actual.cap);
 
   return (
-    <main className="flex flex-col gap-5">
-      <header className="pt-2">
-        <p className="text-sm font-extrabold uppercase tracking-widest" style={{ color: "var(--ink-2)" }}>
-          {saludo()}, Felipe
-        </p>
-        <h1 className="mt-1 text-4xl">La Biblia</h1>
-        <p className="mt-1 max-w-md" style={{ color: "var(--ink-2)" }}>
+    <main className="flex flex-col gap-6">
+      <header className="pt-3 text-center">
+        <p className="rotulo">{saludo()}, Felipe</p>
+        <h1 className="mt-3 text-5xl">La Biblia</h1>
+        <p className="serif mt-3 italic" style={{ fontSize: "1.15rem", color: "var(--tinta-suave)" }}>
           «Árbol de vida es a los que de ella echan mano» — Proverbios 3:18
         </p>
+        <hr className="filete-doble mt-7" />
       </header>
 
-      <Link href={`/estudiar/${l.slug}/${p.actual.cap}`} className="card lift block p-6" style={{ textDecoration: "none" }}>
-        <p className="text-xs font-extrabold uppercase tracking-widest" style={{ color: "var(--ink-2)" }}>
-          Estás estudiando · Fase {l.fase} — {fase.nombre}
+      <Link href={`/estudiar/${l.slug}/${p.actual.cap}`} className="hoja block p-6 sm:p-7" style={{ textDecoration: "none" }}>
+        <p className="rotulo">
+          Estás estudiando · Fase {romano(l.fase)} — {fase.nombre}
         </p>
-        <h2 className="mt-2 text-3xl">
+        <h2 className="mt-2 text-4xl">
           {l.nombre} {p.actual.cap}
         </h2>
-        <p className="mt-1 text-sm" style={{ color: "var(--ink-2)" }}>
+        <p className="nota mt-1">
           {listo ? "El estudio está listo para ti — continúa donde ibas." : "Este capítulo aún está en investigación."}
         </p>
-        <div className="mt-4 h-2 overflow-hidden rounded-full" style={{ background: "var(--track)" }}>
-          <div className="h-full rounded-full" style={{ width: `${Math.max(pct, 1)}%`, background: "var(--gold)" }} />
+        <div className="mt-5 h-[3px] overflow-hidden" style={{ background: "var(--papel-hundido)" }}>
+          <div className="h-full" style={{ width: `${Math.max(pct, 1)}%`, background: "var(--tinta)" }} />
         </div>
-        <p className="mt-2 text-xs font-bold" style={{ color: "var(--ink-2)" }}>
+        <p className="rotulo mt-2.5" style={{ letterSpacing: "0.1em" }}>
           {p.completados} de {p.total} capítulos · {pct}% del canon
         </p>
       </Link>
@@ -60,47 +61,33 @@ export default function Hoy() {
         <Link
           key={`${e.libro}-${e.cap}`}
           href={`/estudiar/${e.libro}/${e.cap}`}
-          className="card lift block p-5"
-          style={{ textDecoration: "none", borderLeft: "6px solid var(--gold)" }}
+          className="hoja block p-5 sm:p-6"
+          style={{ textDecoration: "none", borderLeft: "3px solid var(--rubrica)" }}
         >
-          <p className="text-xs font-extrabold uppercase tracking-widest" style={{ color: "var(--gold)" }}>
-            ⭐ Estudio especial
-          </p>
-          <h3 className="mt-1 text-2xl">{e.titulo}</h3>
-          <p className="text-sm" style={{ color: "var(--ink-2)" }}>
-            {e.motivo}
-          </p>
+          <p className="rotulo rotulo-rubrica">✦ Estudio especial</p>
+          <h3 className="mt-1.5 text-3xl">{e.titulo}</h3>
+          <p className="nota mt-0.5">{e.motivo}</p>
         </Link>
       ))}
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <Link href="/memoria" className="card lift block p-5" style={{ textDecoration: "none" }}>
-          <div
-            className="mb-3 grid h-11 w-11 place-items-center rounded-2xl text-xl"
-            style={{ background: "var(--green-soft)" }}
-          >
-            🌱
-          </div>
-          <h3 className="text-xl">Memoria</h3>
-          <p className="text-sm" style={{ color: "var(--ink-2)" }}>
+        <Link href="/memoria" className="hoja block p-5 sm:p-6" style={{ textDecoration: "none" }}>
+          <p className="rotulo">Repaso espaciado</p>
+          <h3 className="mt-1.5 text-3xl">Memoria</h3>
+          <p className="nota mt-0.5">
             {pendientes > 0
               ? `${pendientes} ${pendientes === 1 ? "repaso pendiente" : "repasos pendientes"}`
-              : "Todo repasado por hoy 🎉"}
+              : "Todo repasado por hoy."}
           </p>
         </Link>
-        <Link href="/mapa" className="card lift block p-5" style={{ textDecoration: "none" }}>
-          <div
-            className="mb-3 grid h-11 w-11 place-items-center rounded-2xl text-xl"
-            style={{ background: "var(--sky-soft)" }}
-          >
-            🗺️
-          </div>
-          <h3 className="text-xl">El mapa</h3>
-          <p className="text-sm" style={{ color: "var(--ink-2)" }}>
-            66 libros en 7 fases, iluminándose contigo
-          </p>
+        <Link href="/mapa" className="hoja block p-5 sm:p-6" style={{ textDecoration: "none" }}>
+          <p className="rotulo">Sesenta y seis libros</p>
+          <h3 className="mt-1.5 text-3xl">El mapa</h3>
+          <p className="nota mt-0.5">El canon en siete fases, y tu avance en él</p>
         </Link>
       </div>
+
+      <Cadena />
     </main>
   );
 }

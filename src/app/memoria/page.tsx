@@ -37,11 +37,13 @@ export default function Memoria() {
   });
 
   return (
-    <main className="flex flex-col gap-5">
+    <main className="flex flex-col gap-6">
       <header>
-        <h1 className="text-3xl">Memoria</h1>
-        <p className="text-sm" style={{ color: "var(--ink-2)" }}>
-          Repaso con repetición espaciada (FSRS) — el algoritmo decide cuándo, tú decides qué tan bien te fue.
+        <p className="rotulo">Repaso espaciado · FSRS</p>
+        <h1 className="mt-1.5 text-4xl">Memoria</h1>
+        <p className="nota mt-2">
+          Así se guardó este texto durante siglos: repitiéndolo. El algoritmo decide cuándo; tú decides qué tan bien te
+          fue.
         </p>
       </header>
       <ReviewSession cards={cards} />

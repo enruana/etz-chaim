@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CANON, FASES } from "@/lib/canon";
 import { resumenProgreso } from "@/lib/progreso";
+import { romano } from "@/lib/romano";
 
 export const dynamic = "force-dynamic";
 
@@ -10,25 +11,22 @@ export default function Mapa() {
   const fases = [1, 2, 3, 4, 5, 6, 7];
 
   return (
-    <main className="flex flex-col gap-6">
+    <main className="flex flex-col gap-8">
       <header>
-        <h1 className="text-3xl">El mapa</h1>
-        <p className="text-sm" style={{ color: "var(--ink-2)" }}>
+        <p className="rotulo">
           {p.completados} de {p.total} capítulos · {librosCompletos} de 66 libros
         </p>
+        <h1 className="mt-1.5 text-4xl">El mapa</h1>
       </header>
 
       {fases.map((f) => {
         const libros = CANON.filter((l) => l.fase === f);
         return (
           <section key={f}>
-            <h2 className="text-xl">
-              <span style={{ color: "var(--gold)" }}>Fase {f} · </span>
-              {FASES[f].nombre}
-            </h2>
-            <p className="mb-3 text-sm" style={{ color: "var(--ink-2)" }}>
-              {FASES[f].nota}
-            </p>
+            <hr className="filete-doble" />
+            <p className="rotulo rotulo-rubrica mt-5">Fase {romano(f)}</p>
+            <h2 className="mt-1 text-3xl">{FASES[f].nombre}</h2>
+            <p className="nota mb-4 mt-1">{FASES[f].nota}</p>
             <div className="flex flex-wrap gap-2">
               {libros.map((l) => {
                 const done = p.porLibro.get(l.slug) ?? 0;
@@ -38,17 +36,18 @@ export default function Mapa() {
                   <Link
                     key={l.slug}
                     href={`/estudiar/${l.slug}/${activo ? p.actual.cap : 1}`}
-                    className="pill lift px-4 py-2 text-sm"
-                    style={{
-                      textDecoration: "none",
-                      background: completo ? "var(--green-soft)" : activo ? "var(--gold-soft)" : "var(--surface)",
-                      border: "1.5px solid var(--line)",
-                      color: "var(--ink)",
-                    }}
+                    className="etiqueta"
+                    style={
+                      completo
+                        ? { background: "var(--cardenillo-suave)", borderColor: "var(--cardenillo)" }
+                        : activo
+                          ? { background: "var(--ocre-suave)", borderColor: "var(--filete-fuerte)" }
+                          : undefined
+                    }
                   >
                     {completo ? "✓ " : ""}
                     {l.nombre}
-                    <span className="ml-1.5 text-xs font-bold" style={{ color: "var(--ink-2)" }}>
+                    <span className="ml-2" style={{ color: "var(--tinta-suave)", fontSize: "0.78rem", fontVariantNumeric: "tabular-nums" }}>
                       {done}/{l.caps}
                     </span>
                   </Link>

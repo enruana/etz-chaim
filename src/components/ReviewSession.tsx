@@ -7,10 +7,10 @@ import type { Rating } from "@/lib/fsrs";
 export type Card = { id: string; etiqueta: string; front: string; back: string };
 
 const BOTONES: { rating: Rating; label: string; bg: string }[] = [
-  { rating: 1, label: "Otra vez", bg: "var(--track)" },
-  { rating: 2, label: "Difícil", bg: "var(--gold-soft)" },
-  { rating: 3, label: "Bien", bg: "var(--sky-soft)" },
-  { rating: 4, label: "Fácil", bg: "var(--green-soft)" },
+  { rating: 1, label: "Otra vez", bg: "var(--papel-hundido)" },
+  { rating: 2, label: "Difícil", bg: "var(--ocre-suave)" },
+  { rating: 3, label: "Bien", bg: "var(--hoja)" },
+  { rating: 4, label: "Fácil", bg: "var(--cardenillo-suave)" },
 ];
 
 export default function ReviewSession({ cards }: { cards: Card[] }) {
@@ -21,12 +21,14 @@ export default function ReviewSession({ cards }: { cards: Card[] }) {
 
   if (cards.length === 0 || i >= cards.length) {
     return (
-      <div className="card p-10 text-center">
-        <p className="text-4xl">🌳</p>
-        <h2 className="mt-2 text-2xl">{hechas > 0 ? `¡${hechas} ${hechas === 1 ? "repaso" : "repasos"} hechos!` : "Nada pendiente"}</h2>
-        <p className="mt-2 text-sm" style={{ color: "var(--ink-2)" }}>
+      <div className="hoja px-6 py-12 text-center">
+        <p className="fleuron">❦</p>
+        <h2 className="mt-3 text-3xl">
+          {hechas > 0 ? `${hechas} ${hechas === 1 ? "repaso hecho" : "repasos hechos"}` : "Nada pendiente"}
+        </h2>
+        <p className="nota mx-auto mt-2 max-w-sm">
           {hechas > 0
-            ? "El árbol se riega así: poco, seguido y a tiempo."
+            ? "Poco, seguido y a tiempo: así se graba un texto en la memoria."
             : "Vuelve mañana — el algoritmo te espera con lo justo."}
         </p>
       </div>
@@ -44,26 +46,30 @@ export default function ReviewSession({ cards }: { cards: Card[] }) {
 
   return (
     <div className="flex flex-col gap-4">
-      <p className="text-xs font-extrabold uppercase tracking-widest" style={{ color: "var(--ink-2)" }}>
+      <p className="rotulo">
         {i + 1} de {cards.length} · {card.etiqueta}
       </p>
-      <div className="card flex min-h-56 flex-col justify-center gap-4 p-7">
-        <p style={{ fontFamily: "var(--font-serif), serif", fontSize: "1.15rem", lineHeight: 1.7 }}>{card.front}</p>
+      <div className="hoja flex min-h-60 flex-col justify-center gap-5 p-6 sm:p-8">
+        <p className="serif" style={{ fontSize: "1.3rem", lineHeight: 1.6, margin: 0 }}>
+          {card.front}
+        </p>
         {reveal && (
           <p
-            className="rounded-2xl p-4"
-            style={{ background: "var(--hl)", fontFamily: "var(--font-serif), serif", lineHeight: 1.65 }}
+            className="serif"
+            style={{
+              fontSize: "1.2rem",
+              lineHeight: 1.6,
+              margin: 0,
+              paddingLeft: "1rem",
+              borderLeft: "2px solid var(--rubrica)",
+            }}
           >
             {card.back}
           </p>
         )}
       </div>
       {!reveal ? (
-        <button
-          onClick={() => setReveal(true)}
-          className="pill w-full px-6 py-3.5 text-base"
-          style={{ background: "var(--gold)", color: "#fff", border: "none", cursor: "pointer" }}
-        >
+        <button onClick={() => setReveal(true)} className="boton boton-tinta w-full">
           Mostrar respuesta
         </button>
       ) : (
@@ -72,8 +78,8 @@ export default function ReviewSession({ cards }: { cards: Card[] }) {
             <button
               key={b.rating}
               onClick={() => grade(b.rating)}
-              className="pill px-2 py-3 text-sm"
-              style={{ background: b.bg, color: "var(--ink)", border: "1.5px solid var(--line)", cursor: "pointer" }}
+              className="boton boton-linea"
+              style={{ background: b.bg, padding: "0.9rem 0.3rem", letterSpacing: "0.08em", fontSize: "0.72rem" }}
             >
               {b.label}
             </button>

@@ -17,7 +17,18 @@ export function getStudyHtml(libro: string, cap: number): string | null {
   const p = studyPath(libro, cap);
   if (!fs.existsSync(p)) return null;
   const md = fs.readFileSync(p, "utf-8");
-  return marked.parse(md, { gfm: true, async: false }) as string;
+  const html = marked.parse(md, { gfm: true, async: false }) as string;
+  return sobrio(html);
+}
+
+// La línea histórica no usa emojis: los documentos los conservan (son parte de la
+// metodología), pero al componer la página la pausa 🌿 se vuelve un fleuron y el
+// resto de pictogramas se retira.
+function sobrio(html: string): string {
+  return html
+    .replace(/🌿/g, "\u0001")
+    .replace(/\s?\p{Extended_Pictographic}\uFE0F?/gu, "")
+    .replace(/\u0001/g, "❦");
 }
 
 export function capitulosConEstudio(libro: string): number[] {

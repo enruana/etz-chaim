@@ -2,7 +2,7 @@
 
 > «Árbol de vida es a los que de ella echan mano» — Proverbios 3:18 (RVR1960)
 
-App personal para estudiar la Biblia **capítulo a capítulo**, con investigación profunda por capítulo, repetición espaciada (FSRS) y un árbol de la vida en 3D que crece con el progreso. 100% en español. Texto base: Reina-Valera 1960.
+App personal para estudiar la Biblia **capítulo a capítulo**, con investigación profunda por capítulo, y repetición espaciada (FSRS). 100% en español. Texto base: Reina-Valera 1960.
 
 ## Cómo funciona
 
@@ -13,9 +13,9 @@ App personal para estudiar la Biblia **capítulo a capítulo**, con investigaci�
 
 ## Stack
 
-Next.js 16 · React 19 · TypeScript · Tailwind v4 · SQLite (better-sqlite3) · React Three Fiber · FSRS-4.5
+Next.js 16 · React 19 · TypeScript · Tailwind v4 · SQLite (better-sqlite3) · FSRS-4.5
 
-Diseño: «Mañana en Brisbane» — inspirado en el aire visual de Bluey (luz dorada, sombra violeta, cubos redondeados, el cielo como layout). Ver [docs/investigacion-2026-07-30-estilos.md](docs/investigacion-2026-07-30-estilos.md).
+Diseño: «El Códice» — una línea histórica que trata la pantalla como el siguiente eslabón de la cadena piedra → papiro → pergamino → códice → imprenta: papel cálido, tinta ferrogálica, rúbricas rojas, capitulares, filetes y colofones; Cinzel + EB Garamond + Alegreya Sans. Ver [docs/investigacion-2026-09-18-linea-historica.md](docs/investigacion-2026-09-18-linea-historica.md).
 
 ## Correr local
 
@@ -38,7 +38,7 @@ content/            fuente de verdad: plan, metodología y estudios por capítul
 docs/               investigaciones (metodología de estudio, estilos)
 src/app/            Hoy · /estudiar/[libro]/[cap] · /mapa · /memoria · /login
 src/lib/            canon (66 libros + videos), db, fsrs, srs, ejercicios, studies
-src/components/     BottomNav, ReviewSession, TreeOfLife (R3F)
+src/components/     BottomNav, ReviewSession, Cadena
 ```
 
 ## Licencias

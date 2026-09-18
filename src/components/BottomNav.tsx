@@ -13,20 +13,28 @@ export default function BottomNav() {
   const path = usePathname();
   if (path === "/login") return null;
   return (
-    <nav className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2">
-      <div className="card flex gap-1 px-2 py-2" style={{ borderRadius: 999 }}>
+    <nav
+      className="fixed inset-x-0 bottom-0 z-50"
+      style={{
+        background: "color-mix(in srgb, var(--papel) 94%, transparent)",
+        backdropFilter: "blur(6px)",
+        borderTop: "1px solid var(--filete-fuerte)",
+      }}
+    >
+      <div className="mx-auto flex max-w-3xl justify-around px-5">
         {TABS.map((t) => {
           const active = t.href === "/" ? path === "/" : path.startsWith(t.href);
           return (
             <Link
               key={t.href}
               href={t.href}
-              className="pill px-5 py-1.5 text-sm"
-              style={
-                active
-                  ? { background: "var(--sky-soft)", color: "var(--sky-ink)" }
-                  : { color: "var(--ink-2)" }
-              }
+              className="rotulo px-5 pb-4 pt-3.5"
+              style={{
+                textDecoration: "none",
+                color: active ? "var(--rubrica)" : "var(--tinta-suave)",
+                borderTop: active ? "2px solid var(--rubrica)" : "2px solid transparent",
+                marginTop: -1,
+              }}
             >
               {t.label}
             </Link>
