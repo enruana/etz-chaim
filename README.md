@@ -16,7 +16,7 @@ App personal para estudiar la Biblia **capítulo a capítulo**, con investigaci�
 
 Next.js 16 · React 19 · TypeScript · Tailwind v4 · SQLite (better-sqlite3) · FSRS-4.5
 
-Diseño: «El Códice» — una línea histórica que trata la pantalla como el siguiente eslabón de la cadena piedra → papiro → pergamino → códice → imprenta: roca tallada (textura procedural), losas pulidas para leer, rúbricas rojas y capitulares; Cinzel + EB Garamond + Alegreya Sans. Ver [docs/investigacion-2026-09-18-linea-historica.md](docs/investigacion-2026-09-18-linea-historica.md).
+Diseño: **Estela** — la inscripción es el diseño: una losa de piedra por pantalla con el nombre tallado a escala monumental (Big Shoulders), y todo lo demás plano, con filetes de 1px, metadatos en IBM Plex Mono, lectura en Source Serif 4 y un único acento amarillo de oropimente. Ver [docs/investigacion-2026-10-05-estilos-modernos.md](docs/investigacion-2026-10-05-estilos-modernos.md).
 
 ## Correr local
 

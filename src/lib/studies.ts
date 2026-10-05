@@ -128,12 +128,12 @@ export function html(md: string): string {
   return sobrio(marked.parse(md, { gfm: true, async: false }) as string);
 }
 
-// La línea histórica no usa emojis: los documentos los conservan (son parte de la
-// metodología), pero al componer la página la pausa 🌿 se vuelve un fleuron y el
-// resto de pictogramas se retira.
+// La app no usa emojis: los documentos los conservan (son parte de la
+// metodología), pero al componer la página la pausa 🌿 se vuelve una marca
+// cuadrada y el resto de pictogramas se retira.
 function sobrio(h: string): string {
   return h
-    .replace(/🌿/g, "\u0001")
+    .replace(/🌿\s*/g, "\u0001")
     .replace(/\s?\p{Extended_Pictographic}️?/gu, "")
-    .replace(/\u0001/g, "❦");
+    .replace(/\u0001/g, '<span class="pausa-marca"></span>');
 }

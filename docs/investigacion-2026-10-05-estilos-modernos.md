@@ -1,6 +1,6 @@
 # Investigación: moderno, pero de piedra — cinco propuestas
 
-**Fecha:** 2026-10-05 · **Estado:** propuestas dibujadas, **decisión de Felipe pendiente**.
+**Fecha:** 2026-10-05 · **Estado:** decidido — **Felipe eligió la D · Estela**, ya implementada en la app (ver «La línea vigente» al final).
 **Lienzo con las cinco propuestas:** https://claude.ai/artifact/KCqCjeVA8vzyp2JX5q2WxG
 
 **El pedido:** la versión actual de «El Códice» (roca en toda la pantalla, relieve en cada tarjeta, títulos en Cinzel) se siente como "una página de esas antiguas". Felipe quiere algo más moderno, que capte la atención, pero conservando la roca y los tallados.
@@ -57,3 +57,14 @@ Descartada en esta ronda: **Vitrina** (museo oscuro con piezas iluminadas) — d
 ## Fuentes principales
 
 Point'n Think (*The Art of Hades*, *Clair Obscur*); 80.lv y GDC (God of War Ragnarök); Rambling About Games (Origins vs. Odyssey); Game Developer (Pentiment, Chants of Sennaar); It's Nice That (Monument Valley 3); PRINT Magazine y BP&O (Getty); GDUSA (Alabaster × Pentagram); The Met (*Chroma*); Apple Newsroom (Liquid Glass); Michael Flarup (*The future is colourful and dimensional*); CSS-Tricks (*Grainy Gradients*).
+
+## La línea vigente: Estela (propuesta D, implementada el 2026-10-05)
+
+**La inscripción es el diseño.** Una sola losa de piedra por pantalla con el nombre tallado a escala monumental; todo lo demás es plano.
+
+- **Tokens** (`src/app/globals.css`): `--piedra #ECE8E1` (el plano) · `--hormigon #D5D0C7` (fuera de la columna, nichos) · `--grafito #141312` (tinta y filetes) · `--gris #57534D` (secundarios) · `--oropimente #F2C200` (único acento, siempre como bloque con grafito encima) · `--pista #C9C4BA` (lo pendiente). `--tex-losa`: piedra gris procedural (SVG `feTurbulence` + `feDiffuseLighting`), solo en `.losa`.
+- **Tipografía:** Big Shoulders 900 (la talla, vía eje óptico) · IBM Plex Mono (metadatos, navegación) · Source Serif 4 (lectura).
+- **Reglas:** radio 0, filetes de 1px, cero sombras fuera de la incisión, una losa por pantalla, el amarillo solo para la acción principal y lo activo, la lectura siempre sobre plano.
+- **Piezas:** `.losa` + `.display.incisa.gigante` (el rótulo se ajusta al ancho con `k()` de `src/lib/estela.ts`: ~0.54em por carácter) · `.bloque` (acción principal) · `.rejilla` / `.celda` · `.segmentos` (un segmento por parte) · `.grupo-cab` + `.fila` + `.marca` (índice: cuadro lleno = leída) · `.estudio` (cita con barra de oropimente; pausa en nicho con marca cuadrada).
+- **Escritorio:** la app es una columna de 48rem — una estela — con sus cantos de 1px sobre hormigón.
+- **Se conserva de «El Códice»:** la cadena *piedra → … → pantalla* al pie de Hoy y del login, y la ausencia de emojis.

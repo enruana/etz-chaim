@@ -1,6 +1,7 @@
 import { syncItems, itemsPendientes } from "@/lib/srs";
 import { clozeTexto } from "@/lib/ejercicios";
 import ReviewSession, { type Card } from "@/components/ReviewSession";
+import { k, talla } from "@/lib/estela";
 
 export const dynamic = "force-dynamic";
 
@@ -37,15 +38,16 @@ export default function Memoria() {
   });
 
   return (
-    <main className="flex flex-col gap-4 sm:gap-6">
-      <header>
-        <p className="rotulo">Repaso espaciado · FSRS</p>
-        <h1 className="mt-1 text-[1.7rem] sm:mt-1.5 sm:text-4xl">Memoria</h1>
-        <p className="nota sobre-roca mt-2">
-          Así se guardó este texto durante siglos: repitiéndolo. El algoritmo decide cuándo; tú decides qué tan bien te
-          fue.
-        </p>
-      </header>
+    <main>
+      <section className="losa">
+        <div className="pad mono flex justify-between pt-5">
+          <span>La Biblia / Memoria</span>
+          <span>Repaso espaciado</span>
+        </div>
+        <h1 className="display incisa gigante px-4 pt-3" style={{ ...talla(k("MEMORIA")), marginBottom: "-0.04em" }}>
+          Memoria
+        </h1>
+      </section>
       <ReviewSession cards={cards} />
     </main>
   );

@@ -13,22 +13,25 @@ export default function BottomNav() {
   const path = usePathname();
   if (path === "/login") return null;
   return (
-    <nav
-      className="repisa fixed inset-x-0 bottom-0 z-50">
-      <div className="mx-auto flex max-w-3xl justify-around px-5">
-        {TABS.map((t) => {
+    <nav className="fixed inset-x-0 bottom-0 z-50">
+      <div
+        className="mx-auto grid max-w-3xl grid-cols-3"
+        style={{ background: "var(--piedra)", borderTop: "1px solid var(--grafito)" }}
+      >
+        {TABS.map((t, i) => {
           const active = t.href === "/" ? path === "/" : path.startsWith(t.href);
           return (
             <Link
               key={t.href}
               href={t.href}
-              className="rotulo px-5 pb-3.5 pt-3 sm:pb-4 sm:pt-3.5"
+              className="mono flex items-center justify-center"
               style={{
+                height: 58,
+                fontSize: "0.8125rem",
                 textDecoration: "none",
-                color: active ? "#f3e9d0" : "#a3957d",
-                textShadow: "0 -1px 0 rgb(0 0 0 / 0.6)",
-                borderTop: active ? "2px solid #f3e9d0" : "2px solid transparent",
-                marginTop: -1,
+                background: active ? "var(--grafito)" : "var(--piedra)",
+                color: active ? "var(--piedra)" : "var(--grafito)",
+                borderLeft: i > 0 ? "1px solid var(--grafito)" : undefined,
               }}
             >
               {t.label}

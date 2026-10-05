@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CANON, FASES } from "@/lib/canon";
 import { resumenProgreso } from "@/lib/progreso";
 import { romano } from "@/lib/romano";
+import { dos, k, talla } from "@/lib/estela";
 
 export const dynamic = "force-dynamic";
 
@@ -11,22 +12,40 @@ export default function Mapa() {
   const fases = [1, 2, 3, 4, 5, 6, 7];
 
   return (
-    <main className="flex flex-col gap-3.5 sm:gap-6">
-      <header>
-        <p className="rotulo">
-          {p.completados} de {p.total} capítulos · {librosCompletos} de 66 libros
-        </p>
-        <h1 className="mt-1 text-[1.7rem] sm:mt-1.5 sm:text-4xl">El mapa</h1>
-      </header>
+    <main>
+      <section className="losa">
+        <div className="pad mono flex justify-between pt-5">
+          <span>La Biblia / Mapa</span>
+          <span>66 libros · 7 fases</span>
+        </div>
+        <h1 className="display incisa gigante px-4 pt-3" style={{ ...talla(k("EL MAPA")), marginBottom: "-0.04em" }}>
+          El mapa
+        </h1>
+      </section>
+
+      <section className="pad raya mono flex justify-between py-3">
+        <span>
+          {dos(p.completados)}/{p.total} capítulos
+        </span>
+        <span>
+          {dos(librosCompletos)}/66 libros
+        </span>
+      </section>
 
       {fases.map((f) => {
         const libros = CANON.filter((l) => l.fase === f);
         return (
-          <section key={f} className="hoja p-4 sm:p-6">
-            <p className="rotulo rotulo-rubrica">Fase {romano(f)}</p>
-            <h2 className="mt-0.5 text-2xl sm:mt-1 sm:text-3xl">{FASES[f].nombre}</h2>
-            <p className="nota mb-3 mt-0.5 sm:mb-4 sm:mt-1">{FASES[f].nota}</p>
-            <div className="flex flex-wrap gap-1.5 sm:gap-2">
+          <section key={f}>
+            <div className="grupo-cab mono flex justify-between gap-3">
+              <span>
+                Fase {romano(f)} · {FASES[f].nombre}
+              </span>
+              <span>{dos(libros.length)}</span>
+            </div>
+            <p className="pad raya serif m-0 py-3" style={{ fontSize: "1rem", lineHeight: 1.35, color: "var(--gris)" }}>
+              {FASES[f].nota}
+            </p>
+            <div className="rejilla">
               {libros.map((l) => {
                 const done = p.porLibro.get(l.slug) ?? 0;
                 const completo = done >= l.caps;
@@ -35,19 +54,14 @@ export default function Mapa() {
                   <Link
                     key={l.slug}
                     href={`/estudiar/${l.slug}/${activo ? p.actual.cap : 1}`}
-                    className="etiqueta etiqueta-rebajada"
-                    style={
-                      completo
-                        ? { background: "var(--cardenillo-suave)", borderColor: "var(--cardenillo)" }
-                        : activo
-                          ? { background: "var(--ocre-suave)", borderColor: "var(--filete-fuerte)" }
-                          : undefined
-                    }
+                    className={`celda${completo ? " completa" : activo ? " activa" : ""}`}
+                    style={{ minHeight: 72, padding: "12px 18px" }}
                   >
-                    {completo ? "✓ " : ""}
-                    {l.nombre}
-                    <span className="ml-2" style={{ color: "var(--tinta-suave)", fontSize: "0.78rem", fontVariantNumeric: "tabular-nums" }}>
-                      {done}/{l.caps}
+                    <span className="celda-titulo" style={{ fontSize: "1.375rem" }}>
+                      {l.nombre}
+                    </span>
+                    <span className={`mono${activo ? "" : " gris"}`}>
+                      {dos(done)}/{dos(l.caps)}
                     </span>
                   </Link>
                 );

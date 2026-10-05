@@ -4,6 +4,7 @@ import { libro as getLibro, FASES } from "@/lib/canon";
 import { esTematica, html, rotuloCorto, rotuloParte, subtituloParte, type Parte } from "@/lib/studies";
 import { estadoCapitulo } from "@/lib/avance";
 import { romano } from "@/lib/romano";
+import { dos, k, talla } from "@/lib/estela";
 import { marcarTodoAction, desmarcarTodoAction } from "@/app/actions";
 
 export const dynamic = "force-dynamic";
@@ -23,133 +24,145 @@ export default async function CapituloPage({ params }: { params: Promise<{ libro
   const e = estadoCapitulo(slug, cap);
   const fase = FASES[l.fase];
   const base = `/estudiar/${slug}/${cap}`;
+  const titulo = `${l.nombre.toUpperCase()} ${dos(cap)}`;
 
   return (
-    <main className="flex flex-col gap-4 sm:gap-6">
-      <header className="flex items-end justify-between gap-3">
-        <div>
-          <p className="rotulo">
-            Fase {romano(l.fase)} · {fase.nombre} · {l.genero}
+    <main>
+      <section className="losa">
+        <div className="mono flex items-center justify-between px-1.5 pt-2">
+          <Link href="/" className="flex h-11 items-center px-3" style={{ textDecoration: "none" }}>
+            ← Hoy
+          </Link>
+          <div className="flex">
+            {cap > 1 && (
+              <Link href={`/estudiar/${slug}/${cap - 1}`} className="flex h-11 items-center px-3" style={{ textDecoration: "none" }} aria-label="Capítulo anterior">
+                ← {dos(cap - 1)}
+              </Link>
+            )}
+            {cap < l.caps && (
+              <Link href={`/estudiar/${slug}/${cap + 1}`} className="flex h-11 items-center px-3" style={{ textDecoration: "none" }} aria-label="Capítulo siguiente">
+                {dos(cap + 1)} →
+              </Link>
+            )}
+          </div>
+        </div>
+        <h1 className="display incisa gigante px-4 pt-1" style={{ ...talla(k(titulo)), marginBottom: "-0.04em" }}>
+          {titulo}
+        </h1>
+      </section>
+
+      <section className="pad raya flex flex-col gap-2 py-4">
+        {e?.capitulo.lema && (
+          <p className="serif m-0 italic" style={{ fontSize: "1.375rem", lineHeight: 1.2 }}>
+            {e.capitulo.lema}
           </p>
-          <h1 className="mt-1 text-[1.7rem] sm:mt-1.5 sm:text-4xl">
-            {l.nombre} {cap}
-          </h1>
-          {e?.capitulo.lema && (
-            <p className="serif sobre-roca mt-0.5 text-[1.05rem] italic sm:text-xl">{e.capitulo.lema}</p>
-          )}
-        </div>
-        <div className="flex gap-2">
-          {cap > 1 && (
-            <Link href={`/estudiar/${slug}/${cap - 1}`} className="boton boton-linea" style={{ padding: "0.6rem 1rem" }} aria-label="Capítulo anterior">
-              ←
-            </Link>
-          )}
-          {cap < l.caps && (
-            <Link href={`/estudiar/${slug}/${cap + 1}`} className="boton boton-linea" style={{ padding: "0.6rem 1rem" }} aria-label="Capítulo siguiente">
-              →
-            </Link>
-          )}
-        </div>
-      </header>
+        )}
+        <p className="mono gris m-0">
+          Fase {romano(l.fase)} · {fase.nombre} · {l.genero}
+        </p>
+        {e && (
+          <>
+            <div className="segmentos pt-1">
+              {e.capitulo.partes.map((parte) => (
+                <i key={parte.slug} className={e.leidas.has(parte.slug) ? "on" : undefined} />
+              ))}
+            </div>
+            <p className="mono m-0">
+              {e.completo ? "Capítulo completo" : `${dos(e.hechas)}/${dos(e.total)} partes leídas`}
+            </p>
+          </>
+        )}
+      </section>
 
       {cap === 1 && l.videos.length > 0 && (
-        <div className="hoja p-3.5 sm:p-5">
-          <p className="rotulo">Antes de empezar {l.nombre} · el panorama de Proyecto Biblia</p>
-          <div className="mt-3 flex flex-wrap gap-2">
+        <section className="pad raya mono py-3">
+          <p className="gris m-0">Antes de empezar · el panorama de Proyecto Biblia</p>
+          <div className="flex gap-5">
             {l.videos.map((v, i) => (
-              <a key={v} href={v} target="_blank" rel="noreferrer" className="etiqueta">
+              <a key={v} href={v} target="_blank" rel="noreferrer" className="flex h-11 items-center">
                 Video {l.videos.length > 1 ? romano(i + 1) : "panorama"} ↗
               </a>
             ))}
           </div>
-        </div>
+        </section>
       )}
 
       {e ? (
         <>
-          <div className="hoja p-4 sm:p-6">
-            <div className="flex items-baseline justify-between gap-3">
-              <p className="rotulo">
-                {e.completo ? "Capítulo completo" : `${e.hechas} de ${e.total} partes leídas`}
-              </p>
-              {e.completo && <span style={{ color: "var(--cardenillo)", fontWeight: 800 }}>✓</span>}
-            </div>
-            <div className="barra mt-2.5">
-              <div style={{ width: `${(e.hechas / e.total) * 100}%` }} />
-            </div>
-            {e.siguiente ? (
-              <Link href={`${base}/${e.siguiente.slug}`} className="boton boton-tinta mt-4 block w-full">
-                {e.hechas === 0 ? "Empezar" : "Continuar"} · {rotuloCorto(e.siguiente, cap)} →
+          {e.siguiente ? (
+            <Link href={`${base}/${e.siguiente.slug}`} className="bloque">
+              <span>
+                {e.hechas === 0 ? "Empezar" : "Continuar"} · {rotuloCorto(e.siguiente, cap)}
+              </span>
+              <span>→</span>
+            </Link>
+          ) : (
+            cap < l.caps && (
+              <Link href={`/estudiar/${slug}/${cap + 1}`} className="bloque">
+                <span>
+                  Seguir · {l.nombre} {dos(cap + 1)}
+                </span>
+                <span>→</span>
               </Link>
-            ) : (
-              cap < l.caps && (
-                <Link href={`/estudiar/${slug}/${cap + 1}`} className="boton boton-tinta mt-4 block w-full">
-                  Seguir con {l.nombre} {cap + 1} →
-                </Link>
-              )
-            )}
-          </div>
+            )
+          )}
 
           {GRUPOS.map((g) => {
             const partes = e.capitulo.partes.filter((p) => g.tipos.includes(p.tipo));
             if (partes.length === 0) return null;
             return (
-              <section key={g.titulo} className="hoja px-4 pb-1 pt-4 sm:px-6 sm:pt-5">
-                <p className="rotulo rotulo-rubrica">{g.titulo}</p>
-                <div className="mt-1.5">
-                  {partes.map((p) => {
-                    const leida = e.leidas.has(p.slug);
-                    const sub = subtituloParte(p);
-                    if (esTematica(p)) {
-                      return (
-                        <Link key={p.slug} href={`${base}/${p.slug}`} className="fila fila-apilada">
-                          <span>
-                            <span className="fila-titulo">{sub}</span>
-                            <span className="fila-ref">{rotuloParte(p, cap)}</span>
-                          </span>
-                          <span className="fila-marca" style={leida ? { color: "var(--cardenillo)" } : undefined}>
-                            {leida ? "✓" : "›"}
-                          </span>
-                        </Link>
-                      );
-                    }
+              <section key={g.titulo}>
+                <p className="grupo-cab mono m-0">{g.titulo}</p>
+                {partes.map((p) => {
+                  const leida = e.leidas.has(p.slug);
+                  const sub = subtituloParte(p);
+                  if (esTematica(p)) {
                     return (
-                      <Link key={p.slug} href={`${base}/${p.slug}`} className="fila">
-                        <span className="fila-ref">{rotuloParte(p, cap)}</span>
-                        <span className="fila-titulo">{sub ?? ""}</span>
-                        <span className="fila-marca" style={leida ? { color: "var(--cardenillo)" } : undefined}>
-                          {leida ? "✓" : "›"}
+                      <Link key={p.slug} href={`${base}/${p.slug}`} className="fila apilada">
+                        <span>
+                          <span className="fila-titulo">{sub}</span>
+                          <span className="mono gris">{rotuloParte(p, cap)}</span>
                         </span>
+                        <span className={`marca${leida ? " on" : ""}`} aria-label={leida ? "Leída" : "Pendiente"} />
                       </Link>
                     );
-                  })}
-                </div>
+                  }
+                  return (
+                    <Link key={p.slug} href={`${base}/${p.slug}`} className="fila">
+                      <span className="mono">{rotuloParte(p, cap)}</span>
+                      <span className="fila-titulo">{sub ?? ""}</span>
+                      <span className={`marca${leida ? " on" : ""}`} aria-label={leida ? "Leída" : "Pendiente"} />
+                    </Link>
+                  );
+                })}
               </section>
             );
           })}
 
-          <form action={e.hechas > 0 ? desmarcarTodoAction.bind(null, slug, cap) : marcarTodoAction.bind(null, slug, cap)} className="text-center">
-            <button type="submit" className="enlace-discreto">
-              {e.hechas > 0 ? "Desmarcar todo el capítulo" : "Ya lo leí: marcar todo el capítulo como leído"}
+          <form
+            action={e.hechas > 0 ? desmarcarTodoAction.bind(null, slug, cap) : marcarTodoAction.bind(null, slug, cap)}
+            className="pad pt-2"
+          >
+            <button type="submit" className="enlace mono gris">
+              {e.hechas > 0 ? "Desmarcar todo el capítulo" : "Ya lo leí: marcar todo como leído"}
             </button>
           </form>
 
           {e.capitulo.fuentesMd && (
-            <details className="fuentes">
-              <summary className="rotulo">Fuentes consultadas</summary>
-              <div className="estudio mt-2" dangerouslySetInnerHTML={{ __html: html(e.capitulo.fuentesMd) }} />
+            <details className="fuentes pad pb-6">
+              <summary className="mono gris cursor-pointer px-1.5 py-3">Fuentes consultadas</summary>
+              <div className="estudio" dangerouslySetInnerHTML={{ __html: html(e.capitulo.fuentesMd) }} />
             </details>
           )}
         </>
       ) : (
-        <div className="hoja px-6 py-12 text-center">
-          <p className="fleuron">❧</p>
-          <h2 className="mt-3 text-2xl sm:text-3xl">Aún en investigación</h2>
-          <p className="nota mx-auto mt-2 max-w-md">
+        <section className="pad py-10">
+          <p className="mono m-0">En investigación</p>
+          <p className="serif m-0 mt-2" style={{ fontSize: "1.1875rem", lineHeight: 1.4, maxWidth: "32rem" }}>
             El estudio de {l.nombre} {cap} todavía no está escrito. Vamos capítulo a capítulo: cuando el anterior esté
             estudiado, investigamos el siguiente a profundidad.
           </p>
-        </div>
+        </section>
       )}
     </main>
   );

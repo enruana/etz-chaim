@@ -3,6 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import { libro as getLibro } from "@/lib/canon";
 import { esTematica, html, partePorVersiculo, rotuloCorto, rotuloParte, subtituloParte } from "@/lib/studies";
 import { estadoCapitulo } from "@/lib/avance";
+import { dos, k, talla } from "@/lib/estela";
 import { leerParteAction, desmarcarParteAction } from "@/app/actions";
 
 export const dynamic = "force-dynamic";
@@ -35,82 +36,85 @@ export default async function PartePage({
   const anterior = partes[i - 1];
   const siguiente = partes[i + 1];
   const leida = e.leidas.has(parte.slug);
-  const esEscena = parte.tipo === "escena";
-  const tematica = esTematica(parte);
   const sub = subtituloParte(parte);
+  // lo que se talla en la losa: la referencia de la escena, o el nombre de la sección
+  const grande = rotuloCorto(parte, cap).replace("-", "–").toUpperCase();
 
   return (
-    <main className="flex flex-col gap-4 sm:gap-6">
-      <header>
-        <div className="flex items-baseline justify-between gap-3">
-          <Link href={base} className="rotulo" style={{ textDecoration: "none" }}>
-            ← {l.nombre} {cap}
+    <main>
+      <section className="losa">
+        <div className="mono flex items-center justify-between pl-1.5 pr-[18px] pt-2">
+          <Link href={base} className="flex h-11 items-center px-3" style={{ textDecoration: "none" }}>
+            ← {l.nombre} {dos(cap)}
           </Link>
-          <p className="rotulo">
-            Parte {i + 1} de {partes.length}
-          </p>
+          <span>
+            {dos(i + 1)}/{dos(partes.length)}
+          </span>
         </div>
-        <div className="barra mt-2">
-          <div style={{ width: `${((i + 1) / partes.length) * 100}%` }} />
-        </div>
-        {tematica ? (
-          <>
-            <h1 className="mt-4 text-[1.35rem] sm:mt-5 sm:text-3xl">{sub}</h1>
-            <p className="rotulo mt-1.5">
+        <h1 className="display incisa gigante px-4 pt-1" style={{ ...talla(Math.min(k(grande), 40)), marginBottom: "-0.04em" }}>
+          {grande}
+        </h1>
+      </section>
+
+      {(sub || esTematica(parte)) && (
+        <section className="pad pt-5">
+          {sub && (
+            <p className="serif m-0 italic" style={{ fontSize: "1.4375rem", lineHeight: 1.2 }}>
+              {sub}
+            </p>
+          )}
+          {esTematica(parte) && (
+            <p className="mono gris m-0 mt-2">
               {l.nombre} {rotuloParte(parte, cap)}
             </p>
-          </>
-        ) : (
-          <>
-            <h1 className="mt-4 text-[1.5rem] sm:mt-5 sm:text-4xl">
-              {esEscena ? `${l.nombre} ${rotuloParte(parte, cap)}` : rotuloParte(parte, cap)}
-            </h1>
-            {sub && <p className="serif sobre-roca mt-1 text-[1.08rem] italic sm:text-xl">{sub}</p>}
-          </>
-        )}
-      </header>
+          )}
+        </section>
+      )}
 
-      <div className="hoja px-4 py-6 sm:px-10 sm:py-10">
-        <article className="estudio" dangerouslySetInnerHTML={{ __html: html(parte.md) }} />
-      </div>
+      <article className="estudio pad py-5" dangerouslySetInnerHTML={{ __html: html(parte.md) }} />
 
       {leida ? (
-        <div className="flex flex-col gap-2">
+        <>
           {siguiente ? (
-            <Link href={`${base}/${siguiente.slug}`} className="boton boton-tinta block w-full">
-              Seguir · {rotuloCorto(siguiente, cap)} →
+            <Link href={`${base}/${siguiente.slug}`} className="bloque bloque-tinta">
+              <span>Seguir · {rotuloCorto(siguiente, cap)}</span>
+              <span>→</span>
             </Link>
           ) : (
-            <Link href={base} className="boton boton-tinta block w-full">
-              Volver al índice de {l.nombre} {cap}
+            <Link href={base} className="bloque bloque-tinta">
+              <span>Volver al índice</span>
+              <span>→</span>
             </Link>
           )}
-          <form action={desmarcarParteAction.bind(null, slug, cap, parte.slug)} className="text-center">
-            <button type="submit" className="enlace-discreto">
-              ✓ Leída — desmarcar
+          <form action={desmarcarParteAction.bind(null, slug, cap, parte.slug)} className="pad">
+            <button type="submit" className="enlace mono gris">
+              Leída — desmarcar
             </button>
           </form>
-        </div>
+        </>
       ) : (
         <form action={leerParteAction.bind(null, slug, cap, parte.slug)}>
-          <button type="submit" className="boton boton-tinta w-full">
-            {siguiente ? `Leída · seguir con ${rotuloCorto(siguiente, cap)} →` : "Leída · terminar el capítulo ✓"}
+          <button type="submit" className="bloque">
+            <span>{siguiente ? `Leída · seguir ${rotuloCorto(siguiente, cap)}` : "Leída · terminar"}</span>
+            <span>{siguiente ? "→" : "■"}</span>
           </button>
         </form>
       )}
 
-      <nav className="flex items-center justify-between gap-2">
+      <nav className="rejilla mono">
         {anterior ? (
-          <Link href={`${base}/${anterior.slug}`} className="etiqueta">
+          <Link href={`${base}/${anterior.slug}`} className="flex min-h-[52px] items-center px-[18px]" style={{ textDecoration: "none" }}>
             ← {rotuloCorto(anterior, cap)}
           </Link>
         ) : (
-          <span />
+          <span className="min-h-[52px]" />
         )}
-        {siguiente && (
-          <Link href={`${base}/${siguiente.slug}`} className="etiqueta">
+        {siguiente ? (
+          <Link href={`${base}/${siguiente.slug}`} className="flex min-h-[52px] items-center justify-end px-[18px]" style={{ textDecoration: "none" }}>
             {rotuloCorto(siguiente, cap)} →
           </Link>
+        ) : (
+          <span className="min-h-[52px]" />
         )}
       </nav>
     </main>

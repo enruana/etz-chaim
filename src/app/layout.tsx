@@ -1,12 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Cinzel, EB_Garamond, Alegreya_Sans } from "next/font/google";
+import { Big_Shoulders, IBM_Plex_Mono, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import BottomNav from "@/components/BottomNav";
 
-// Piedra · imprenta · pantalla: tres voces de la cadena de transmisión.
-const display = Cinzel({ subsets: ["latin"], variable: "--font-display" });
-const serif = EB_Garamond({ subsets: ["latin"], style: ["normal", "italic"], variable: "--font-serif" });
-const ui = Alegreya_Sans({ subsets: ["latin"], weight: ["400", "500", "700", "800"], variable: "--font-ui" });
+// Talla, metadatos y lectura: tres voces y nada más.
+// Big Shoulders es variable: el eje óptico (opsz) da el corte «display» en tamaños grandes.
+const display = Big_Shoulders({ subsets: ["latin"], axes: ["opsz"], variable: "--font-display" });
+const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-mono" });
+const serif = Source_Serif_4({ subsets: ["latin"], style: ["normal", "italic"], variable: "--font-serif" });
 
 export const metadata: Metadata = {
   title: "La Biblia",
@@ -14,14 +15,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#d9cbab",
+  themeColor: "#cfcac2",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
-      <body className={`${display.variable} ${serif.variable} ${ui.variable}`}>
-        <div className="mx-auto max-w-3xl px-3.5 pb-24 pt-5 sm:px-5 sm:pb-28 sm:pt-8">{children}</div>
+      <body className={`${display.variable} ${mono.variable} ${serif.variable}`}>
+        <div className="columna">{children}</div>
         <BottomNav />
       </body>
     </html>

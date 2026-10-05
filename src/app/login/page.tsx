@@ -1,42 +1,47 @@
 import { entrar } from "./actions";
+import { k, talla } from "@/lib/estela";
 import Cadena from "@/components/Cadena";
 
 export default async function Login({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
   const { error } = await searchParams;
   return (
-    <main className="mx-auto flex min-h-[80dvh] max-w-sm flex-col items-center justify-center gap-7 text-center">
-      <div>
-        <p className="fleuron">❦</p>
-        <h1 className="tallada-roja mt-4 text-4xl sm:text-5xl">La Biblia</h1>
-        <p className="serif sobre-roca mt-3 text-base italic sm:text-lg">
-          «Lámpara es a mis pies tu palabra» — Salmo 119:105
+    <main>
+      <section className="losa">
+        <div className="pad mono flex justify-between pt-5">
+          <span>Reina-Valera 1960</span>
+          <span>66 libros</span>
+        </div>
+        <h1 className="display incisa px-4 pt-3" style={{ marginBottom: "-0.04em" }}>
+          <span className="gigante block" style={talla(k("LA"))}>
+            La
+          </span>
+          <span className="gigante block" style={talla(k("BIBLIA"))}>
+            Biblia
+          </span>
+        </h1>
+      </section>
+
+      <section className="pad raya py-4">
+        <p className="serif m-0 italic" style={{ fontSize: "1.25rem", lineHeight: 1.3 }}>
+          «Lámpara es a mis pies tu palabra, Y lumbrera a mi camino.»
         </p>
-      </div>
-      <form action={entrar} className="hoja flex w-full flex-col gap-3 p-6">
-        <input
-          type="password"
-          name="password"
-          placeholder="Contraseña"
-          autoFocus
-          className="w-full px-4 py-3 text-base"
-          style={{
-            border: "1px solid var(--filete-fuerte)",
-            borderRadius: 3,
-            background: "var(--papel-hundido)",
-            boxShadow: "inset 1px 2px 4px rgb(30 22 14 / 0.25)",
-            color: "var(--tinta)",
-            outline: "none",
-          }}
-        />
-        {error && (
-          <p className="text-sm font-bold" style={{ color: "var(--rubrica)", margin: 0 }}>
-            Contraseña incorrecta — intenta de nuevo.
-          </p>
-        )}
-        <button type="submit" className="boton boton-tinta w-full">
-          Entrar
+        <p className="mono gris m-0 mt-2">Salmo 119:105</p>
+      </section>
+
+      <form action={entrar}>
+        <div className="pad py-4">
+          <label htmlFor="password" className="mono mb-2 block">
+            Contraseña
+          </label>
+          <input id="password" type="password" name="password" autoFocus className="campo" />
+          {error && <p className="mono m-0 mt-3">Contraseña incorrecta. Intenta de nuevo.</p>}
+        </div>
+        <button type="submit" className="bloque">
+          <span>Entrar</span>
+          <span>→</span>
         </button>
       </form>
+
       <Cadena />
     </main>
   );
