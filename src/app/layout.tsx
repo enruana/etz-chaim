@@ -14,8 +14,12 @@ export const metadata: Metadata = {
   description: "Árbol de vida es a los que de ella echan mano (Proverbios 3:18)",
 };
 
+// themeColor = --losa-plana: el tono con que el navegador pinta la franja de
+// estado, igual al borde superior de la losa. viewportFit "cover" deja que la
+// página llegue a los bordes físicos (zona del indicador de inicio, muesca).
 export const viewport: Viewport = {
-  themeColor: "#cfcac2",
+  themeColor: "#c4bfb8",
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

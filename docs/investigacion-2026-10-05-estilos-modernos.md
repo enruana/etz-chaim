@@ -85,3 +85,13 @@ El diseño nació para teléfono; estas son sus tres formas:
 - **El margen lateral es `--pad`** (18 / 28 / 36px). Va declarado fuera de las capas CSS: dentro de `@layer` pierde contra el `:root` base.
 - **El Mapa** usa `.rejilla-libros`: tantas columnas como quepan (mínimo 10.5rem por libro).
 - La navegación vive en `src/components/Navegacion.tsx` (riel + barra inferior; CSS decide cuál se ve).
+
+### Los bordes del dispositivo (2026-10-05)
+
+Lo que queda *fuera* de la página lo pinta el navegador con un color plano, y si ese color no coincide con el borde de la página, se ve un corte.
+
+- **Franja de estado (hora, batería) y rebote superior del scroll:** el navegador usa `theme-color` y el color de fondo de `html`/`body`. Los tres valen `--losa-plana` (`#c4bfb8`), que es el tono medio **medido** del borde superior de la losa. Además la losa arranca en ese tono plano y deja aparecer la textura en 44px (un degradado sobre la textura), así no hay costura.
+- **Zona del indicador de inicio y rebote inferior:** `viewport-fit=cover` deja que la página llegue al borde físico; la barra inferior se rellena con `env(safe-area-inset-bottom)` y un bloque fijo de piedra debajo del viewport (`body::after`) cubre lo que asoma al rebotar.
+- **Muesca en horizontal:** `--pad` nunca es menor que `env(safe-area-inset-left/right)`.
+- **Escritorio:** sin tope de ancho — la app ocupa toda la pantalla y el fondo raíz es piedra. La columna de la losa crece con la ventana pero acotada (`clamp(19rem, 40vw, 44rem)`; en lectura `clamp(17rem, 30vw, 34rem)`) para que la inscripción no se desborde. En monitores de 1920px o más la lectura sube a 22px.
+- Si cambia la textura de la losa, **hay que volver a medir** `--losa-plana` y actualizar también `themeColor` en `src/app/layout.tsx`.
