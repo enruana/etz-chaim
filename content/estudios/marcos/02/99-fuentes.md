@@ -1,0 +1,6 @@
+---
+tipo: "fuentes"
+titulo: "Fuentes consultadas"
+---
+
+*Fuentes consultadas:* [BibleGateway RVR1960 – Marcos 2](https://www.biblegateway.com/passage/?search=Marcos+2&version=RVR1960) · [Precept Austin – Mark 2 Commentary](https://www.preceptaustin.org/mark-2-commentary) · [Matthew Henry – Mark 2](https://www.biblestudytools.com/commentaries/matthew-henry-complete/mark/2.html) · [Defending Inerrancy – Mark 2:26 (Abiathar)](https://defendinginerrancy.com/bible-solutions/Mark_2.26.php) · [Dewey – The Literary Structure of the Controversy Stories in Mark 2:1–3:6 (JBL)](https://millcitychurch.com/wp-content/uploads/2023/09/Dewey-LiteraryStructureControversy-1973.pdf) · [ESV.org – Five Controversies chart (Mark 2:1–3:6)](https://www.esv.org/resources/esv-global-study-bible/chart-41-01/) · [Ferrell Jenkins – They removed the roof](https://ferrelljenkins.blog/2015/04/19/they-removed-the-roof-and-let-down-the-bed/) · [BibleRef – Mark 2:10](https://www.bibleref.com/Mark/2/Mark-2-10.html) · [Jews for Jesus – What Did Jesus Say About Fasting?](https://jewsforjesus.org/learn/what-did-jesus-say-about-fasting) · [Ligonier – Picking Grain on the Sabbath](https://learn.ligonier.org/devotionals/picking-grain-sabbath) · [Visual Commentary on Scripture – Plucking Grain on the Sabbath](https://thevcs.org/plucking-grain-sabbath)*

@@ -19,6 +19,13 @@ export function getDb(): Database.Database {
       updated_at TEXT NOT NULL,
       PRIMARY KEY (book, chapter)
     );
+    CREATE TABLE IF NOT EXISTS unit_progress (
+      book TEXT NOT NULL,
+      chapter INTEGER NOT NULL,
+      unit TEXT NOT NULL,
+      updated_at TEXT NOT NULL,
+      PRIMARY KEY (book, chapter, unit)
+    );
     CREATE TABLE IF NOT EXISTS srs_items (
       id TEXT PRIMARY KEY,
       due TEXT NOT NULL,
@@ -55,4 +62,38 @@ export function marcarCapitulo(book: string, chapter: number) {
 
 export function desmarcarCapitulo(book: string, chapter: number) {
   getDb().prepare("DELETE FROM progress WHERE book = ? AND chapter = ?").run(book, chapter);
+}
+
+// ——— Progreso por parte (libro / capítulo / parte) ———
+// La tabla `progress` (por capítulo) se mantiene sincronizada: un capítulo está
+// completo cuando todas sus partes están leídas. Ver src/lib/avance.ts.
+
+export function capituloCompleto(book: string, chapter: number): boolean {
+  return !!getDb().prepare("SELECT 1 FROM progress WHERE book = ? AND chapter = ?").get(book, chapter);
+}
+
+export function partesLeidas(book: string, chapter: number): Set<string> {
+  const rows = getDb()
+    .prepare("SELECT unit FROM unit_progress WHERE book = ? AND chapter = ?")
+    .all(book, chapter) as { unit: string }[];
+  return new Set(rows.map((r) => r.unit));
+}
+
+export function marcarPartes(book: string, chapter: number, units: string[]) {
+  const db = getDb();
+  const ins = db.prepare(
+    "INSERT OR IGNORE INTO unit_progress (book, chapter, unit, updated_at) VALUES (?, ?, ?, ?)",
+  );
+  const now = new Date().toISOString();
+  db.transaction(() => {
+    for (const u of units) ins.run(book, chapter, u, now);
+  })();
+}
+
+export function desmarcarParte(book: string, chapter: number, unit: string) {
+  getDb().prepare("DELETE FROM unit_progress WHERE book = ? AND chapter = ? AND unit = ?").run(book, chapter, unit);
+}
+
+export function desmarcarPartes(book: string, chapter: number) {
+  getDb().prepare("DELETE FROM unit_progress WHERE book = ? AND chapter = ?").run(book, chapter);
 }

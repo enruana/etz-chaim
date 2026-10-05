@@ -30,6 +30,7 @@
   --sombra: rgb(30 22 14 / 0.3);    /* arista en sombra */
 }
 
+@layer base {
 * { box-sizing: border-box; }
 
 html { -webkit-text-size-adjust: 100%; }
@@ -59,7 +60,9 @@ body::before {
 a { color: inherit; }
 
 h1, h2, h3 { margin: 0; text-wrap: balance; }
+}
 
+@layer components {
 /* Talla: la letra es un surco — sombra arriba, luz en el borde de abajo */
 h1, .lapidaria {
   font-family: var(--font-display), serif;
@@ -165,6 +168,42 @@ a.etiqueta:hover { filter: brightness(1.05); }
 /* dentro de una losa, la etiqueta es una tesela un poco más oscura */
 .etiqueta-rebajada { background-color: #e3d7b8; }
 
+/* fila del índice de partes: una línea tallada por parte */
+.fila {
+  display: grid;
+  grid-template-columns: minmax(4.6rem, auto) 1fr auto;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--filete);
+  text-decoration: none;
+  color: var(--tinta);
+  transition: background 0.15s ease-out;
+}
+.fila:first-child { border-top: 0; }
+.fila:hover { background: rgb(30 22 14 / 0.04); }
+.fila-ref { font-family: var(--font-ui), sans-serif; font-size: 0.82rem; font-weight: 800; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; }
+.fila-titulo { font-family: var(--font-serif), serif; font-size: 1.08rem; line-height: 1.3; color: var(--tinta-suave); }
+.fila.fila-apilada { grid-template-columns: 1fr auto; }
+.fila-apilada .fila-titulo { color: var(--tinta); }
+.fila-apilada .fila-ref { display: block; margin-top: 0.15rem; font-weight: 700; color: var(--tinta-suave); }
+.fila-marca { font-weight: 800; color: var(--tinta-suave); padding-left: 0.25rem; }
+
+/* barra de avance: una ranura que se llena de tinta */
+.barra { height: 4px; border-radius: 2px; overflow: hidden; background: var(--papel-hundido); box-shadow: inset 0 1px 2px rgb(30 22 14 / 0.35), 0 1px 0 var(--luz); }
+.barra > div { height: 100%; background: var(--tinta); }
+
+.enlace-discreto {
+  background: none; border: 0; padding: 0.4rem 0.6rem; cursor: pointer;
+  font-family: var(--font-ui), sans-serif; font-size: 0.8rem;
+  color: #33281d; text-shadow: 0 1px 0 var(--luz);
+  text-decoration: underline; text-decoration-color: rgb(42 33 26 / 0.4); text-underline-offset: 0.2em;
+}
+
+.fuentes summary { cursor: pointer; text-align: center; color: #33281d; }
+.fuentes .estudio { font-size: 0.85rem; line-height: 1.5; color: #33281d; text-shadow: 0 1px 0 var(--luz); hyphens: manual; }
+.fuentes .estudio > p:first-of-type::first-letter { float: none; font: inherit; color: inherit; padding: 0; text-shadow: none; }
+
 .fleuron { color: var(--tinta-suave); font-size: 1.4rem; line-height: 1; text-shadow: 0 1px 0 var(--luz); }
 
 /* la repisa de navegación: basalto */
@@ -257,6 +296,9 @@ a.etiqueta:hover { filter: brightness(1.05); }
 /* ————— Móvil: letra más pequeña, el espacio mejor aprovechado ————— */
 @media (max-width: 640px) {
   body { font-size: 0.92rem; }
+  .fila { grid-template-columns: minmax(3.9rem, auto) 1fr auto; gap: 0.6rem; padding: 0.6rem 0; }
+  .fila-ref { font-size: 0.74rem; }
+  .fila-titulo { font-size: 0.98rem; }
   .rotulo { font-size: 0.62rem; letter-spacing: 0.13em; }
   .nota { font-size: 0.84rem; }
   .boton { font-size: 0.7rem; padding: 0.8rem 1rem; }
@@ -267,4 +309,5 @@ a.etiqueta:hover { filter: brightness(1.05); }
   .estudio h3 { font-size: 1.12rem; }
   .estudio p { margin: 0.75em 0; }
   .estudio table { font-size: 0.8rem; }
+}
 }

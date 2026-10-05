@@ -4,7 +4,8 @@ import { ESPECIALES } from "@/lib/especiales";
 import { resumenProgreso } from "@/lib/progreso";
 import { romano } from "@/lib/romano";
 import { syncItems, contarPendientes } from "@/lib/srs";
-import { hasStudy } from "@/lib/studies";
+import { hasStudy, rotuloCorto, subtituloParte } from "@/lib/studies";
+import { estadoCapitulo } from "@/lib/avance";
 import Cadena from "@/components/Cadena";
 
 export const dynamic = "force-dynamic";
@@ -25,8 +26,9 @@ export default function Hoy() {
   const l = libro(p.actual.libro)!;
   const fase = FASES[l.fase];
   const pendientes = contarPendientes();
-  const pct = Math.round((p.completados / p.total) * 1000) / 10;
-  const listo = hasStudy(p.actual.libro, p.actual.cap);
+  const e = estadoCapitulo(p.actual.libro, p.actual.cap);
+  const sig = e?.siguiente ?? null;
+  const destino = sig ? `/estudiar/${l.slug}/${p.actual.cap}/${sig.slug}` : `/estudiar/${l.slug}/${p.actual.cap}`;
 
   return (
     <main className="flex flex-col gap-3.5 sm:gap-6">
@@ -39,22 +41,31 @@ export default function Hoy() {
         <hr className="filete-doble mt-4 sm:mt-7" />
       </header>
 
-      <Link href={`/estudiar/${l.slug}/${p.actual.cap}`} className="hoja block p-4 sm:p-7" style={{ textDecoration: "none" }}>
+      <Link href={destino} className="hoja block p-4 sm:p-7" style={{ textDecoration: "none" }}>
         <p className="rotulo">
           Estás estudiando · Fase {romano(l.fase)} — {fase.nombre}
         </p>
         <h2 className="mt-1.5 text-3xl sm:mt-2 sm:text-4xl">
           {l.nombre} {p.actual.cap}
         </h2>
-        <p className="nota mt-1">
-          {listo ? "El estudio está listo para ti — continúa donde ibas." : "Este capítulo aún está en investigación."}
-        </p>
-        <div className="mt-3.5 h-[4px] overflow-hidden sm:mt-5" style={{ background: "var(--papel-hundido)", boxShadow: "inset 0 1px 2px rgb(30 22 14 / 0.35), 0 1px 0 var(--luz)", borderRadius: 2 }}>
-          <div className="h-full" style={{ width: `${Math.max(pct, 1)}%`, background: "var(--tinta)" }} />
-        </div>
-        <p className="rotulo mt-2.5" style={{ letterSpacing: "0.1em" }}>
-          {p.completados} de {p.total} capítulos · {pct}% del canon
-        </p>
+        {e && sig ? (
+          <p className="nota mt-1">
+            Sigue: <strong style={{ color: "var(--tinta)" }}>{rotuloCorto(sig, p.actual.cap)}</strong>
+            {subtituloParte(sig) ? ` — ${subtituloParte(sig)}` : ""}
+          </p>
+        ) : (
+          <p className="nota mt-1">Este capítulo aún está en investigación.</p>
+        )}
+        {e && (
+          <>
+            <div className="barra mt-3.5 sm:mt-5">
+              <div style={{ width: `${Math.max((e.hechas / e.total) * 100, 1.5)}%` }} />
+            </div>
+            <p className="rotulo mt-2.5" style={{ letterSpacing: "0.1em" }}>
+              {e.hechas} de {e.total} partes · {p.completados} de {p.total} capítulos
+            </p>
+          </>
+        )}
       </Link>
 
       {ESPECIALES.filter((e) => hasStudy(e.libro, e.cap)).map((e) => (

@@ -1,7 +1,7 @@
 # Plan de estudio completo — el mapa
 
 **Texto base:** Reina-Valera 1960 (RVR1960) · **Canon:** 66 libros · **Total:** 1.189 capítulos
-**Modo de trabajo:** progresivo — el mapa está trazado completo, pero se desarrolla **un capítulo a la vez**: investigación profunda → estudio personal → mejora → siguiente capítulo. Cada capítulo produce un documento en `estudios/<libro>/<libro>-NN.md` siguiendo `docs/metodologia-capitulo.md`.
+**Modo de trabajo:** progresivo — el mapa está trazado completo, pero se desarrolla **un capítulo a la vez**: investigación profunda → estudio personal → mejora → siguiente capítulo. Cada capítulo produce una carpeta `content/estudios/<libro>/<NN>/` con una parte por archivo, siguiendo `content/metodologia.md`.
 
 **Orden pedagógico, no canónico.** Fundamento (ver `investigacion-2026-07-30-metodologia-estudio-biblico.md`): nunca Génesis→Apocalipsis lineal; primero un Evangelio (conocer a Jesús da la clave de lectura de todo lo demás); mapa antes que microscopio; profetas leídos en su contexto histórico; apocalíptica al final.
 
@@ -166,6 +166,8 @@ Toda explicación de capítulo se ubica en una de estas eras:
 | 2026-08-31 | Marcos 3 | 📄 Borrador de estudio producido (`content/estudios/marcos/marcos-03.md`) — pendiente estudio personal |
 | 2026-09-03 | Marcos 4 | 📄 Borrador de estudio producido (`content/estudios/marcos/marcos-04.md`) — pendiente estudio personal |
 | 2026-09-16 | Proverbios 21 | ⭐ Estudio especial producido (`content/estudios/proverbios/proverbios-21.md`) — salto temporal para el grupo de parejas; el plan sigue en Marcos 4 |
+
+| 2026-10-05 | Marcos 1-4 · Proverbios 21 | 🗂️ Reestructura: cada capítulo pasa de un documento largo a una carpeta con una parte por archivo (`content/estudios/<libro>/<NN>/`); navegación libro/capítulo/parte y avance por parte |
 
 **Posición actual: Fase 1 · Marcos · capítulo 4.**
 

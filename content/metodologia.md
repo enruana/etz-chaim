@@ -1,6 +1,6 @@
 # Metodología de estudio por capítulo
 
-Cada capítulo produce un documento `estudios/<libro>/<libro>-NN.md` con las 8 secciones de abajo. La metodología combina lo mejor de la investigación (`investigacion-2026-07-30-metodologia-estudio-biblico.md`): método inductivo OIA (Precept/Hendricks), lectura por género (Fee & Stuart), el Viaje Interpretativo (Duvall & Hays), lectura cristocéntrica del arco redentor, y la escalera de memorización con FSRS.
+Cada capítulo produce una carpeta `content/estudios/<libro>/<NN>/` con una parte por archivo (ver «Estructura» abajo). La metodología combina lo mejor de la investigación (`investigacion-2026-07-30-metodologia-estudio-biblico.md`): método inductivo OIA (Precept/Hendricks), lectura por género (Fee & Stuart), el Viaje Interpretativo (Duvall & Hays), lectura cristocéntrica del arco redentor, y la escalera de memorización con FSRS.
 
 ## La voz de los estudios (el tono)
 
@@ -11,7 +11,7 @@ El estudio se escribe **como un amigo que camina contigo por el texto**, no como
 - **Narrativo**: contar la escena antes de analizarla — que el lector la *vea* (olores, geografía, quién está presente) y luego entienda por qué importa.
 - **Reflexivo**: sembrar pausas de pensamiento a lo largo del texto, no solo al final. Preguntas breves en el camino («Pausa: ¿qué habrías sentido tú en esa sinagoga?») que inviten a contrastar y pensar, no a responder de memoria.
 - **Honesto sin pesadez**: las dificultades se cuentan como conversación ("aquí es justo preguntarse..."), con la mejor respuesta explicada simple, y las fuentes al final sin interrumpir la lectura.
-- **La estructura sirve a la lectura**: los títulos de sección pueden ser frases vivas ("Un día con Jesús en Capernaum") en vez de rótulos técnicos, siempre que las 8 secciones sigan reconocibles.
+- **La estructura sirve a la lectura**: los títulos de sección pueden ser frases vivas ("Un día con Jesús en Capernaum") en vez de rótulos técnicos, siempre que cada parte siga reconocible.
 
 **Principios innegociables:**
 
@@ -22,40 +22,68 @@ El estudio se escribe **como un amigo que camina contigo por el texto**, no como
 
 ---
 
-## Estructura del documento de estudio
+## Estructura: libro / capítulo / parte
 
-Ocho secciones (antes eran doce: se fusionaron las que se pisaban y se quitaron las que alargaban la lectura sin aportar — la "observación bajo la lupa" y las "claves de género" por capítulo). El corazón es el recorrido versículo a versículo; todo lo demás lo sirve. Meta de extensión: **~5.000 palabras** por capítulo.
+Un capítulo ya no es una página larga: es una **carpeta con una parte por archivo**, y cada parte es una lectura corta (2-4 minutos, **300-800 palabras**) con su propia página y su propio ✓ de avance. La navegación tiene tres niveles — `marcos/3/7-12` — y un número de versículo lleva a la parte que lo contiene (`marcos/3/12` → `marcos/3/7-12`).
 
-### 1. Dónde estamos 🗺️
-Libro, autor, audiencia, era del arco redentor, qué pasó antes y qué viene después — en 3-5 líneas. Luego la tabla de escenas del capítulo (referencia + título nuestro) como mapa de lo que se va a leer. Lectura completa del capítulo en la Biblia antes de seguir.
+```
+content/estudios/marcos/03/
+  00-portada.md      Dónde estamos
+  01-contexto.md     Contexto (+ hilos para ir siguiendo)
+  02-1-6.md          escena 3:1-6
+  03-7-12.md         escena 3:7-12
+  …                  una por escena
+  07-jesus.md        Lo que este capítulo dice de Jesús
+  08-dificil.md      Hablemos de lo difícil
+  09-aplicacion.md   ¿Y ahora qué?
+  10-memoria.md      Memoria
+  11-preguntas.md    Preguntas
+  99-fuentes.md      Fuentes consultadas (no es una parte: va plegada al pie del índice)
+```
 
-### 2. Contexto 🏺
-Lo que el lector original sabía sin que se lo dijeran: costumbres, geografía, política, religión, y dónde cae el capítulo en el argumento del libro. Si el género cambia respecto al capítulo anterior (p.ej. primera epístola, primer salmo), una nota breve de cómo se lee — no un módulo aparte.
+El prefijo numérico fija el orden. Cada archivo abre con frontmatter (valores entre comillas dobles):
 
-### 3. Caminemos el capítulo 💬
-**El corazón del estudio.** Abre con 2-4 *hilos para ir siguiendo* (palabras que se repiten, contrastes, conectores — lo que antes era la "observación", ahora en tres líneas). Luego, escena por escena: primero se *ve* la escena, después qué dice el texto explicado en nuestra voz, y las pausas 🌿 sembradas en el camino. Las citas siempre RVR1960 literal.
+```
+---
+slug: "7-12"
+tipo: "escena"
+titulo: "El lago, una barca lista y los gritos que Jesús manda callar"
+versos: "7-12"
+---
+```
 
-### 4. Lo que este capítulo dice de Jesús ✝️
-Cristo en el capítulo y la doctrina, en una sola sección: cómo apunta a Él (promesa, tipo, cumplimiento — sin forzar) y qué enseña sobre Dios, el hombre, el pecado, la salvación. Conciso: lo que el texto de verdad sostiene.
+- `tipo`: `portada` · `contexto` · `escena` · `jesus` · `dificil` · `aplicacion` · `memoria` · `preguntas` · `fuentes`.
+- `slug`: `inicio` para la portada; el rango de versículos para una escena (`7-12`, o `1` si es un solo versículo); el nombre del tipo para las demás.
+- `versos` (solo escenas): el rango, o una lista si la parte agrupa versículos salteados por tema, como en Proverbios (`"5,6,17,20,25-26"`; el slug es entonces el primer tramo: `5`).
+- `titulo`: el título vivo de la parte. En la portada, `titulo` es el lema del capítulo («Los de adentro y los de afuera») y `entrada` el subtítulo de la parte.
+- El cuerpo empieza directo con el texto: **sin encabezado propio** (la página lo pone) y sin emojis en el título.
 
-### 5. Hablemos de lo difícil ⚠️
-Solo las 2-3 dificultades que un lector honesto sí se va a preguntar, contadas como conversación, con la mejor respuesta explicada simple. Las menores se despachan en una línea dentro del recorrido.
+### Las partes
 
-### 6. ¿Y ahora qué? 🌱
-2-3 preguntas de aplicación concretas, derivadas del punto teológico del capítulo. Sin moralismo.
+**Dónde estamos** (`portada`) — libro, autor, audiencia, era del arco redentor, qué pasó antes y qué viene después, en 3-5 párrafos cortos. Termina invitando a leer el capítulo completo en la Biblia. **Sin tabla de escenas**: el índice del capítulo ya lo es.
 
-### 7. Memoria 🧠
-Versículo(s) clave (RVR1960 literal) con 1-2 preguntas de significado que se responden antes de memorizar. Unidad de cadena si aplica. Alimenta el pool FSRS de la app.
+**Contexto** (`contexto`) — lo que el lector original sabía sin que se lo dijeran: costumbres, geografía, política, religión, y dónde cae el capítulo en el argumento del libro. Si el género cambia respecto al capítulo anterior, la nota de cómo se lee va aquí. Cierra con `### Hilos para ir siguiendo`: 2-4 hilos (palabras que se repiten, contrastes, conectores) para llevar en la mano durante el recorrido.
 
-### 8. Preguntas ❓
-6-8 preguntas con respuesta breve (1-2 líneas): observación, interpretación, ordenar eventos, ¿quién dijo?, V/F. Es el banco curado a mano de la app; en la lectura debe pesar poco.
+**Las escenas** (`escena`) — el corazón del estudio, una parte por escena. Cada una se sostiene sola: primero se *ve* la escena, después qué dice el texto explicado en nuestra voz, con las citas RVR1960 literales, y —donde nazca natural— una pausa 🌿. Si una escena pasa de ~800 palabras, se parte en dos por su costura natural. En libros sin escenas (Proverbios), las partes son grupos temáticos.
+
+**Jesús en el capítulo** (`jesus`) — Cristo en el capítulo y la doctrina: cómo apunta a Él (sin forzar) y qué enseña sobre Dios, el hombre, el pecado, la salvación.
+
+**Lo difícil** (`dificil`) — las 2-3 dificultades que un lector honesto sí se va a preguntar, cada una bajo un `###`, contadas como conversación.
+
+**¿Y ahora qué?** (`aplicacion`) — 2-3 preguntas de aplicación concretas, derivadas del punto teológico del capítulo.
+
+**Memoria** (`memoria`) — versículo(s) clave (RVR1960 literal) con 1-2 preguntas de significado que se responden antes de memorizar. Alimenta el pool FSRS.
+
+**Preguntas** (`preguntas`) — 6-10 preguntas con respuesta breve. Es el banco curado a mano de la app.
+
+Meta total por capítulo: ~5.000-6.500 palabras, pero la medida que importa ahora es la de cada parte.
 
 ---
 
 ## Flujo de trabajo por capítulo
 
-1. **Investigación profunda** del capítulo (agentes: comentarios clásicos y confiables, contexto histórico, original griego/hebreo donde importe) → borrador del documento.
-2. **Felipe lo estudia** con su Biblia RVR1960.
+1. **Investigación profunda** del capítulo (agentes: comentarios clásicos y confiables, contexto histórico, original griego/hebreo donde importe) → las partes del capítulo, cada una en su archivo.
+2. **Felipe lo estudia** con su Biblia RVR1960, parte por parte; la app registra el avance de cada una.
 3. **Iteración**: dudas, correcciones y mejoras sobre el documento hasta que esté listo.
 4. **Cierre**: se marca ✅ en `plan-de-estudio.md`, se registra el avance, y se pasa al siguiente capítulo.
 
