@@ -41,7 +41,7 @@ export default async function PartePage({
   const grande = rotuloCorto(parte, cap).replace("-", "–").toUpperCase();
 
   return (
-    <main>
+    <main className="pagina pagina-lectura">
       <section className="losa">
         <div className="mono flex items-center justify-between pl-1.5 pr-[18px] pt-2">
           <Link href={base} className="flex h-11 items-center px-3" style={{ textDecoration: "none" }}>
@@ -51,13 +51,26 @@ export default async function PartePage({
             {dos(i + 1)}/{dos(partes.length)}
           </span>
         </div>
-        <h1 className="display incisa gigante px-4 pt-1" style={{ ...talla(Math.min(k(grande), 40)), marginBottom: "-0.04em" }}>
+        <ol className="indice-losa mono hidden lg:block">
+          {partes.map((p) => (
+            <li key={p.slug}>
+              <Link href={`${base}/${p.slug}`} className={p.slug === parte.slug ? "aqui" : undefined} aria-current={p.slug === parte.slug ? "page" : undefined}>
+                <span className={`marca${e.leidas.has(p.slug) ? " on" : ""}`} />
+                <span>{rotuloCorto(p, cap)}</span>
+              </Link>
+            </li>
+          ))}
+        </ol>
+        <h1 className="display incisa gigante pad-talla losa-pie pt-1" style={{ ...talla(Math.min(k(grande), 40)), marginBottom: "-0.04em" }}>
           {grande}
         </h1>
       </section>
 
+      <div className="cuerpo">
+      <div className="lectura">
+
       {(sub || esTematica(parte)) && (
-        <section className="pad pt-5">
+        <section className="pad pt-5 lg:pt-9">
           {sub && (
             <p className="serif m-0 italic" style={{ fontSize: "1.4375rem", lineHeight: 1.2 }}>
               {sub}
@@ -71,7 +84,8 @@ export default async function PartePage({
         </section>
       )}
 
-      <article className="estudio pad py-5" dangerouslySetInnerHTML={{ __html: html(parte.md) }} />
+      <article className="estudio pad py-5 lg:py-8" dangerouslySetInnerHTML={{ __html: html(parte.md) }} />
+      </div>
 
       {leida ? (
         <>
@@ -117,6 +131,7 @@ export default async function PartePage({
           <span className="min-h-[52px]" />
         )}
       </nav>
+      </div>
     </main>
   );
 }

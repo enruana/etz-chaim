@@ -68,3 +68,20 @@ Point'n Think (*The Art of Hades*, *Clair Obscur*); 80.lv y GDC (God of War Ragn
 - **Piezas:** `.losa` + `.display.incisa.gigante` (el rótulo se ajusta al ancho con `k()` de `src/lib/estela.ts`: ~0.54em por carácter) · `.bloque` (acción principal) · `.rejilla` / `.celda` · `.segmentos` (un segmento por parte) · `.grupo-cab` + `.fila` + `.marca` (índice: cuadro lleno = leída) · `.estudio` (cita con barra de oropimente; pausa en nicho con marca cuadrada).
 - **Escritorio:** la app es una columna de 48rem — una estela — con sus cantos de 1px sobre hormigón.
 - **Se conserva de «El Códice»:** la cadena *piedra → … → pantalla* al pie de Hoy y del login, y la ausencia de emojis.
+
+### Estela en pantallas anchas (2026-10-05)
+
+El diseño nació para teléfono; estas son sus tres formas:
+
+| Ancho | Forma |
+|---|---|
+| **< 768px** (teléfono) | Una columna. Losa arriba, contenido debajo, navegación en barra inferior. |
+| **768–1023px** (iPad vertical) | Una columna a todo el ancho. La losa se limita al 58% del alto de la pantalla (la inscripción se recorta), el margen lateral sube a 28px y la lectura va centrada con su medida (44rem). Barra inferior. |
+| **≥ 1024px** (iPad horizontal, escritorio) | **Riel** de navegación a la izquierda (12rem) con la cadena de transmisión al pie · la **losa fija** a toda la altura, con la inscripción asentada en el canto inferior · el **cuerpo** a la derecha, que es lo único que se desplaza. Sin barra inferior. Tope de 100rem con cantos. |
+
+- **Estructura:** cada página es `<main class="pagina">` con `<section class="losa">` + `<div class="cuerpo">`. En ancho, `.pagina` es una rejilla de dos columnas (5fr/6fr; `.pagina-lectura` usa 4fr/7fr).
+- **La talla se mide contra la losa, no contra la ventana:** `.losa` es un contenedor (`container-type: inline-size`) y `.gigante` usa `cqw`, así la inscripción llena su columna en cualquier disposición.
+- **En ancho, la losa hace más:** en Hoy y en el capítulo muestra libro y número apilados; en la lectura lleva el **índice de partes** del capítulo, con la actual en amarillo y un cuadro lleno por cada parte leída; en Hoy el cuerpo añade la lista de partes del capítulo en curso.
+- **El margen lateral es `--pad`** (18 / 28 / 36px). Va declarado fuera de las capas CSS: dentro de `@layer` pierde contra el `:root` base.
+- **El Mapa** usa `.rejilla-libros`: tantas columnas como quepan (mínimo 10.5rem por libro).
+- La navegación vive en `src/components/Navegacion.tsx` (riel + barra inferior; CSS decide cuál se ve).

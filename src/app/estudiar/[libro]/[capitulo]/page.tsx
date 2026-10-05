@@ -24,10 +24,12 @@ export default async function CapituloPage({ params }: { params: Promise<{ libro
   const e = estadoCapitulo(slug, cap);
   const fase = FASES[l.fase];
   const base = `/estudiar/${slug}/${cap}`;
-  const titulo = `${l.nombre.toUpperCase()} ${dos(cap)}`;
+  const nombre = l.nombre.toUpperCase();
+  const num = dos(cap);
+  const titulo = `${nombre} ${num}`;
 
   return (
-    <main>
+    <main className="pagina">
       <section className="losa">
         <div className="mono flex items-center justify-between px-1.5 pt-2">
           <Link href="/" className="flex h-11 items-center px-3" style={{ textDecoration: "none" }}>
@@ -46,10 +48,20 @@ export default async function CapituloPage({ params }: { params: Promise<{ libro
             )}
           </div>
         </div>
-        <h1 className="display incisa gigante px-4 pt-1" style={{ ...talla(k(titulo)), marginBottom: "-0.04em" }}>
-          {titulo}
+        <h1 className="display incisa pad-talla losa-pie pt-1" style={{ marginBottom: "-0.04em" }}>
+          <span className="gigante block lg:hidden" style={talla(k(titulo))}>
+            {titulo}
+          </span>
+          <span className="gigante hidden lg:block" style={talla(k(nombre))}>
+            {nombre}
+          </span>
+          <span className="gigante hidden lg:block" style={{ ...talla(k(num, 88)), marginTop: "0.03em", marginBottom: "-0.16em" }}>
+            {num}
+          </span>
         </h1>
       </section>
+
+      <div className="cuerpo">
 
       <section className="pad raya flex flex-col gap-2 py-4">
         {e?.capitulo.lema && (
@@ -164,6 +176,7 @@ export default async function CapituloPage({ params }: { params: Promise<{ libro
           </p>
         </section>
       )}
+      </div>
     </main>
   );
 }

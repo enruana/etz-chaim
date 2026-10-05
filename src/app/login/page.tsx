@@ -5,13 +5,13 @@ import Cadena from "@/components/Cadena";
 export default async function Login({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
   const { error } = await searchParams;
   return (
-    <main>
+    <main className="pagina">
       <section className="losa">
         <div className="pad mono flex justify-between pt-5">
           <span>Reina-Valera 1960</span>
           <span>66 libros</span>
         </div>
-        <h1 className="display incisa px-4 pt-3" style={{ marginBottom: "-0.04em" }}>
+        <h1 className="display incisa pad-talla losa-pie pt-3" style={{ marginBottom: "-0.04em" }}>
           <span className="gigante block" style={talla(k("LA"))}>
             La
           </span>
@@ -21,6 +21,7 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
         </h1>
       </section>
 
+      <div className="cuerpo centrado">
       <section className="pad raya py-4">
         <p className="serif m-0 italic" style={{ fontSize: "1.25rem", lineHeight: 1.3 }}>
           «Lámpara es a mis pies tu palabra, Y lumbrera a mi camino.»
@@ -43,6 +44,7 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
       </form>
 
       <Cadena />
+      </div>
     </main>
   );
 }

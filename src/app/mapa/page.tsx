@@ -12,16 +12,26 @@ export default function Mapa() {
   const fases = [1, 2, 3, 4, 5, 6, 7];
 
   return (
-    <main>
+    <main className="pagina">
       <section className="losa">
         <div className="pad mono flex justify-between pt-5">
           <span>La Biblia / Mapa</span>
           <span>66 libros · 7 fases</span>
         </div>
-        <h1 className="display incisa gigante px-4 pt-3" style={{ ...talla(k("EL MAPA")), marginBottom: "-0.04em" }}>
-          El mapa
+        <h1 className="display incisa pad-talla losa-pie pt-3" style={{ marginBottom: "-0.04em" }}>
+          <span className="gigante block lg:hidden" style={talla(k("EL MAPA"))}>
+            El mapa
+          </span>
+          <span className="gigante hidden lg:block" style={talla(k("MAPA"))}>
+            El
+          </span>
+          <span className="gigante hidden lg:block" style={talla(k("MAPA"))}>
+            Mapa
+          </span>
         </h1>
       </section>
+
+      <div className="cuerpo">
 
       <section className="pad raya mono flex justify-between py-3">
         <span>
@@ -45,7 +55,7 @@ export default function Mapa() {
             <p className="pad raya serif m-0 py-3" style={{ fontSize: "1rem", lineHeight: 1.35, color: "var(--gris)" }}>
               {FASES[f].nota}
             </p>
-            <div className="rejilla">
+            <div className="rejilla-libros">
               {libros.map((l) => {
                 const done = p.porLibro.get(l.slug) ?? 0;
                 const completo = done >= l.caps;
@@ -70,6 +80,7 @@ export default function Mapa() {
           </section>
         );
       })}
+      </div>
     </main>
   );
 }

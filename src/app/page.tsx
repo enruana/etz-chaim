@@ -4,7 +4,7 @@ import { ESPECIALES } from "@/lib/especiales";
 import { resumenProgreso } from "@/lib/progreso";
 import { romano } from "@/lib/romano";
 import { syncItems, contarPendientes } from "@/lib/srs";
-import { hasStudy, rotuloCorto, subtituloParte } from "@/lib/studies";
+import { esTematica, hasStudy, rotuloCorto, rotuloParte, subtituloParte } from "@/lib/studies";
 import { estadoCapitulo } from "@/lib/avance";
 import { dos, k, talla } from "@/lib/estela";
 import Cadena from "@/components/Cadena";
@@ -36,13 +36,13 @@ export default function Hoy() {
   const especiales = ESPECIALES.filter((x) => hasStudy(x.libro, x.cap));
 
   return (
-    <main>
+    <main className="pagina">
       <section className="losa">
         <div className="pad mono flex justify-between pt-5">
           <span>La Biblia</span>
           <span>{saludo()}, Felipe</span>
         </div>
-        <Link href={destino} className="block px-4 pt-3" style={{ textDecoration: "none" }} aria-label={`Continuar ${l.nombre} ${cap}`}>
+        <Link href={destino} className="losa-pie pad-talla block pt-3" style={{ textDecoration: "none" }} aria-label={`Continuar ${l.nombre} ${cap}`}>
           <div className="display incisa gigante" style={talla(k(nombre))}>
             {nombre}
           </div>
@@ -52,7 +52,8 @@ export default function Hoy() {
         </Link>
       </section>
 
-      <section className="pad raya flex flex-col gap-2 py-4">
+      <div className="cuerpo">
+      <section className="pad raya flex flex-col gap-2 py-4 lg:py-7">
         <p className="mono m-0">
           {e && sig
             ? `Sigue → ${rotuloCorto(sig, cap)} · Parte ${dos(e.capitulo.partes.indexOf(sig) + 1)}/${dos(e.total)}`
@@ -61,7 +62,7 @@ export default function Hoy() {
               : "En investigación"}
           {" · "}Fase {romano(l.fase)}
         </p>
-        <p className="serif m-0" style={{ fontSize: "1.1875rem", lineHeight: 1.28 }}>
+        <p className="serif m-0 text-[1.1875rem] leading-[1.28] lg:text-[1.75rem] lg:leading-[1.2]">
           {e && sig
             ? (subtituloParte(sig) ?? e.capitulo.lema)
             : e
@@ -103,7 +104,33 @@ export default function Hoy() {
         </Link>
       </div>
 
-      <Cadena />
+      {e && (
+        <section className="hidden lg:block">
+          <p className="grupo-cab mono m-0 flex justify-between">
+            <span>
+              {l.nombre} {num} · {e.capitulo.lema}
+            </span>
+            <span>
+              {dos(e.hechas)}/{dos(e.total)}
+            </span>
+          </p>
+          {e.capitulo.partes.map((parte) => {
+            const leida = e.leidas.has(parte.slug);
+            return (
+              <Link key={parte.slug} href={`/estudiar/${l.slug}/${cap}/${parte.slug}`} className="fila">
+                <span className="mono">{esTematica(parte) ? rotuloCorto(parte, cap) : rotuloParte(parte, cap)}</span>
+                <span className="fila-titulo">{subtituloParte(parte) ?? ""}</span>
+                <span className={`marca${leida ? " on" : ""}`} aria-label={leida ? "Leída" : "Pendiente"} />
+              </Link>
+            );
+          })}
+        </section>
+      )}
+
+      <div className="lg:hidden">
+        <Cadena />
+      </div>
+      </div>
     </main>
   );
 }

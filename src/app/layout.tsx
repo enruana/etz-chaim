@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Big_Shoulders, IBM_Plex_Mono, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
-import BottomNav from "@/components/BottomNav";
+import Navegacion from "@/components/Navegacion";
 
 // Talla, metadatos y lectura: tres voces y nada más.
 // Big Shoulders es variable: el eje óptico (opsz) da el corte «display» en tamaños grandes.
@@ -22,8 +22,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es">
       <body className={`${display.variable} ${mono.variable} ${serif.variable}`}>
-        <div className="columna">{children}</div>
-        <BottomNav />
+        <div className="marco">
+          <Navegacion />
+          <div className="columna">{children}</div>
+        </div>
       </body>
     </html>
   );

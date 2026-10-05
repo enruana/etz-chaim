@@ -38,17 +38,19 @@ export default function Memoria() {
   });
 
   return (
-    <main>
+    <main className="pagina">
       <section className="losa">
         <div className="pad mono flex justify-between pt-5">
           <span>La Biblia / Memoria</span>
           <span>Repaso espaciado</span>
         </div>
-        <h1 className="display incisa gigante px-4 pt-3" style={{ ...talla(k("MEMORIA")), marginBottom: "-0.04em" }}>
+        <h1 className="display incisa gigante pad-talla losa-pie pt-3" style={{ ...talla(k("MEMORIA")), marginBottom: "-0.04em" }}>
           Memoria
         </h1>
       </section>
-      <ReviewSession cards={cards} />
+      <div className="cuerpo">
+        <ReviewSession cards={cards} />
+      </div>
     </main>
   );
 }
