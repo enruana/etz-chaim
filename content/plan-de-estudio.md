@@ -15,7 +15,7 @@ Conocer a Jesús primero: Él es la clave hermenéutica de toda la Escritura (Lu
 
 | # | Libro | Caps | Género | Estado | Por qué aquí |
 |---|---|---|---|---|---|
-| 1 | **Marcos** | 16 | Evangelio | 🔵 caps. 1-4 | El evangelio más corto, narrativo y de ritmo rápido: la puerta de entrada |
+| 1 | **Marcos** | 16 | Evangelio | 🔵 caps. 1-5 | El evangelio más corto, narrativo y de ritmo rápido: la puerta de entrada |
 | 2 | **Juan** | 21 | Evangelio | ⬜ | Quién es Jesús: autocontenido, escrito "para que creáis" (Jn 20:31) |
 | 3 | **Hechos** | 28 | Narrativa | ⬜ | La continuación natural: qué pasó con el evangelio |
 | 4 | **Santiago** | 5 | Epístola | ⬜ | Carta práctica y directa: primer contacto con el género epistolar |
@@ -166,9 +166,9 @@ Toda explicación de capítulo se ubica en una de estas eras:
 | 2026-08-31 | Marcos 3 | 📄 Borrador de estudio producido (`content/estudios/marcos/marcos-03.md`) — pendiente estudio personal |
 | 2026-09-03 | Marcos 4 | 📄 Borrador de estudio producido (`content/estudios/marcos/marcos-04.md`) — pendiente estudio personal |
 | 2026-09-16 | Proverbios 21 | ⭐ Estudio especial producido (`content/estudios/proverbios/proverbios-21.md`) — salto temporal para el grupo de parejas; el plan sigue en Marcos 4 |
-
 | 2026-10-05 | Marcos 1-4 · Proverbios 21 | 🗂️ Reestructura: cada capítulo pasa de un documento largo a una carpeta con una parte por archivo (`content/estudios/<libro>/<NN>/`); navegación libro/capítulo/parte y avance por parte |
+| 2026-10-09 | Marcos 5 | 📄 Borrador de estudio producido (`content/estudios/marcos/05/`, 12 partes + fuentes) — pendiente estudio personal |
 
-**Posición actual: Fase 1 · Marcos · capítulo 4.**
+**Posición actual: Fase 1 · Marcos · capítulo 5.**
 
 Nota de licencia: la RVR1960 es propiedad de Sociedades Bíblicas Unidas. Para este proyecto personal citar el texto no es problema; si algún día la app se publica, revisar licenciamiento del texto.

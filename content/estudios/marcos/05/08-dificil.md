@@ -1,0 +1,23 @@
+---
+slug: "dificil"
+tipo: "dificil"
+titulo: "Hablemos de lo difícil"
+---
+
+### a) ¿Gadara, Gerasa o Gergesa? (5:1) Los evangelios y los manuscritos no se ponen de acuerdo con el nombre, y Gerasa queda a 50 kilómetros del lago
+
+Es justo preguntarlo, porque el problema es real. Tu RVR1960 dice «la región de los gadarenos», igual que Mateo 8:28; pero los manuscritos más antiguos de Marcos y Lucas dicen "gerasenos", y una tercera lectura — "gergesenos" — aparece en copias posteriores porque Orígenes, en el siglo III, conocía un pueblito llamado Gergesa junto al lago, con un barranco, y propuso ese lugar. ¿Y la geografía? Gerasa (hoy Jerash) está a unos 50 kilómetros del lago: ningún hato se despeña desde ahí al agua. Gadara (hoy Umm Qais) está a unos diez, tampoco en la orilla.
+
+Tres cosas resuelven el asunto con honestidad. **Primera: los tres evangelios dicen «región» o «tierra de», no ciudad.** En el Oriente romano una ciudad gobernaba un territorio enorme; Josefo cuenta que las aldeas de Gadara llegaban hasta el lago, y Gadara acuñó monedas con barcos. Gerasa era la ciudad más famosa de la Decápolis, y su nombre podía servir para toda la comarca — como cuando un colombiano dice "la Costa" sin referirse a un municipio. Marcos y Lucas nombran el distrito por su ciudad más conocida; Mateo, por la más cercana; los copistas trataron de precisar con Gergesa. Tres etiquetas de la misma orilla. **Segunda: la arqueología conoce el lugar.** En Kursi, en esa orilla, hay un sitio — el único del lado oriental — donde una ladera empinada cae casi hasta el agua, con tumbas en la roca cerca; en el siglo V se construyó ahí el monasterio bizantino más grande hallado en Israel: la memoria local tenía el sitio fijado desde muy temprano. **Tercera: nada de la historia depende de la palabra.** Qué palabra exacta escribió Marcos no lo sabemos con certeza, y conviene decirlo así; pero la variación está en el rótulo de la comarca, no en los hechos: Jesús cruzó a la orilla gentil y un hato se despeñó por un barranco que todavía está ahí.
+
+### b) Los dos mil cerdos (5:11-13): ¿Jesús destruyó propiedad ajena? ¿Y por qué les dio permiso a los demonios?
+
+Primero, lee bien quién hace qué. Jesús no mata los cerdos: los demonios *ruegan*, Jesús *permite*, y los demonios *destruyen* — es su naturaleza, y la venían mostrando con un hombre durante años. ¿Por qué permitirlo? El texto no lo explica, pero deja ver varias cosas. Para el hombre, ver dos mil cerdos irse al agua era la prueba innegable de que la legión ya no estaba en él. Para el pueblo, quedó a la vista lo que el mal que toleraban quería hacer con cualquiera de ellos. Y para los demonios, el permiso fue su pérdida: pidieron no salir de la región (5:10) y se quedaron sin cuerpo en un instante.
+
+¿Y la propiedad? Dos cosas. Una: «De Jehová es la tierra y su plenitud» (Sal 24:1); el dueño de los cerdos era, antes que nadie, el que estaba parado en la orilla, y el Creador puede disponer de su creación — como hará con la higuera en 11:14 — sin rendirnos cuentas de cada hato. Dos: la escena hace una pregunta que los gadarenos respondieron mal — ¿cuánto vale un hombre? Dos mil cerdos eran una fortuna; un ser humano devuelto a su familia vale más. Ellos hicieron la cuenta al revés y le pidieron a Jesús que se fuera.
+
+### c) «La niña no está muerta, sino duerme» (5:39): ¿estaba muerta de verdad, o solo en coma?
+
+Muerta. El texto lo afirma por todos lados: los mensajeros dicen «Tu hija ha muerto» (5:35); la casa ya está en pleno funeral, con las plañideras y flautistas que se contrataban en el instante de la muerte (Mt 9:23); y la burla lo remata — gente que había visto cientos de muertos se ríe de Jesús, y Lucas lo dice sin rodeos: «se burlaban de él, sabiendo que estaba muerta» (Lc 8:53). Con la menor duda, nadie habría llamado a las plañideras ni se habría reído.
+
+Entonces, ¿por qué dice Jesús que duerme? Porque así habla Él de la muerte que va a revertir. Con Lázaro hace lo mismo: «Nuestro amigo Lázaro duerme; mas voy para despertarle» (Jn 11:11) — y cuando los discípulos no entienden, lo dice «claramente: Lázaro ha muerto» (Jn 11:14). "Dormir" no niega la muerte; la mira desde el lado de Jesús, para quien despertar a un muerto es tan sencillo como despertar a una niña. De ahí tomó la iglesia su vocabulario: «los que durmieron en él» (1 Ts 4:14). Una nota más, por si la comparas con Mateo: allí Jairo dice de entrada «Mi hija acaba de morir» (Mt 9:18), mientras que en Marcos dice «está agonizando» (5:23) y la noticia llega en el camino. Mateo cuenta la historia en la mitad de espacio y resume en una frase lo que Marcos despliega en dos momentos: un resumen, no un desmentido.

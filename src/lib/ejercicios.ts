@@ -31,6 +31,11 @@ const PR_21_2 =
 const PR_21_31 =
   "El caballo se alista para el día de la batalla; Mas Jehová es el que da la victoria.";
 
+const MC_5_36 =
+  "Pero Jesús, luego que oyó lo que se decía, dijo al principal de la sinagoga: No temas, cree solamente.";
+const MC_5_19 =
+  "Mas Jesús no se lo permitió, sino que le dijo: Vete a tu casa, a los tuyos, y cuéntales cuán grandes cosas el Señor ha hecho contigo, y cómo ha tenido misericordia de ti.";
+
 export const EJERCICIOS: Ejercicio[] = [
   // ——— Escalera de memoria: Marcos 1:15 ———
   { id: "v-mc-1-15-c1", tipo: "cloze", origen: "Marcos 1", texto: MC_1_15, ocultas: ["reino", "arrepentíos"], ref: "Marcos 1:15" },
@@ -326,6 +331,65 @@ export const EJERCICIOS: Ejercicio[] = [
     id: "q-pr21-10", tipo: "qa", origen: "Proverbios 21",
     front: "V/F: «Según 21:30-31, prepararse — alistar el caballo — es falta de fe: basta confiar en Jehová».",
     back: "Falso. El versículo afirma las dos cosas: el caballo se alista (la diligencia es sabiduría) y «Jehová es el que da la victoria». Lo condenado no es prepararse sino confiar en lo preparado.",
+  },
+  // ——— Escalera de memoria: Marcos 5:36 ———
+  { id: "v-mc-5-36-c1", tipo: "cloze", origen: "Marcos 5", texto: MC_5_36, ocultas: ["temas", "cree"], ref: "Marcos 5:36" },
+  { id: "v-mc-5-36-c2", tipo: "cloze", origen: "Marcos 5", texto: MC_5_36, ocultas: ["oyó", "principal", "sinagoga", "temas", "cree", "solamente"], ref: "Marcos 5:36" },
+  { id: "v-mc-5-36-rec", tipo: "recitar", origen: "Marcos 5", ref: "Marcos 5:36", texto: MC_5_36 },
+  { id: "v-mc-5-36-ref", tipo: "referencia", origen: "Marcos 5", texto: MC_5_36, ref: "Marcos 5:36" },
+  // ——— Marcos 5:19 ———
+  { id: "v-mc-5-19-c1", tipo: "cloze", origen: "Marcos 5", texto: MC_5_19, ocultas: ["casa", "cuéntales", "misericordia"], ref: "Marcos 5:19" },
+  { id: "v-mc-5-19-rec", tipo: "recitar", origen: "Marcos 5", ref: "Marcos 5:19", texto: MC_5_19 },
+  // ——— Comprensión: Marcos 5 ———
+  {
+    id: "q-mc5-01", tipo: "qa", origen: "Marcos 5",
+    front: "¿Cómo describe Marcos al hombre que salió al encuentro de Jesús en la región de los gadarenos (5:2-5)?",
+    back: "Tenía un espíritu inmundo, vivía en los sepulcros, rompía cadenas y grillos — «nadie le podía dominar» — y andaba día y noche dando voces por los montes y los sepulcros, hiriéndose con piedras.",
+  },
+  {
+    id: "q-mc5-02", tipo: "qa", origen: "Marcos 5",
+    front: "¿Qué significa el nombre «Legión» (5:9) y qué revela de la situación del hombre?",
+    back: "Una legión era la unidad del ejército romano: unos seis mil soldados. El nombre confiesa que los demonios eran muchos e intenta intimidar con la imagen del poder más temido de la época. Jesús no se deja impresionar: la legión termina rogándole permiso.",
+  },
+  {
+    id: "q-mc5-03", tipo: "qa", origen: "Marcos 5",
+    front: "¿Qué pidieron los demonios, qué hizo Jesús y qué pasó con los cerdos (5:12-13)?",
+    back: "Rogaron que los enviara a los cerdos; Jesús «les dio permiso»; los espíritus entraron en el hato — «como dos mil» — que se precipitó por un despeñadero al mar y se ahogó. Los demonios no actúan sin autorización de Jesús, y lo que hacen con los cerdos muestra lo que querían hacer con el hombre.",
+  },
+  {
+    id: "q-mc5-04", tipo: "qa", origen: "Marcos 5",
+    front: "¿Por qué los gadarenos le ruegan a Jesús que se vaya en vez de celebrar la sanidad (5:15-17)?",
+    back: "Al ver al hombre «sentado, vestido y en su juicio cabal» tuvieron miedo, y les contaron «lo de los cerdos». Pesó la pérdida económica y el temor a un Jesús incontrolable. Hicieron la cuenta al revés: valoraron más el hato que al hombre.",
+  },
+  {
+    id: "q-mc5-05", tipo: "qa", origen: "Marcos 5",
+    front: "V/F: «Jesús aceptó al ex endemoniado en la barca para que lo siguiera como discípulo».",
+    back: "Falso. El hombre rogó «estar con él» — la frase del llamado de los doce en 3:14 — y Jesús «no se lo permitió»; lo envió a su casa a contar «cuán grandes cosas el Señor ha hecho contigo» (5:19). En tierra gentil Jesús invierte el secreto mesiánico: manda contar.",
+  },
+  {
+    id: "q-mc5-06", tipo: "qa", origen: "Marcos 5",
+    front: "¿Quién era Jairo, y qué hizo y pidió al ver a Jesús (5:22-23)?",
+    back: "Era «uno de los principales de la sinagoga». Se postró a los pies de Jesús delante de la multitud y le rogó mucho: «Mi hija está agonizando; ven y pon las manos sobre ella para que sea salva, y vivirá».",
+  },
+  {
+    id: "q-mc5-07", tipo: "qa", origen: "Marcos 5",
+    front: "Si Jesús ya sabía quién lo había tocado, ¿por qué preguntó «¿Quién ha tocado mis vestidos?» (5:30-34)?",
+    back: "No por información sino para que tuviera un encuentro y no solo un milagro: que supiera que fue su fe — no el manto — lo que la sanó, que oyera «Hija» y «ve en paz» delante de todos y quedara restituida ante la comunidad, y que Jairo viera lo que la fe obtiene de Jesús.",
+  },
+  {
+    id: "q-mc5-08", tipo: "qa", origen: "Marcos 5",
+    front: "¿Quién dijo esto y a quién?: «Tu hija ha muerto; ¿para qué molestas más al Maestro?»",
+    back: "Los que vinieron de casa de Jairo, al propio Jairo, mientras Jesús aún hablaba con la mujer sanada (5:35). Jesús pasó por encima de la noticia y le dijo: «No temas, cree solamente» (5:36).",
+  },
+  {
+    id: "q-mc5-09", tipo: "qa", origen: "Marcos 5",
+    front: "¿Qué conexión hay entre los «doce años» de la mujer (5:25) y los de la hija de Jairo (5:42), y cómo lo usa Marcos?",
+    back: "Marcos mete la historia de la mujer dentro de la de Jairo (su «sándwich») y revela la edad de la niña solo al final: la mujer llevaba doce años muriendo de a poco mientras la niña vivía doce años enteros; las dos son «hija» y reciben vida el mismo día. La fe de la mujer, vista por Jairo, lo prepara para creer.",
+  },
+  {
+    id: "q-mc5-10", tipo: "qa", origen: "Marcos 5",
+    front: "¿Qué quiso decir Jesús con «La niña no está muerta, sino duerme» (5:39)? ¿Estaba muerta de verdad?",
+    back: "Sí estaba muerta: los mensajeros lo dijeron, el funeral ya estaba en marcha, y los presentes «se burlaban de él, sabiendo que estaba muerta» (Lc 8:53). «Duerme» es la manera de Jesús de hablar de la muerte que va a revertir — como con Lázaro —: desde su lado, despertar a un muerto es tan sencillo como despertar a una niña.",
   },
 ];
 
