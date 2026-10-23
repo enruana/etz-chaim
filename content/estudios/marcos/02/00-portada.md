@@ -7,7 +7,7 @@ entrada: "Se acaba la luna de miel"
 
 > Estudio nº 2 del plan · Fase 1: Jesús, el centro · Texto base: RVR1960
 
-En el capítulo 1 viste a Jesús desplegar una autoridad que nadie había visto — sobre la enseñanza, los demonios, la enfermedad, la lepra — y la reacción fue asombro puro, sin una sola voz en contra. Aquí se acaba la luna de miel. Seguimos en la **era 9 del arco redentor — Jesús y la iglesia** — y en la primera mitad de Marcos, la que pregunta *¿quién es Jesús?*; mismo autor, misma audiencia (Marcos escribiendo la predicación de Pedro para cristianos de Roma), mismo «inmediatamente» sonando desde el segundo versículo. Pero en este capítulo la pregunta se vuelve filosa: Jesús hace y dice cosas que, o son blasfemia, o solo Dios puede hacerlas. Y estrena el título con el que se nombrará a sí mismo el resto del libro: **el Hijo del Hombre**.
+En el capítulo 1 viste a Jesús desplegar una autoridad que nadie había visto — sobre la enseñanza, los demonios, la enfermedad, la lepra — y la reacción fue asombro puro, sin una sola voz en contra. Aquí se acaba la luna de miel. Seguimos en la **[era 9 del arco redentor — Jesús y la iglesia](/mapa/arco/9)** — y en la primera mitad de Marcos, la que pregunta *¿quién es Jesús?*; mismo autor, misma audiencia (Marcos escribiendo la predicación de Pedro para cristianos de Roma), mismo «inmediatamente» sonando desde el segundo versículo. Pero en este capítulo la pregunta se vuelve filosa: Jesús hace y dice cosas que, o son blasfemia, o solo Dios puede hacerlas. Y estrena el título con el que se nombrará a sí mismo el resto del libro: **el Hijo del Hombre**.
 
 **Referencia:** Marcos 2:1-28, en cuatro escenas naturales:
 

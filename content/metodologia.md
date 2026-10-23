@@ -60,7 +60,7 @@ versos: "7-12"
 
 ### Las partes
 
-**Dónde estamos** (`portada`) — libro, autor, audiencia, era del arco redentor, qué pasó antes y qué viene después, en 3-5 párrafos cortos. Termina invitando a leer el capítulo completo en la Biblia. **Sin tabla de escenas**: el índice del capítulo ya lo es.
+**Dónde estamos** (`portada`) — libro, autor, audiencia, era del arco redentor, qué pasó antes y qué viene después, en 3-5 párrafos cortos. Termina invitando a leer el capítulo completo en la Biblia. **Sin tabla de escenas**: el índice del capítulo ya lo es. La era se escribe como enlace a su página en la app: `**[era 9 del arco redentor — Jesús y la iglesia](/mapa/arco/9)**` (las diez eras y sus libros están en `src/lib/arco.ts`; sus textos, en `content/arco/`).
 
 **Contexto** (`contexto`) — lo que el lector original sabía sin que se lo dijeran: costumbres, geografía, política, religión, y dónde cae el capítulo en el argumento del libro. Si el género cambia respecto al capítulo anterior, la nota de cómo se lee va aquí. Cierra con `### Hilos para ir siguiendo`: 2-4 hilos (palabras que se repiten, contrastes, conectores) para llevar en la mano durante el recorrido.
 

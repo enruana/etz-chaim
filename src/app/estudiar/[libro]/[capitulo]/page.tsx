@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { libro as getLibro, FASES } from "@/lib/canon";
+import { era as getEra, eraDeCapitulo } from "@/lib/arco";
 import { esTematica, html, rotuloCorto, rotuloParte, subtituloParte, type Parte } from "@/lib/studies";
 import { estadoCapitulo } from "@/lib/avance";
 import { romano } from "@/lib/romano";
@@ -23,6 +24,8 @@ export default async function CapituloPage({ params }: { params: Promise<{ libro
 
   const e = estadoCapitulo(slug, cap);
   const fase = FASES[l.fase];
+  const eraN = eraDeCapitulo(slug, cap);
+  const era = getEra(eraN)!;
   const base = `/estudiar/${slug}/${cap}`;
   const nombre = l.nombre.toUpperCase();
   const num = dos(cap);
@@ -72,6 +75,9 @@ export default async function CapituloPage({ params }: { params: Promise<{ libro
         <p className="mono gris m-0">
           Fase {romano(l.fase)} · {fase.nombre} · {l.genero}
         </p>
+        <Link href={`/mapa/arco/${eraN}`} className="mono m-0 self-start" style={{ textDecoration: "none" }}>
+          Era {dos(eraN)} de 10 · {era.nombre} →
+        </Link>
         {e && (
           <>
             <div className="segmentos pt-1">

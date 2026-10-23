@@ -11,7 +11,7 @@ Vas a abrir el evangelio más corto de los cuatro, el de ritmo más rápido y mu
 
 Marcos escribió en Roma, entre los años 55 y 65, para cristianos en su mayoría gentiles que empezaban a oler la persecución: lectores que, como nosotros, necesitan que les expliquen el mundo judío desde afuera.
 
-En el arco redentor estamos en la **era 9 — Jesús y la iglesia**. Antes de esta página hay unos **400 años de silencio**: desde Malaquías nadie había hablado con voz de profeta. Marcos 1 es el capítulo donde ese silencio se rompe. Después (cap. 2) empiezan los choques con los líderes religiosos: la autoridad que Jesús despliega aquí va a ser cuestionada muy pronto.
+En el [arco redentor](/mapa/arco) estamos en la **[era 9 — Jesús y la iglesia](/mapa/arco/9)**. Antes de esta página hay unos **400 años de silencio**: desde Malaquías nadie había hablado con voz de profeta. Marcos 1 es el capítulo donde ese silencio se rompe. Después (cap. 2) empiezan los choques con los líderes religiosos: la autoridad que Jesús despliega aquí va a ser cuestionada muy pronto.
 
 **Referencia:** Marcos 1:1-45. Léelo completo en tu Biblia antes de seguir — de corrido, sin detenerte, para sentir el ritmo. Estas son las diez escenas:
 

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CANON, FASES } from "@/lib/canon";
+import { ERAS, capsDeEra, eraDeCapitulo, erasDeFase, erasDeLibro, hechosDeEra, rotuloEras } from "@/lib/arco";
 import { resumenProgreso } from "@/lib/progreso";
 import { romano } from "@/lib/romano";
 import { dos, k, talla } from "@/lib/estela";
@@ -9,6 +10,7 @@ export const dynamic = "force-dynamic";
 export default function Mapa() {
   const p = resumenProgreso();
   const librosCompletos = CANON.filter((l) => (p.porLibro.get(l.slug) ?? 0) >= l.caps).length;
+  const eraActual = eraDeCapitulo(p.actual.libro, p.actual.cap);
   const fases = [1, 2, 3, 4, 5, 6, 7];
 
   return (
@@ -42,6 +44,34 @@ export default function Mapa() {
         </span>
       </section>
 
+      {/* La historia en orden: las diez eras del arco redentor. Las fases de
+          abajo son el orden de estudio; cada una dice a qué eras pertenece. */}
+      <section>
+        <Link href="/mapa/arco" className="grupo-cab mono flex justify-between gap-3" style={{ textDecoration: "none" }}>
+          <span>El arco redentor · la historia en 10 eras</span>
+          <span>Leer →</span>
+        </Link>
+        <div className="rejilla-eras">
+          {ERAS.map((e) => {
+            const caps = capsDeEra(e.n);
+            const hechos = hechosDeEra(e.n, p.estaCompleto);
+            const completa = hechos >= caps;
+            const activa = e.n === eraActual;
+            return (
+              <Link
+                key={e.n}
+                href={`/mapa/arco/${e.n}`}
+                className={`era${completa ? " completa" : activa ? " activa" : ""}`}
+                aria-label={`Era ${e.n}: ${e.nombre}`}
+              >
+                <span className="era-num">{dos(e.n)}</span>
+                <span className={`era-nombre mono${completa || activa ? "" : " gris"}`}>{e.nombre}</span>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+
       {fases.map((f) => {
         const libros = CANON.filter((l) => l.fase === f);
         return (
@@ -50,7 +80,7 @@ export default function Mapa() {
               <span>
                 Fase {romano(f)} · {FASES[f].nombre}
               </span>
-              <span>{dos(libros.length)}</span>
+              <span className="shrink-0">{rotuloEras(erasDeFase(f))}</span>
             </div>
             <p className="pad raya serif m-0 py-3" style={{ fontSize: "1rem", lineHeight: 1.35, color: "var(--gris)" }}>
               {FASES[f].nota}
@@ -71,7 +101,7 @@ export default function Mapa() {
                       {l.nombre}
                     </span>
                     <span className={`mono${activo ? "" : " gris"}`}>
-                      {dos(done)}/{dos(l.caps)}
+                      {dos(done)}/{dos(l.caps)} · {rotuloEras(erasDeLibro(l.slug))}
                     </span>
                   </Link>
                 );

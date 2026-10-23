@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { libro, FASES } from "@/lib/canon";
 import { ESPECIALES } from "@/lib/especiales";
+import { eraDeCapitulo } from "@/lib/arco";
 import { resumenProgreso } from "@/lib/progreso";
 import { romano } from "@/lib/romano";
 import { syncItems, contarPendientes } from "@/lib/srs";
@@ -60,7 +61,7 @@ export default function Hoy() {
             : e
               ? "Capítulo completo"
               : "En investigación"}
-          {" · "}Fase {romano(l.fase)}
+          {" · "}Fase {romano(l.fase)} · Era {dos(eraDeCapitulo(l.slug, cap))}
         </p>
         <p className="serif m-0 text-[1.1875rem] leading-[1.28] lg:text-[1.75rem] lg:leading-[1.2]">
           {e && sig

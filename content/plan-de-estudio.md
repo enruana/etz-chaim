@@ -143,18 +143,20 @@ Con todo el AT estudiado, Mateo y Lucas brillan (cumplimiento de las promesas) y
 
 ## Las 10 eras del arco redentor (el organizador previo)
 
-Toda explicación de capítulo se ubica en una de estas eras:
+Toda explicación de capítulo se ubica en una de estas eras. Es el orden en que pasó la historia; las fases de arriba son el orden en que se estudia. Un libro que cruza de una era a otra se parte por capítulo.
 
-1. **Creación y caída** (Gn 1–11)
-2. **Patriarcas** (Gn 12–50)
-3. **Éxodo y ley** (Éx–Dt)
-4. **Conquista y jueces** (Jos–Rut)
-5. **Reino unido** (1 Sam – 1 Re 11; Sal, Pr)
-6. **Reino dividido** (1 Re 12 – 2 Re; profetas del s. VIII–VII)
-7. **Exilio** (2 Re 25; Ez, Dn, Lm)
-8. **Retorno** (Esd, Neh, Est; Hag, Zac, Mal)
-9. **Jesús y la iglesia** (Evangelios, Hechos, epístolas)
-10. **Consumación** (Apocalipsis)
+1. **Creación y caída** — Gn 1–11
+2. **Patriarcas** — Gn 12–50; Job (ambientado en esos tiempos)
+3. **Éxodo y ley** — Éx, Lv, Nm, Dt
+4. **Conquista y jueces** — Jos, Jue, Rt
+5. **Reino unido** — 1-2 S, 1 R 1–11; Sal, Pr, Ec, Cnt
+6. **Reino dividido** — 1 R 12–22, 2 R 1–24; Jon, Am, Os, Mi, Is, Sof, Nah, Hab, Jl, Jer, Abd
+7. **Exilio** — 2 R 25; Lm, Ez, Dn
+8. **Retorno** — Esd, Neh, Est; Hag, Zac, Mal; 1-2 Cr (+ 400 años de silencio)
+9. **Jesús y la iglesia** — Evangelios, Hechos, epístolas
+10. **Consumación** — Apocalipsis
+
+En la app: `/mapa/arco` es la introducción guiada (un texto por era, con cita RVR1960, «Lo que apunta a Jesús», pausa y los libros de la era); el mapa abre con la regla de las diez eras y marca la era de cada fase y de cada libro; cada capítulo enlaza a su era. Datos en `src/lib/arco.ts`, textos en `content/arco/`.
 
 ## Registro de avance
 
