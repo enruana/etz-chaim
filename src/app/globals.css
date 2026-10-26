@@ -55,7 +55,7 @@
   .riel-item.activo { background: var(--grafito); color: var(--piedra); }
   .riel-pie { margin-top: auto; padding: 18px; line-height: 1.9; }
 
-  .nav-inferior { position: fixed; inset-inline: 0; bottom: 0; z-index: 50; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--piedra); border-top: 1px solid var(--grafito); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .nav-inferior { position: fixed; inset-inline: 0; bottom: 0; z-index: 50; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--piedra); border-top: 1px solid var(--grafito); padding-bottom: env(safe-area-inset-bottom, 0px); }
   .nav-inferior a { display: flex; align-items: center; justify-content: center; height: 58px; font-size: 0.8125rem; text-decoration: none; }
   .nav-inferior a + a { border-left: 1px solid var(--grafito); }
   .nav-inferior a.activo { background: var(--grafito); color: var(--piedra); }
@@ -257,4 +257,26 @@
 
   /* el sello: un dato breve en bloque de oropimente */
   .sello { display: inline-block; padding: 4px 8px; background: var(--oropimente); border: 1px solid var(--grafito); }
+}
+
+/* ——— Las ramas: folios de historia, posturas lado a lado ——— */
+@layer components {
+  .marca.pendiente { border-style: dashed; border-color: var(--gris); }
+  .fila.pendiente { cursor: default; }
+  .fila.pendiente:hover { background: none; }
+  .fila.pendiente .fila-titulo { color: var(--gris); }
+  .anclas { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+  .posturas { margin: 1.4em 0; border-top: 1px solid var(--grafito); }
+  .postura { display: grid; grid-template-columns: 1fr; gap: 4px 18px; padding: 12px 0 14px; border-bottom: 1px solid var(--grafito); }
+  .postura > h4 {
+    margin: 0; font-family: var(--font-mono), ui-monospace, monospace; font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.02em; text-transform: uppercase; color: var(--gris);
+  }
+  .postura > p { margin: 0 0 0.6em; font-size: 0.95em; }
+  .postura > p:last-child { margin-bottom: 0; }
+  .estudio .postura > h4 { padding: 0; border: 0; }
+  @media (min-width: 1024px) {
+    .postura { grid-template-columns: 8.5rem 1fr; }
+    .postura > h4 { padding-top: 0.45em; }
+  }
 }

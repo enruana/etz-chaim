@@ -26,6 +26,12 @@ export function getDb(): Database.Database {
       updated_at TEXT NOT NULL,
       PRIMARY KEY (book, chapter, unit)
     );
+    CREATE TABLE IF NOT EXISTS folios_leidos (
+      rama TEXT NOT NULL,
+      folio TEXT NOT NULL,
+      updated_at TEXT NOT NULL,
+      PRIMARY KEY (rama, folio)
+    );
     CREATE TABLE IF NOT EXISTS srs_items (
       id TEXT PRIMARY KEY,
       due TEXT NOT NULL,
@@ -96,4 +102,23 @@ export function desmarcarParte(book: string, chapter: number, unit: string) {
 
 export function desmarcarPartes(book: string, chapter: number) {
   getDb().prepare("DELETE FROM unit_progress WHERE book = ? AND chapter = ?").run(book, chapter);
+}
+
+// ——— Las ramas: folios leídos (rama / folio) ———
+// Progreso aparte del de los capítulos: la lectura de historia corre en
+// paralelo y no depende de dónde va el estudio. Ver src/lib/ramas.ts.
+
+export function foliosLeidos(): Set<string> {
+  const rows = getDb().prepare("SELECT rama, folio FROM folios_leidos").all() as { rama: string; folio: string }[];
+  return new Set(rows.map((r) => `${r.rama}/${r.folio}`));
+}
+
+export function marcarFolio(rama: string, folio: string) {
+  getDb()
+    .prepare("INSERT OR IGNORE INTO folios_leidos (rama, folio, updated_at) VALUES (?, ?, ?)")
+    .run(rama, folio, new Date().toISOString());
+}
+
+export function desmarcarFolio(rama: string, folio: string) {
+  getDb().prepare("DELETE FROM folios_leidos WHERE rama = ? AND folio = ?").run(rama, folio);
 }

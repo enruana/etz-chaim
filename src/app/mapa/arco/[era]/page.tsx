@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ERAS, capsDeEra, era as getEra, eraDeCapitulo, hechosDeEra, segmentosDeEra, textoEra } from "@/lib/arco";
 import { resumenProgreso } from "@/lib/progreso";
+import { clave, foliosDeEra, NOMBRE_TIPO } from "@/lib/ramas";
+import { foliosLeidos } from "@/lib/db";
 import { html } from "@/lib/studies";
 import { romano } from "@/lib/romano";
 import { dos, k, talla } from "@/lib/estela";
@@ -25,6 +27,8 @@ export default async function EraPage({ params }: { params: Promise<{ era: strin
   const nombre = e.nombre.toUpperCase();
   const num = dos(n);
   const completa = (x: number) => hechosDeEra(x, p.estaCompleto) >= capsDeEra(x);
+  const folios = foliosDeEra(n);
+  const leidos = folios.length > 0 ? foliosLeidos() : new Set<string>();
 
   return (
     <main className="pagina pagina-lectura">
@@ -115,6 +119,27 @@ export default async function EraPage({ params }: { params: Promise<{ era: strin
             })}
           </div>
         </section>
+
+        {folios.length > 0 && (
+          <section>
+            <Link href="/ramas" className="grupo-cab mono flex justify-between gap-3" style={{ textDecoration: "none" }}>
+              <span>Por las ramas · historia de esta era</span>
+              <span className="shrink-0">{dos(folios.length)}</span>
+            </Link>
+            {folios.map((f) => {
+              const leido = leidos.has(clave(f));
+              return (
+                <Link key={clave(f)} href={`/ramas/${f.rama}/${f.slug}`} className="fila apilada">
+                  <span>
+                    <span className="fila-titulo">{f.titulo}</span>
+                    <span className="mono gris">{NOMBRE_TIPO[f.tipo]} · Folio {dos(f.n)}</span>
+                  </span>
+                  <span className={`marca${leido ? " on" : ""}`} aria-label={leido ? "Leído" : "Pendiente"} />
+                </Link>
+              );
+            })}
+          </section>
+        )}
 
         {siguiente ? (
           <Link href={`/mapa/arco/${siguiente.n}`} className="bloque bloque-tinta">

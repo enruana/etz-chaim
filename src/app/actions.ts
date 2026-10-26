@@ -2,7 +2,8 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { desmarcarCapitulo, desmarcarParte, desmarcarPartes, marcarPartes } from "@/lib/db";
+import { desmarcarCapitulo, desmarcarFolio, desmarcarParte, desmarcarPartes, marcarFolio, marcarPartes } from "@/lib/db";
+import { rama as getRama } from "@/lib/ramas";
 import { estadoCapitulo, sincronizarCapitulo } from "@/lib/avance";
 import { getCapitulo } from "@/lib/studies";
 import { calificar } from "@/lib/srs";
@@ -44,4 +45,20 @@ export async function desmarcarTodoAction(libro: string, cap: number) {
 export async function calificarAction(id: string, rating: Rating) {
   calificar(id, rating);
   revalidatePath("/memoria");
+}
+
+// Las ramas: marca el folio como leído y lleva al siguiente de la rama (o a la rama, si era el último).
+export async function leerFolioAction(rama: string, slug: string) {
+  const r = getRama(rama);
+  if (!r || !r.folios.some((f) => f.slug === slug)) return;
+  marcarFolio(rama, slug);
+  revalidatePath("/", "layout");
+  const i = r.folios.findIndex((f) => f.slug === slug);
+  const sig = r.folios[i + 1];
+  redirect(sig ? `/ramas/${rama}/${sig.slug}` : `/ramas/${rama}`);
+}
+
+export async function desmarcarFolioAction(rama: string, slug: string) {
+  desmarcarFolio(rama, slug);
+  revalidatePath("/", "layout");
 }

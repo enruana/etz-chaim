@@ -88,3 +88,37 @@ Meta total por capítulo: ~5.000-6.500 palabras, pero la medida que importa ahor
 4. **Cierre**: se marca ✅ en `plan-de-estudio.md`, se registra el avance, y se pasa al siguiente capítulo.
 
 Fuentes de consulta preferidas para la investigación: el texto mismo ante todo; comentarios de tradición evangélica conservadora (Matthew Henry, MacArthur, Hendriksen, Stott, Carson, comentarios técnicos NICNT/NICOT, Pillar), Tercer Milenio (español), BibleProject (panoramas), léxicos (Strong, BDAG/HALOT vía Blue Letter Bible). Siempre citando qué fuente respalda qué afirmación cuando no sea obvio del texto.
+
+## Las ramas: historia alrededor de la Biblia
+
+Una pista paralela al estudio por capítulos, pensada para leer **sin Biblia a la mano y sin tomar notas**: lo que no está en el texto pero lo rodea. Geografía, gobernantes, costumbres, arqueología, manuscritos, canon, traducciones, imperios. Vive en `content/ramas/` y se lee en la app bajo «Las ramas» (`/ramas`); los datos los carga `src/lib/ramas.ts`.
+
+**Estructura.** Cada **rama** es un tema abierto, una carpeta `content/ramas/<rama>/`. Dentro, `00-rama.md` la presenta (frontmatter `titulo`, `entrada`, `orden`, y la lista `pendientes` con los folios que faltan por investigar, en orden tentativo) y cada `NN-<slug>.md` es un **folio**. No hay número fijo de folios: la rama crece a medida que avanzamos. Los folios se investigan uno a uno, no la rama completa de golpe; lo que falta se ve en la app como «En investigación».
+
+**El folio.** Entre 600 y 1.200 palabras, para leerse en un rato suelto. Se sostiene solo: si cita un versículo, lo trae entero. Frontmatter:
+
+- `rotulo`: una o dos palabras para tallar en la losa («Galilea», «66 libros»).
+- `titulo` y `entrada`: el título vivo y una línea debajo.
+- `tipo`: `contexto` | `arqueologia` | `cuadra` | `dificil` | `manuscritos` | `curiosidades`. Es una etiqueta, no una sección obligatoria: no todo folio tiene las seis cosas.
+- `capitulos`: a qué capítulos se ata (`["marcos 1", "marcos 6"]`, o `["marcos"]` para todo el libro). El índice del capítulo lista sus folios bajo «Por las ramas».
+- `eras`: eras del arco redentor (`[9]`). La página de la era lista sus folios.
+- `lugares`, `personas`: etiquetas en kebab-case para índices futuros.
+- `fecha`: `"2026-10"`, el mes al corte del cual se escribió. La arqueología cambia; el folio dice de cuándo es.
+- `fuentes`: lista de `titulo`, `postura` (`academica` | `confesional` | `critica` | `fuente antigua` | `arqueologia`) y `url` opcional. La postura va en la fuente, nunca en el folio.
+
+**Honestidad con los dos lados.** Decimos qué se sabe, qué no, y quién dice qué. Ni apologética ni escepticismo de oficio. Un folio de tipo `dificil` lleva un bloque de **posturas**, dos o tres lecturas nombradas lado a lado, y cierra con «Dónde queda la cosa»: qué está resuelto y qué sigue abierto, y desde dónde estudiamos nosotros. El bloque se escribe así y la app lo compone como columnas:
+
+```
+::: posturas
+### Católica
+…
+### Protestante
+…
+### Historiadores
+…
+:::
+```
+
+**Citas.** Las comillas angulares «…» se reservan para la RVR1960 literal y se cotejan contra el texto; cualquier otra cita (Josefo, Jerónimo, el Talmud, Lutero) va entre comillas rectas "…". La pausa 🌿 se usa igual que en los estudios.
+
+**Flujo.** Las ramas no esperan al capítulo. Cuando un capítulo de Marcos pide saber algo que no está en la Biblia, nace un folio en «Alrededor de Marcos»; las ramas transversales («Cómo se armó la Biblia», y las que vengan: manuscritos, imperios, la Biblia en español) avanzan un folio a la vez, cuando hay ganas de leer. El progreso es propio (tabla `folios_leidos`) y no toca el avance por capítulos.

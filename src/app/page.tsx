@@ -2,6 +2,8 @@ import Link from "next/link";
 import { libro, FASES } from "@/lib/canon";
 import { ESPECIALES } from "@/lib/especiales";
 import { eraDeCapitulo } from "@/lib/arco";
+import { siguienteFolio } from "@/lib/ramas";
+import { foliosLeidos } from "@/lib/db";
 import { resumenProgreso } from "@/lib/progreso";
 import { romano } from "@/lib/romano";
 import { syncItems, contarPendientes } from "@/lib/srs";
@@ -35,6 +37,7 @@ export default function Hoy() {
   const nombre = l.nombre.toUpperCase();
   const num = dos(cap);
   const especiales = ESPECIALES.filter((x) => hasStudy(x.libro, x.cap));
+  const folio = siguienteFolio(foliosLeidos());
 
   return (
     <main className="pagina">
@@ -102,6 +105,10 @@ export default function Hoy() {
             {dos(p.completados)}/{p.total} capítulos · {fase.nombre}
           </span>
           <span className="celda-titulo">El mapa</span>
+        </Link>
+        <Link href={folio ? `/ramas/${folio.rama}/${folio.slug}` : "/ramas"} className="celda">
+          <span className="mono gris">{folio ? `Sigue · ${folio.rotulo}` : "Historia · al día"}</span>
+          <span className="celda-titulo">Las ramas</span>
         </Link>
       </div>
 

@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { libro as getLibro, FASES } from "@/lib/canon";
 import { era as getEra, eraDeCapitulo } from "@/lib/arco";
+import { clave, foliosDeCapitulo, NOMBRE_TIPO } from "@/lib/ramas";
+import { foliosLeidos } from "@/lib/db";
 import { esTematica, html, rotuloCorto, rotuloParte, subtituloParte, type Parte } from "@/lib/studies";
 import { estadoCapitulo } from "@/lib/avance";
 import { romano } from "@/lib/romano";
@@ -27,6 +29,8 @@ export default async function CapituloPage({ params }: { params: Promise<{ libro
   const eraN = eraDeCapitulo(slug, cap);
   const era = getEra(eraN)!;
   const base = `/estudiar/${slug}/${cap}`;
+  const folios = foliosDeCapitulo(slug, cap);
+  const leidos = folios.length > 0 ? foliosLeidos() : new Set<string>();
   const nombre = l.nombre.toUpperCase();
   const num = dos(cap);
   const titulo = `${nombre} ${num}`;
@@ -180,6 +184,27 @@ export default async function CapituloPage({ params }: { params: Promise<{ libro
             El estudio de {l.nombre} {cap} todavía no está escrito. Vamos capítulo a capítulo: cuando el anterior esté
             estudiado, investigamos el siguiente a profundidad.
           </p>
+        </section>
+      )}
+
+      {folios.length > 0 && (
+        <section>
+          <Link href="/ramas" className="grupo-cab mono flex justify-between gap-3" style={{ textDecoration: "none" }}>
+            <span>Por las ramas · historia alrededor</span>
+            <span className="shrink-0">{dos(folios.length)}</span>
+          </Link>
+          {folios.map((f) => {
+            const leido = leidos.has(clave(f));
+            return (
+              <Link key={clave(f)} href={`/ramas/${f.rama}/${f.slug}`} className="fila apilada">
+                <span>
+                  <span className="fila-titulo">{f.titulo}</span>
+                  <span className="mono gris">{NOMBRE_TIPO[f.tipo]} · Folio {dos(f.n)}</span>
+                </span>
+                <span className={`marca${leido ? " on" : ""}`} aria-label={leido ? "Leído" : "Pendiente"} />
+              </Link>
+            );
+          })}
         </section>
       )}
       </div>
