@@ -1,15 +1,21 @@
 import fs from "node:fs";
 import path from "node:path";
-import { libro as getLibro } from "./canon";
+import { CANON, libro as getLibro } from "./canon";
 import { html } from "./studies";
 
 // Las ramas: historia alrededor de la Biblia, para leer sin Biblia a la mano.
-// Cada rama es un tema abierto (content/ramas/<rama>/) que crece folio a
-// folio: 00-rama.md presenta el tema y lista lo que falta por investigar;
-// cada NN-<slug>.md es un folio, con frontmatter que lo ata a capítulos,
-// eras del arco, lugares y personas. Ver content/metodologia.md, «Las ramas».
+// Hay dos clases de rama con el mismo formato (00-rama.md + NN-<slug>.md):
+//  - las transversales, en content/ramas/<rama>/ (canon, manuscritos,
+//    imperios…), que se leen en /ramas;
+//  - la de cada libro, «Alrededor de <Libro>», en
+//    content/estudios/<libro>/alrededor/, que vive en la página del libro.
+// 00-rama.md presenta el tema y lista lo que falta por investigar; cada folio
+// lleva frontmatter que lo ata a capítulos, eras, lugares y personas.
+// Ver content/metodologia.md, «Las ramas».
 
 const ROOT = path.join(process.cwd(), "content", "ramas");
+const ESTUDIOS = path.join(process.cwd(), "content", "estudios");
+const PREFIJO = "alrededor-de-"; // slug de la rama de un libro: alrededor-de-<libro>
 
 export type TipoFolio = "contexto" | "arqueologia" | "cuadra" | "dificil" | "manuscritos" | "curiosidades";
 
@@ -28,7 +34,8 @@ export type Fuente = { titulo: string; postura?: string; url?: string };
 export type Ancla = { libro: string; cap: number | null };
 
 export type Folio = {
-  rama: string;
+  rama: string; // slug de la rama
+  libro: string | null; // si la rama es la de un libro
   slug: string;
   n: number; // orden dentro de la rama (prefijo NN del archivo)
   rotulo: string; // lo que se talla en la losa: una o dos palabras
@@ -46,6 +53,7 @@ export type Folio = {
 
 export type Rama = {
   slug: string;
+  libro: string | null;
   orden: number;
   titulo: string;
   entrada: string;
@@ -110,14 +118,15 @@ function ancla(s: string): Ancla | null {
   return { libro: m[1], cap: m[2] ? parseInt(m[2], 10) : null };
 }
 
-function leerFolio(rama: string, file: string): Folio | null {
+function leerFolio(dir: string, rama: string, libro: string | null, file: string): Folio | null {
   const m = file.match(/^(\d{2})-(.+)\.md$/);
   if (!m) return null;
-  const { data, body } = frontmatter(fs.readFileSync(path.join(ROOT, rama, file), "utf-8"));
+  const { data, body } = frontmatter(fs.readFileSync(path.join(dir, file), "utf-8"));
   const titulo = texto(data, "titulo");
   const tipo = texto(data, "tipo") as TipoFolio;
   return {
     rama,
+    libro,
     slug: m[2],
     n: parseInt(m[1], 10),
     rotulo: texto(data, "rotulo") || titulo.split(/\s+/).slice(0, 2).join(" "),
@@ -134,19 +143,19 @@ function leerFolio(rama: string, file: string): Folio | null {
   };
 }
 
-function leerRama(slug: string): Rama | null {
-  const d = path.join(ROOT, slug);
-  const cab = path.join(d, "00-rama.md");
+function leerRama(dir: string, slug: string, libro: string | null): Rama | null {
+  const cab = path.join(dir, "00-rama.md");
   if (!fs.existsSync(cab)) return null;
   const { data, body } = frontmatter(fs.readFileSync(cab, "utf-8"));
   const folios = fs
-    .readdirSync(d)
+    .readdirSync(dir)
     .filter((f) => /^\d{2}-.+\.md$/.test(f) && f !== "00-rama.md")
     .sort()
-    .map((f) => leerFolio(slug, f))
+    .map((f) => leerFolio(dir, slug, libro, f))
     .filter((f): f is Folio => !!f);
   return {
     slug,
+    libro,
     orden: parseInt(texto(data, "orden", "99"), 10),
     titulo: texto(data, "titulo"),
     entrada: texto(data, "entrada"),
@@ -156,27 +165,39 @@ function leerRama(slug: string): Rama | null {
   };
 }
 
+// Las ramas transversales, en orden.
 export function ramas(): Rama[] {
   if (!fs.existsSync(ROOT)) return [];
   return fs
     .readdirSync(ROOT, { withFileTypes: true })
     .filter((e) => e.isDirectory())
-    .map((e) => leerRama(e.name))
+    .map((e) => leerRama(path.join(ROOT, e.name), e.name, null))
     .filter((r): r is Rama => !!r)
     .sort((a, b) => a.orden - b.orden || a.titulo.localeCompare(b.titulo, "es"));
 }
 
-export function rama(slug: string): Rama | undefined {
-  if (!/^[a-z0-9-]+$/.test(slug)) return undefined;
-  return leerRama(slug) ?? undefined;
+// «Alrededor de <Libro>»: la rama propia de un libro, si ya tiene carpeta.
+export function ramaDeLibro(slug: string): Rama | null {
+  const l = getLibro(slug);
+  if (!l) return null;
+  const r = leerRama(path.join(ESTUDIOS, slug, "alrededor"), PREFIJO + slug, slug);
+  if (r && !r.titulo) r.titulo = `Alrededor de ${l.nombre}`;
+  return r;
 }
 
-export function folio(ramaSlug: string, slug: string): Folio | undefined {
-  return rama(ramaSlug)?.folios.find((f) => f.slug === slug);
+export function ramasDeLibros(): Rama[] {
+  return CANON.map((l) => ramaDeLibro(l.slug)).filter((r): r is Rama => !!r);
+}
+
+// Cualquier rama por su slug: transversal, o alrededor-de-<libro>.
+export function rama(slug: string): Rama | undefined {
+  if (!/^[a-z0-9-]+$/.test(slug)) return undefined;
+  if (slug.startsWith(PREFIJO)) return ramaDeLibro(slug.slice(PREFIJO.length)) ?? undefined;
+  return leerRama(path.join(ROOT, slug), slug, null) ?? undefined;
 }
 
 export function todosLosFolios(): Folio[] {
-  return ramas().flatMap((r) => r.folios);
+  return [...ramas(), ...ramasDeLibros()].flatMap((r) => r.folios);
 }
 
 // Clave de un folio en la tabla de leídos: "<rama>/<folio>".
@@ -184,17 +205,36 @@ export function clave(f: Folio): string {
   return `${f.rama}/${f.slug}`;
 }
 
-// Folios que hablan de un capítulo (o de todo su libro).
-export function foliosDeCapitulo(libro: string, cap: number): Folio[] {
-  return todosLosFolios().filter((f) => f.capitulos.some((a) => a.libro === libro && (a.cap === null || a.cap === cap)));
+export function hrefRama(r: { slug: string; libro: string | null }): string {
+  return r.libro ? `/estudiar/${r.libro}` : `/ramas/${r.slug}`;
+}
+
+export function hrefFolio(f: Folio): string {
+  return f.libro ? `/estudiar/${f.libro}/alrededor/${f.slug}` : `/ramas/${f.rama}/${f.slug}`;
+}
+
+function ancladoA(f: Folio, libro: string, cap: number): boolean {
+  return f.capitulos.some((a) => a.libro === libro && (a.cap === null || a.cap === cap));
+}
+
+// Folios de «Alrededor de <Libro>» que hablan de un capítulo (o de todo el libro).
+export function foliosDelLibroEnCapitulo(libro: string, cap: number): Folio[] {
+  return (ramaDeLibro(libro)?.folios ?? []).filter((f) => ancladoA(f, libro, cap));
+}
+
+// Folios de las ramas transversales que hablan de un capítulo (o de su libro).
+export function foliosTransversalesDeCapitulo(libro: string, cap: number): Folio[] {
+  return ramas()
+    .flatMap((r) => r.folios)
+    .filter((f) => ancladoA(f, libro, cap));
 }
 
 export function foliosDeEra(n: number): Folio[] {
   return todosLosFolios().filter((f) => f.eras.includes(n));
 }
 
-// El folio que sigue: el primero sin leer de una rama ya empezada; si no hay
-// ninguna a medias, el primero sin leer de todas.
+// El folio transversal que sigue: el primero sin leer de una rama ya empezada;
+// si no hay ninguna a medias, el primero sin leer de todas.
 export function siguienteFolio(leidos: Set<string>): Folio | null {
   const todas = ramas();
   for (const r of todas) {

@@ -1,17 +1,18 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { clave, NOMBRE_TIPO, rama as getRama, rotuloAnclas } from "@/lib/ramas";
+import { clave, hrefFolio, rama as getRama } from "@/lib/ramas";
 import { foliosLeidos } from "@/lib/db";
 import { html } from "@/lib/studies";
 import { dos, k, talla } from "@/lib/estela";
+import { FilasFolios, FilasPendientes } from "@/components/Folios";
 
 export const dynamic = "force-dynamic";
 
-// Una rama: su presentación, los folios escritos y lo que falta por investigar.
+// Una rama transversal: su presentación, los folios escritos y lo que falta por investigar.
 export default async function RamaPage({ params }: { params: Promise<{ rama: string }> }) {
   const { rama: slug } = await params;
   const r = getRama(slug);
-  if (!r) notFound();
+  if (!r || r.libro) notFound();
 
   const leidos = foliosLeidos();
   const done = r.folios.filter((f) => leidos.has(clave(f))).length;
@@ -30,7 +31,7 @@ export default async function RamaPage({ params }: { params: Promise<{ rama: str
         <ol className="indice-losa mono hidden lg:block">
           {r.folios.map((f) => (
             <li key={f.slug}>
-              <Link href={`/ramas/${r.slug}/${f.slug}`}>
+              <Link href={hrefFolio(f)}>
                 <span className={`marca${leidos.has(clave(f)) ? " on" : ""}`} />
                 <span>
                   {dos(f.n)} {f.rotulo}
@@ -51,15 +52,18 @@ export default async function RamaPage({ params }: { params: Promise<{ rama: str
               {r.entrada}
             </p>
             <p className="mono gris m-0 mt-2">
-              Rama {dos(r.orden)} · {dos(r.folios.length)} {r.folios.length === 1 ? "folio" : "folios"}
-              {done > 0 ? ` · ${dos(done)} ${done === 1 ? "leído" : "leídos"}` : ""} · Sigue creciendo
+              Rama {dos(r.orden)}
+              {r.folios.length === 0
+                ? " · Todavía sin folios"
+                : ` · ${dos(r.folios.length)} ${r.folios.length === 1 ? "folio" : "folios"}${done > 0 ? ` · ${dos(done)} ${done === 1 ? "leído" : "leídos"}` : ""}`}
+              {" · "}Sigue creciendo
             </p>
           </section>
           {r.nota && <article className="estudio pad py-5 lg:py-8" dangerouslySetInnerHTML={{ __html: html(r.nota) }} />}
         </div>
 
         {sig ? (
-          <Link href={`/ramas/${r.slug}/${sig.slug}`} className="bloque">
+          <Link href={hrefFolio(sig)} className="bloque">
             <span>
               {done > 0 ? "Continuar" : "Empezar"} · {dos(sig.n)} {sig.rotulo}
             </span>
@@ -74,29 +78,17 @@ export default async function RamaPage({ params }: { params: Promise<{ rama: str
           )
         )}
 
-        <section>
-          <p className="grupo-cab mono m-0 flex justify-between">
-            <span>Folios</span>
-            <span>
-              {dos(done)}/{dos(r.folios.length)}
-            </span>
-          </p>
-          {r.folios.map((f) => {
-            const leido = leidos.has(clave(f));
-            return (
-              <Link key={f.slug} href={`/ramas/${r.slug}/${f.slug}`} className="fila apilada">
-                <span>
-                  <span className="fila-titulo">{f.titulo}</span>
-                  <span className="mono gris">
-                    Folio {dos(f.n)} · {NOMBRE_TIPO[f.tipo]}
-                    {f.capitulos.length > 0 ? ` · ${rotuloAnclas(f)}` : ""}
-                  </span>
-                </span>
-                <span className={`marca${leido ? " on" : ""}`} aria-label={leido ? "Leído" : "Pendiente"} />
-              </Link>
-            );
-          })}
-        </section>
+        {r.folios.length > 0 && (
+          <section>
+            <p className="grupo-cab mono m-0 flex justify-between">
+              <span>Folios</span>
+              <span>
+                {dos(done)}/{dos(r.folios.length)}
+              </span>
+            </p>
+            <FilasFolios folios={r.folios} leidos={leidos} />
+          </section>
+        )}
 
         {r.pendientes.length > 0 && (
           <section>
@@ -104,17 +96,11 @@ export default async function RamaPage({ params }: { params: Promise<{ rama: str
               <span>Por investigar</span>
               <span>{dos(r.pendientes.length)}</span>
             </p>
-            {r.pendientes.map((t, i) => (
-              <div key={t} className="fila apilada pendiente">
-                <span>
-                  <span className="fila-titulo">{t}</span>
-                  <span className="mono gris">Folio {dos(r.folios.length + i + 1)} · En investigación</span>
-                </span>
-                <span className="marca pendiente" aria-label="En investigación" />
-              </div>
-            ))}
+            <FilasPendientes rama={r} />
             <p className="pad serif m-0 py-4" style={{ fontSize: "1rem", lineHeight: 1.35, color: "var(--gris)" }}>
-              Los folios se investigan uno a uno, a medida que avanza el estudio. El orden puede cambiar.
+              {r.folios.length === 0
+                ? "Esta rama todavía no tiene folios: la lista dice por dónde vamos a empezar. Se investigan uno a uno, y el orden puede cambiar."
+                : "Los folios se investigan uno a uno, a medida que avanza el estudio. El orden puede cambiar."}
             </p>
           </section>
         )}

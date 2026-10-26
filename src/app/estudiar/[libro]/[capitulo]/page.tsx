@@ -2,7 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { libro as getLibro, FASES } from "@/lib/canon";
 import { era as getEra, eraDeCapitulo } from "@/lib/arco";
-import { clave, foliosDeCapitulo, NOMBRE_TIPO } from "@/lib/ramas";
+import { foliosDelLibroEnCapitulo, foliosTransversalesDeCapitulo } from "@/lib/ramas";
+import { FilasFolios } from "@/components/Folios";
 import { foliosLeidos } from "@/lib/db";
 import { esTematica, html, rotuloCorto, rotuloParte, subtituloParte, type Parte } from "@/lib/studies";
 import { estadoCapitulo } from "@/lib/avance";
@@ -29,8 +30,9 @@ export default async function CapituloPage({ params }: { params: Promise<{ libro
   const eraN = eraDeCapitulo(slug, cap);
   const era = getEra(eraN)!;
   const base = `/estudiar/${slug}/${cap}`;
-  const folios = foliosDeCapitulo(slug, cap);
-  const leidos = folios.length > 0 ? foliosLeidos() : new Set<string>();
+  const alrededor = foliosDelLibroEnCapitulo(slug, cap);
+  const ramas = foliosTransversalesDeCapitulo(slug, cap);
+  const leidos = alrededor.length + ramas.length > 0 ? foliosLeidos() : new Set<string>();
   const nombre = l.nombre.toUpperCase();
   const num = dos(cap);
   const titulo = `${nombre} ${num}`;
@@ -39,8 +41,8 @@ export default async function CapituloPage({ params }: { params: Promise<{ libro
     <main className="pagina">
       <section className="losa">
         <div className="mono flex items-center justify-between px-1.5 pt-2">
-          <Link href="/" className="flex h-11 items-center px-3" style={{ textDecoration: "none" }}>
-            ← Hoy
+          <Link href={`/estudiar/${slug}`} className="flex h-11 items-center px-3" style={{ textDecoration: "none" }}>
+            ← {l.nombre}
           </Link>
           <div className="flex">
             {cap > 1 && (
@@ -187,24 +189,23 @@ export default async function CapituloPage({ params }: { params: Promise<{ libro
         </section>
       )}
 
-      {folios.length > 0 && (
+      {alrededor.length > 0 && (
+        <section>
+          <Link href={`/estudiar/${slug}`} className="grupo-cab mono flex justify-between gap-3" style={{ textDecoration: "none" }}>
+            <span>Alrededor de {l.nombre} · historia del libro</span>
+            <span className="shrink-0">{dos(alrededor.length)}</span>
+          </Link>
+          <FilasFolios folios={alrededor} leidos={leidos} anclas={false} />
+        </section>
+      )}
+
+      {ramas.length > 0 && (
         <section>
           <Link href="/ramas" className="grupo-cab mono flex justify-between gap-3" style={{ textDecoration: "none" }}>
-            <span>Por las ramas · historia alrededor</span>
-            <span className="shrink-0">{dos(folios.length)}</span>
+            <span>Por las ramas · temas transversales</span>
+            <span className="shrink-0">{dos(ramas.length)}</span>
           </Link>
-          {folios.map((f) => {
-            const leido = leidos.has(clave(f));
-            return (
-              <Link key={clave(f)} href={`/ramas/${f.rama}/${f.slug}`} className="fila apilada">
-                <span>
-                  <span className="fila-titulo">{f.titulo}</span>
-                  <span className="mono gris">{NOMBRE_TIPO[f.tipo]} · Folio {dos(f.n)}</span>
-                </span>
-                <span className={`marca${leido ? " on" : ""}`} aria-label={leido ? "Leído" : "Pendiente"} />
-              </Link>
-            );
-          })}
+          <FilasFolios folios={ramas} leidos={leidos} anclas={false} />
         </section>
       )}
       </div>

@@ -2,7 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ERAS, capsDeEra, era as getEra, eraDeCapitulo, hechosDeEra, segmentosDeEra, textoEra } from "@/lib/arco";
 import { resumenProgreso } from "@/lib/progreso";
-import { clave, foliosDeEra, NOMBRE_TIPO } from "@/lib/ramas";
+import { foliosDeEra } from "@/lib/ramas";
+import { FilasFolios } from "@/components/Folios";
 import { foliosLeidos } from "@/lib/db";
 import { html } from "@/lib/studies";
 import { romano } from "@/lib/romano";
@@ -126,18 +127,7 @@ export default async function EraPage({ params }: { params: Promise<{ era: strin
               <span>Por las ramas · historia de esta era</span>
               <span className="shrink-0">{dos(folios.length)}</span>
             </Link>
-            {folios.map((f) => {
-              const leido = leidos.has(clave(f));
-              return (
-                <Link key={clave(f)} href={`/ramas/${f.rama}/${f.slug}`} className="fila apilada">
-                  <span>
-                    <span className="fila-titulo">{f.titulo}</span>
-                    <span className="mono gris">{NOMBRE_TIPO[f.tipo]} · Folio {dos(f.n)}</span>
-                  </span>
-                  <span className={`marca${leido ? " on" : ""}`} aria-label={leido ? "Leído" : "Pendiente"} />
-                </Link>
-              );
-            })}
+            <FilasFolios folios={folios} leidos={leidos} anclas={false} />
           </section>
         )}
 

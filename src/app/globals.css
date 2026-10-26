@@ -280,3 +280,19 @@
     .postura > h4 { padding-top: 0.45em; }
   }
 }
+
+/* ——— Página del libro: cuadrícula de capítulos ——— */
+@layer components {
+  .rejilla-caps { display: grid; grid-template-columns: repeat(auto-fill, minmax(4.75rem, 1fr)); margin-right: -1px; border-bottom: 1px solid var(--grafito); margin-bottom: -1px; }
+  .rejilla-caps > * { border-right: 1px solid var(--grafito); border-bottom: 1px solid var(--grafito); }
+  .celda-cap { display: flex; flex-direction: column; justify-content: space-between; gap: 6px; min-height: 68px; padding: 8px 10px 7px; text-decoration: none; color: var(--grafito); }
+  .celda-cap:hover { background: var(--hormigon); }
+  .celda-cap .mono { font-size: 0.625rem; color: var(--gris); }
+  .celda-num { font-family: var(--font-display), "Arial Narrow", sans-serif; font-weight: 800; font-size: 1.75rem; line-height: 1; }
+  .celda-cap.sin { color: var(--gris); }
+  .celda-cap.activa { background: var(--oropimente); }
+  .celda-cap.activa .mono { color: var(--grafito); }
+  .celda-cap.completa { background: var(--grafito); color: var(--piedra); }
+  .celda-cap.completa .mono { color: var(--pista); }
+  .celda-cap.completa:hover { background: #2a2826; }
+}

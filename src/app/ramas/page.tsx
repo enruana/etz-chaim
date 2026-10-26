@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { clave, NOMBRE_TIPO, ramas, rotuloAnclas, siguienteFolio } from "@/lib/ramas";
+import { clave, hrefFolio, ramas, siguienteFolio } from "@/lib/ramas";
+import { FilasFolios, FilasPendientes } from "@/components/Folios";
 import { foliosLeidos } from "@/lib/db";
 import { dos, k, talla } from "@/lib/estela";
 
@@ -41,13 +42,13 @@ export default function Ramas() {
             {dos(hechos)}/{dos(total)} folios leídos · Historia alrededor de la Biblia
           </p>
           <p className="serif m-0 text-[1.1875rem] leading-[1.28] lg:text-[1.75rem] lg:leading-[1.2]">
-            Lo que no está en el texto pero lo rodea: la tierra, la gente, los manuscritos, cómo llegó hasta nosotros.
-            Para leer sin Biblia a la mano. Cada rama es un tema abierto y crece folio a folio.
+            Lo que no está en el texto pero lo rodea: los manuscritos, los imperios, las comunidades, cómo llegó hasta nosotros.
+            Para leer sin Biblia a la mano. Cada rama es un tema abierto y crece folio a folio; lo propio de cada libro vive en su página.
           </p>
         </section>
 
         {sig && (
-          <Link href={`/ramas/${sig.rama}/${sig.slug}`} className="bloque">
+          <Link href={hrefFolio(sig)} className="bloque">
             <span>
               {hechos > 0 ? "Continuar" : "Empezar"} · {sig.rotulo}
             </span>
@@ -63,37 +64,13 @@ export default function Ramas() {
                 <span>
                   Rama {dos(r.orden)} · {r.titulo}
                 </span>
-                <span className="shrink-0">
-                  {dos(done)}/{dos(r.folios.length)} →
-                </span>
+                <span className="shrink-0">{r.folios.length === 0 ? "Por empezar →" : `${dos(done)}/${dos(r.folios.length)} →`}</span>
               </Link>
               <p className="pad raya serif m-0 py-3" style={{ fontSize: "1rem", lineHeight: 1.35, color: "var(--gris)" }}>
                 {r.entrada}
               </p>
-              {r.folios.map((f) => {
-                const leido = leidos.has(clave(f));
-                return (
-                  <Link key={f.slug} href={`/ramas/${r.slug}/${f.slug}`} className="fila apilada">
-                    <span>
-                      <span className="fila-titulo">{f.titulo}</span>
-                      <span className="mono gris">
-                        Folio {dos(f.n)} · {NOMBRE_TIPO[f.tipo]}
-                        {f.capitulos.length > 0 ? ` · ${rotuloAnclas(f)}` : ""}
-                      </span>
-                    </span>
-                    <span className={`marca${leido ? " on" : ""}`} aria-label={leido ? "Leído" : "Pendiente"} />
-                  </Link>
-                );
-              })}
-              {r.pendientes.slice(0, 2).map((t, i) => (
-                <div key={t} className="fila apilada pendiente">
-                  <span>
-                    <span className="fila-titulo">{t}</span>
-                    <span className="mono gris">Folio {dos(r.folios.length + i + 1)} · En investigación</span>
-                  </span>
-                  <span className="marca pendiente" aria-label="En investigación" />
-                </div>
-              ))}
+              <FilasFolios folios={r.folios} leidos={leidos} />
+              <FilasPendientes rama={r} max={2} />
             </section>
           );
         })}

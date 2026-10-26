@@ -93,7 +93,7 @@ export default function Mapa() {
                 return (
                   <Link
                     key={l.slug}
-                    href={`/estudiar/${l.slug}/${activo ? p.actual.cap : 1}`}
+                    href={`/estudiar/${l.slug}`}
                     className={`celda${completo ? " completa" : activo ? " activa" : ""}`}
                     style={{ minHeight: 72, padding: "12px 18px" }}
                   >

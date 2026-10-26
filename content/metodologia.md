@@ -91,16 +91,16 @@ Fuentes de consulta preferidas para la investigación: el texto mismo ante todo;
 
 ## Las ramas: historia alrededor de la Biblia
 
-Una pista paralela al estudio por capítulos, pensada para leer **sin Biblia a la mano y sin tomar notas**: lo que no está en el texto pero lo rodea. Geografía, gobernantes, costumbres, arqueología, manuscritos, canon, traducciones, imperios. Vive en `content/ramas/` y se lee en la app bajo «Las ramas» (`/ramas`); los datos los carga `src/lib/ramas.ts`.
+Una pista paralela al estudio por capítulos, pensada para leer **sin Biblia a la mano y sin tomar notas**: lo que no está en el texto pero lo rodea. Los temas transversales (canon, manuscritos, traducciones, comunidades, imperios…) viven en `content/ramas/` y se leen en la app bajo «Las ramas» (`/ramas`). **Lo propio de cada libro no es una rama**: va dentro del libro, en la sección «Alrededor de <Libro>» (`content/estudios/<libro>/alrededor/`, mismo formato), que se lee en la página del libro (`/estudiar/<libro>`) junto con su presentación (`content/estudios/<libro>/00-libro.md`: `titulo` es el lema, el cuerpo una presentación corta) y la cuadrícula de capítulos. Los datos los carga `src/lib/ramas.ts`.
 
-**Estructura.** Cada **rama** es un tema abierto, una carpeta `content/ramas/<rama>/`. Dentro, `00-rama.md` la presenta (frontmatter `titulo`, `entrada`, `orden`, y la lista `pendientes` con los folios que faltan por investigar, en orden tentativo) y cada `NN-<slug>.md` es un **folio**. No hay número fijo de folios: la rama crece a medida que avanzamos. Los folios se investigan uno a uno, no la rama completa de golpe; lo que falta se ve en la app como «En investigación».
+**Estructura.** Cada **rama** es un tema abierto, una carpeta `content/ramas/<rama>/` (o `content/estudios/<libro>/alrededor/` para la del libro). Dentro, `00-rama.md` la presenta (frontmatter `titulo`, `entrada`, `orden`, y la lista `pendientes` con los folios que faltan por investigar, en orden tentativo) y cada `NN-<slug>.md` es un **folio**. No hay número fijo de folios: la rama crece a medida que avanzamos. Los folios se investigan uno a uno, no la rama completa de golpe; lo que falta se ve en la app como «En investigación».
 
 **El folio.** Entre 600 y 1.200 palabras, para leerse en un rato suelto. Se sostiene solo: si cita un versículo, lo trae entero. Frontmatter:
 
 - `rotulo`: una o dos palabras para tallar en la losa («Galilea», «66 libros»).
 - `titulo` y `entrada`: el título vivo y una línea debajo.
 - `tipo`: `contexto` | `arqueologia` | `cuadra` | `dificil` | `manuscritos` | `curiosidades`. Es una etiqueta, no una sección obligatoria: no todo folio tiene las seis cosas.
-- `capitulos`: a qué capítulos se ata (`["marcos 1", "marcos 6"]`, o `["marcos"]` para todo el libro). El índice del capítulo lista sus folios bajo «Por las ramas».
+- `capitulos`: a qué capítulos se ata (`["marcos 1", "marcos 6"]`, o `["marcos"]` para todo el libro). El índice del capítulo lista los folios del libro bajo «Alrededor de <Libro>» y los transversales bajo «Por las ramas».
 - `eras`: eras del arco redentor (`[9]`). La página de la era lista sus folios.
 - `lugares`, `personas`: etiquetas en kebab-case para índices futuros.
 - `fecha`: `"2026-10"`, el mes al corte del cual se escribió. La arqueología cambia; el folio dice de cuándo es.
@@ -121,4 +121,18 @@ Una pista paralela al estudio por capítulos, pensada para leer **sin Biblia a l
 
 **Citas.** Las comillas angulares «…» se reservan para la RVR1960 literal y se cotejan contra el texto; cualquier otra cita (Josefo, Jerónimo, el Talmud, Lutero) va entre comillas rectas "…". La pausa 🌿 se usa igual que en los estudios.
 
-**Flujo.** Las ramas no esperan al capítulo. Cuando un capítulo de Marcos pide saber algo que no está en la Biblia, nace un folio en «Alrededor de Marcos»; las ramas transversales («Cómo se armó la Biblia», y las que vengan: manuscritos, imperios, la Biblia en español) avanzan un folio a la vez, cuando hay ganas de leer. El progreso es propio (tabla `folios_leidos`) y no toca el avance por capítulos.
+**Las ramas transversales.** Están todas creadas desde el principio, aunque vacías, para que se vea el mapa de temas; cada una lista en `pendientes` por dónde va a empezar:
+
+1. **Cómo se armó la Biblia**: el canon, qué libros entraron y cuáles no.
+2. **Los que copiaron**: manuscritos, escribas, códices, variantes y crítica textual.
+3. **La Biblia en español**: de la Vulgata a la Reina-Valera 1960; cómo se traduce.
+4. **Las comunidades**: Israel y Judá, diáspora, Qumrán, partidos del judaísmo, iglesia primitiva.
+5. **Los imperios**: Egipto, Asiria, Babilonia, Persia, Grecia, Roma, y la línea de tiempo.
+6. **Quién lo escribió**: los debates de autoría, con los argumentos de cada lado.
+7. **Lo que dice la pala**: arqueología y fuentes externas; cada folio dice de cuándo es.
+8. **Las preguntas duras**: violencia, esclavitud, contradicciones aparentes, ciencia.
+9. **Perdido en la traducción**: palabras hebreas y griegas, nombres, juegos de palabras.
+
+**Alrededor de cada libro.** Cada libro estudiado tiene desde el inicio su sección «Alrededor de <Libro>» (la tierra, la gente y los papeles detrás del libro) con su propia lista de pendientes. Marcos ya la tiene; al abrir un libro nuevo se crean `00-libro.md` y `alrededor/00-rama.md`.
+
+**Flujo.** Las ramas no esperan al capítulo. Cuando un capítulo de Marcos pide saber algo que no está en la Biblia, nace un folio en «Alrededor de Marcos», dentro del libro; las transversales avanzan un folio a la vez, cuando hay ganas de leer. El progreso es propio (tabla `folios_leidos`) y no toca el avance por capítulos.

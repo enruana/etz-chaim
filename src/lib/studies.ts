@@ -52,6 +52,14 @@ function leer(file: string): { data: Record<string, string>; body: string } {
   return { data, body: m[2] };
 }
 
+// Presentación del libro: content/estudios/<libro>/00-libro.md (lema en `titulo`).
+export function getLibroTexto(libro: string): { lema: string; md: string } | null {
+  const f = path.join(ROOT, libro, "00-libro.md");
+  if (!/^[a-z0-9-]+$/.test(libro) || !fs.existsSync(f)) return null;
+  const { data, body } = leer(f);
+  return { lema: data.titulo ?? "", md: body.trim() };
+}
+
 export function hasStudy(libro: string, cap: number) {
   return fs.existsSync(dir(libro, cap));
 }
