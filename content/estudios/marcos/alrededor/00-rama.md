@@ -2,12 +2,10 @@
 titulo: "Alrededor de Marcos"
 entrada: "La tierra, la gente y los papeles detrás del evangelio que estamos estudiando."
 pendientes:
-  - "Capernaum y la casa de Pedro"
-  - "Herodes Antipas y su familia"
-  - "Quién escribió Marcos: Papías y los académicos"
-  - "Los doce versículos del final de Marcos"
-  - "Fariseos, escribas y herodianos: quién era quién en Marcos"
-  - "El mar de Galilea: barcas, pesca y tormentas"
+  - "El templo de Herodes: la Jerusalén de Marcos 11–15"
+  - "Pilato, la cruz y la tumba: lo que dice la arqueología"
+  - "Las monedas de Marcos: denario, blanca y cuadrante"
+  - "Juan el Bautista: el desierto, Qumrán y los bautismos"
 ---
 
 Marcos escribe para gente que ya sabe cómo es Galilea, quién es Herodes y qué se hace en una sinagoga. Nosotros no lo sabemos, y por eso se nos escapan cosas. Esta rama recoge lo que rodea al texto: la geografía, los gobernantes, las costumbres, las excavaciones que han confirmado o complicado el cuadro, y los manuscritos que nos lo trajeron.
