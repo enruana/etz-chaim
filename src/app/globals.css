@@ -296,3 +296,36 @@
   .celda-cap.completa .mono { color: var(--pista); }
   .celda-cap.completa:hover { background: #2a2826; }
 }
+
+/* ——— Página del libro: dos vías en paralelo ——— */
+@layer components {
+  /* una columna; lado a lado cuando el cuerpo da el ancho (iPad vertical, escritorio) */
+  .vias-marco { container-type: inline-size; }
+  .vias { display: grid; grid-template-columns: minmax(0, 1fr); border-bottom: 1px solid var(--grafito); }
+  .via { display: flex; flex-direction: column; min-width: 0; }
+  .via-cab { display: flex; flex-direction: column; gap: 6px; padding: 12px var(--pad) 14px; background: var(--grafito); color: var(--piedra); }
+  .via-titulo { font-family: var(--font-display), "Arial Narrow", sans-serif; font-weight: 800; font-size: 2rem; line-height: 0.9; text-transform: uppercase; }
+  .via-nota { color: var(--pista); }
+  .via > .bloque { margin-top: 0; }
+  .via .rejilla-caps { margin-bottom: 0; }
+  @container (min-width: 40rem) {
+    .vias { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .via + .via { border-left: 1px solid var(--grafito); }
+  }
+  /* columnas estrechas (escritorio de 1280): el bloque amarillo cabe en una línea */
+  @container (min-width: 40rem) and (max-width: 50rem) {
+    .via .bloque { font-size: 1.5rem; min-height: 56px; }
+  }
+
+  /* libros largos (Salmos, Génesis, Isaías): celdas más apretadas */
+  .rejilla-caps.densa { grid-template-columns: repeat(auto-fill, minmax(3.5rem, 1fr)); }
+  .rejilla-caps.densa .celda-cap { min-height: 54px; padding: 7px 8px 6px; }
+  .rejilla-caps.densa .celda-num { font-size: 1.375rem; }
+
+  /* el pliegue: una lista que se abre al tocar (lo que falta por investigar) */
+  .pliegue > summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding: 0 var(--pad); cursor: pointer; border-bottom: 1px solid var(--grafito); }
+  .pliegue > summary::-webkit-details-marker { display: none; }
+  .pliegue > summary:hover { background: var(--hormigon); }
+  .pliegue > summary > span:last-child { transition: transform 0.15s; }
+  .pliegue[open] > summary > span:last-child { transform: rotate(180deg); }
+}
