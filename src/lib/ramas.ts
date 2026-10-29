@@ -30,6 +30,26 @@ export const NOMBRE_TIPO: Record<TipoFolio, string> = {
 
 export type Fuente = { titulo: string; postura?: string; url?: string };
 
+// Una lámina: foto, plano o mapa con licencia libre, guardado en
+// public/laminas/<rama>/<archivo>. Se coloca en el cuerpo con «::: lamina <id>».
+export type Lamina = { id: string; archivo: string; pie: string; credito: string; url?: string; ancho?: number; alto?: number };
+
+// «Para ver»: un recurso para seguir mirando fuera de la app (sitio, fotos, plano, video…).
+export type TipoRecurso = "sitio" | "fotos" | "plano" | "mapa" | "video" | "texto" | "articulo" | "museo" | "manuscrito";
+export type Recurso = { titulo: string; tipo: TipoRecurso; url: string; nota?: string };
+
+export const NOMBRE_RECURSO: Record<TipoRecurso, string> = {
+  sitio: "Sitio",
+  fotos: "Fotos",
+  plano: "Plano",
+  mapa: "Mapa",
+  video: "Video",
+  texto: "Texto",
+  articulo: "Artículo",
+  museo: "Museo",
+  manuscrito: "Manuscrito",
+};
+
 // A qué capítulo se ata un folio: "marcos 6" → cap 6; "marcos" → todo el libro.
 export type Ancla = { libro: string; cap: number | null };
 
@@ -48,6 +68,8 @@ export type Folio = {
   personas: string[];
   fecha: string; // "2026-10": al corte de qué mes se escribió
   fuentes: Fuente[];
+  laminas: Lamina[];
+  ver: Recurso[];
   md: string;
 };
 
@@ -139,6 +161,20 @@ function leerFolio(dir: string, rama: string, libro: string | null, file: string
     personas: cadenas(data, "personas"),
     fecha: texto(data, "fecha"),
     fuentes: objetos(data, "fuentes").filter((f) => f.titulo) as Fuente[],
+    laminas: objetos(data, "laminas")
+      .filter((l) => l.id && l.archivo)
+      .map((l) => ({
+        id: l.id,
+        archivo: l.archivo,
+        pie: l.pie ?? "",
+        credito: l.credito ?? "",
+        url: l.url,
+        ancho: l.ancho ? parseInt(l.ancho, 10) : undefined,
+        alto: l.alto ? parseInt(l.alto, 10) : undefined,
+      })),
+    ver: objetos(data, "ver")
+      .filter((v) => v.titulo && v.url)
+      .map((v) => ({ titulo: v.titulo, tipo: (v.tipo in NOMBRE_RECURSO ? v.tipo : "sitio") as TipoRecurso, url: v.url, nota: v.nota })),
     md: body.trim(),
   };
 }
@@ -270,25 +306,60 @@ export function fechaLarga(f: string): string {
   return `${MESES[parseInt(m[2], 10) - 1] ?? m[2]} de ${m[1]}`;
 }
 
-// Un folio «difícil» pone las posturas lado a lado:
-//   ::: posturas
+const escapar = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+// Dominio de un enlace, para decir a dónde lleva: "custodia.org".
+export function dominio(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return "";
+  }
+}
+
+// Una lámina compuesta: la imagen con su pie y, debajo, el crédito enlazado a la fuente.
+function htmlLamina(f: Folio, l: Lamina): string {
+  const src = `/laminas/${f.rama}/${l.archivo}`;
+  const medidas = l.ancho && l.alto ? ` width="${l.ancho}" height="${l.alto}"` : "";
+  const credito = l.credito
+    ? l.url
+      ? `<a class="mono" href="${escapar(l.url)}" target="_blank" rel="noreferrer">${escapar(l.credito)} ↗</a>`
+      : `<span class="mono">${escapar(l.credito)}</span>`
+    : "";
+  return `<figure class="lamina"><img src="${src}" alt="${escapar(l.pie)}"${medidas} loading="lazy" decoding="async"><figcaption><span>${escapar(l.pie)}</span>${credito}</figcaption></figure>`;
+}
+
+// El cuerpo de un folio tiene dos bloques propios además del markdown:
+//   ::: posturas            (un folio «difícil» pone las posturas lado a lado)
 //   ### Católica
 //   …
 //   ### Protestante
 //   …
 //   :::
 // Cada «### Nombre» es una postura; se compone como <section class="postura">.
-export function htmlFolio(md: string): string {
+//   ::: lamina <id>         (una lámina declarada en el frontmatter, en su sitio)
+// Los enlaces externos del texto se abren aparte.
+export function htmlFolio(f: Pick<Folio, "md" | "rama" | "laminas">): string {
   const bloques: string[] = [];
-  const conMarcas = md.replace(/^::: posturas\n([\s\S]*?)\n:::\s*$/gm, (_, cuerpo: string) => {
-    const partes = cuerpo.split(/^### +(.+)$/m).slice(1);
-    let out = '<div class="posturas">';
-    for (let i = 0; i < partes.length; i += 2) {
-      out += `<section class="postura"><h4>${partes[i].trim()}</h4>${html(partes[i + 1] ?? "")}</section>`;
-    }
-    out += "</div>";
+  const marca = (out: string) => {
     bloques.push(out);
     return `\u0002${bloques.length - 1}\u0002`;
-  });
-  return html(conMarcas).replace(/(?:<p>)?\u0002(\d+)\u0002(?:<\/p>)?/g, (_, i) => bloques[parseInt(i, 10)]);
+  };
+  const conMarcas = f.md
+    .replace(/^::: posturas\n([\s\S]*?)\n:::\s*$/gm, (_, cuerpo: string) => {
+      const partes = cuerpo.split(/^### +(.+)$/m).slice(1);
+      let out = '<div class="posturas">';
+      for (let i = 0; i < partes.length; i += 2) {
+        out += `<section class="postura"><h4>${partes[i].trim()}</h4>${html(partes[i + 1] ?? "")}</section>`;
+      }
+      out += "</div>";
+      return marca(out);
+    })
+    .replace(/^::: lamina +([\w-]+)\s*$/gm, (todo, id: string) => {
+      const l = f.laminas.find((x) => x.id === id);
+      return l ? marca(htmlLamina(f as Folio, l)) : todo;
+    });
+  return html(conMarcas)
+    .replace(/(?:<p>)?\u0002(\d+)\u0002(?:<\/p>)?/g, (_, i) => bloques[parseInt(i, 10)])
+    .replace(/<a href="(https?:\/\/[^"]+)">/g, '<a href="$1" target="_blank" rel="noreferrer">');
 }

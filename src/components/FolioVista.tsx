@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { libro as getLibro } from "@/lib/canon";
 import { era as getEra } from "@/lib/arco";
-import { clave, fechaLarga, hrefFolio, hrefRama, htmlFolio, NOMBRE_TIPO, type Folio, type Rama } from "@/lib/ramas";
+import { clave, dominio, fechaLarga, hrefFolio, hrefRama, htmlFolio, NOMBRE_RECURSO, NOMBRE_TIPO, type Folio, type Rama } from "@/lib/ramas";
 import { dos, k, talla } from "@/lib/estela";
 import { leerFolioAction, desmarcarFolioAction } from "@/app/actions";
 
-// La lectura de un folio: losa con el índice de su rama, el texto, a qué
-// capítulos y eras se ata, sus fuentes y el botón de leído. La usan tanto los
-// folios de las ramas transversales como los de «Alrededor de <Libro>».
+// La lectura de un folio: losa con el índice de su rama, el texto (con sus
+// láminas), a qué capítulos y eras se ata, «Para ver» (los recursos para seguir
+// mirando fuera), sus fuentes y el botón de leído. La usan tanto los folios de
+// las ramas transversales como los de «Alrededor de <Libro>».
 export default function FolioVista({ r, f, leidos }: { r: Rama; f: Folio; leidos: Set<string> }) {
   const i = r.folios.findIndex((x) => x.slug === f.slug);
   const anterior = r.folios[i - 1];
@@ -84,8 +85,29 @@ export default function FolioVista({ r, f, leidos }: { r: Rama; f: Folio; leidos
             )}
           </section>
 
-          <article className="estudio pad py-5 lg:py-8" dangerouslySetInnerHTML={{ __html: htmlFolio(f.md) }} />
+          <article className="estudio pad py-5 lg:py-8" dangerouslySetInnerHTML={{ __html: htmlFolio(f) }} />
         </div>
+
+        {f.ver.length > 0 && (
+          <section>
+            <p className="grupo-cab mono m-0 flex justify-between">
+              <span>Para ver · fuera de la app</span>
+              <span>{dos(f.ver.length)}</span>
+            </p>
+            {f.ver.map((v) => (
+              <a key={v.url} href={v.url} target="_blank" rel="noreferrer" className="fila apilada ver">
+                <span>
+                  <span className="fila-titulo">{v.titulo}</span>
+                  {v.nota && <span className="ver-nota serif">{v.nota}</span>}
+                  <span className="mono gris">
+                    {NOMBRE_RECURSO[v.tipo]} · {dominio(v.url)}
+                  </span>
+                </span>
+                <span className="mono">↗</span>
+              </a>
+            ))}
+          </section>
+        )}
 
         {leido ? (
           <>

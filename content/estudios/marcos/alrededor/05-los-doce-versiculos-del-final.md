@@ -24,6 +24,42 @@ fuentes:
   - titulo: "Codex Sinaiticus Project: el manuscrito completo en línea"
     postura: "arqueologia"
     url: "https://codexsinaiticus.org/"
+laminas:
+  - id: "sinaitico"
+    archivo: "sinaiticus-marcos.png"
+    pie: "El final de Marcos en el Códice Sinaítico, del siglo IV. Arriba a la derecha, la columna termina en 'efobounto gar', 'porque tenían miedo' (16:8); debajo, el adorno de cierre y el título 'Evangelio según Marcos'. Lo que se transparenta es la hoja siguiente."
+    credito: "Códice Sinaítico, siglo IV, British Library, dominio público, vía Wikimedia Commons"
+    url: "https://commons.wikimedia.org/wiki/File:Shorter_ending_of_Mark_16_from_Codex_Sinaiticus.png"
+    ancho: "659"
+    alto: "574"
+  - id: "freer"
+    archivo: "codex-w-freer.jpg"
+    pie: "Una página del Códice de Washington (W), del siglo V, con Marcos 16:12-17. Es el único manuscrito que trae el 'logion de Freer', el diálogo añadido después del versículo 14."
+    credito: "Códice de Washington (W), siglo V, Freer Gallery of Art, dominio público, vía Wikimedia Commons"
+    url: "https://commons.wikimedia.org/wiki/File:Codex_Washingtonianus_W_(032)_Mk_16,12-17.JPG"
+    ancho: "912"
+    alto: "1400"
+ver:
+  - titulo: "Codex Sinaiticus, el sitio oficial"
+    tipo: "manuscrito"
+    url: "https://codexsinaiticus.org/"
+    nota: "El códice entero, página por página y con transcripción: busca Marcos 16 y verás la columna que termina en 16:8 con el adorno. En inglés."
+  - titulo: "Codex Vaticanus (Vat.gr.1209), Biblioteca Vaticana"
+    tipo: "manuscrito"
+    url: "https://digi.vatlib.it/view/MSS_Vat.gr.1209"
+    nota: "El códice digitalizado; el final de Marcos, con su columna en blanco, está en la página 1303 del manuscrito. En inglés o italiano."
+  - titulo: "Codex Washingtonianus (W), hoja por hoja (CSNTM)"
+    tipo: "manuscrito"
+    url: "https://manuscripts.csntm.org/Manuscript/View/GA_032"
+    nota: "El manuscrito del logion de Freer, en el visor del CSNTM. En inglés."
+  - titulo: "'A Case for the Longer Ending of Mark' (Text & Canon Institute)"
+    tipo: "articulo"
+    url: "https://textandcanon.org/a-case-for-the-longer-ending-of-mark/"
+    nota: "La defensa más completa de los doce versículos, por James Snapp, un partidario convencido; léela sabiendo de qué lado está. En inglés."
+  - titulo: "Marcos 16, resumen del problema en español"
+    tipo: "texto"
+    url: "https://es.wikipedia.org/wiki/Marcos_16"
+    nota: "La entrada de Wikipedia en español: los finales, los testigos y las posturas, para repasar."
 ---
 
 **Abre tu RVR1960 en Marcos 16.** Después del versículo 8 sigue el 9 sin ninguna nota, como si nada. Si abres una NVI, encuentras una línea en cursiva: los manuscritos más antiguos no incluyen 16:9-20. La Biblia de las Américas los pone entre corchetes. ¿Qué pasa con estos doce versículos? Es el problema de manuscritos más famoso del Nuevo Testamento, y vale la pena entenderlo bien, porque es un buen ejemplo de cómo nos llegó la Biblia.
@@ -36,13 +72,17 @@ Y entonces llega el versículo 9: «Habiendo, pues, resucitado Jesús por la ma�
 
 ### Los testigos
 
-Los dos manuscritos griegos completos más antiguos del Nuevo Testamento, el Códice Sinaítico y el Códice Vaticano, los dos del siglo IV, terminan Marcos en el versículo 8. El Vaticano, además, deja una columna en blanco después de Marcos, la única columna vacía de todo su Nuevo Testamento, como si el copista supiera que existía algo más y no lo tuviera delante o no quisiera copiarlo. Hacia el 320, Eusebio de Cesarea, respondiendo a un lector llamado Marino que no sabía cómo cuadrar Mateo 28:1 con Marcos 16:9, le dice que la solución más fácil es que "casi todos los ejemplares exactos del evangelio según Marcos terminan" en «porque tenían miedo», y que el resto aparece en pocos. Jerónimo, hacia el 406, lo repite en una carta: casi todos los códices griegos no tienen el pasaje. A ellos se suman la versión siríaca más antigua, un centenar de manuscritos armenios y los dos georgianos más viejos.
+Los dos manuscritos griegos completos más antiguos del Nuevo Testamento, el [Códice Sinaítico](https://manuscripts.csntm.org/Manuscript/View/GA_01) y el [Códice Vaticano](https://digi.vatlib.it/view/MSS_Vat.gr.1209), los dos del siglo IV, terminan Marcos en el versículo 8. El Vaticano, además, deja una columna en blanco después de Marcos, la única columna vacía de todo su Nuevo Testamento, como si el copista supiera que existía algo más y no lo tuviera delante o no quisiera copiarlo. Hacia el 320, Eusebio de Cesarea, respondiendo a un lector llamado Marino que no sabía cómo cuadrar Mateo 28:1 con Marcos 16:9, le dice que la solución más fácil es que "casi todos los ejemplares exactos del evangelio según Marcos terminan" en «porque tenían miedo», y que el resto aparece en pocos. Jerónimo, hacia el 406, lo repite en una carta: casi todos los códices griegos no tienen el pasaje. A ellos se suman la versión siríaca más antigua, un centenar de manuscritos armenios y los dos georgianos más viejos.
+
+::: lamina sinaitico
 
 Del otro lado están los más antiguos de todos, pero no son manuscritos sino citas. Hacia el 180, Ireneo escribe que "al final de su evangelio Marcos dice" y cita el versículo 19: «Y el Señor, después que les habló, fue recibido arriba en el cielo, y se sentó a la diestra de Dios» (16:19). Eso es ciento cincuenta años antes del Vaticano. Taciano, hacia el 170, incluye los versículos en su armonía de los cuatro evangelios, y Justino, hacia el 155, parece hacer eco del versículo 20. Y los códices Alejandrino, de Efrén, de Beza y de Washington, del siglo V, junto con la inmensa mayoría de los manuscritos posteriores y la Vulgata latina, los traen. Así que tienes dos hechos ciertos y en tensión: los manuscritos más antiguos no los tienen; los autores más antiguos sí los conocen.
 
 ### Los otros finales
 
-No son dos opciones sino cuatro, y eso es revelador. Está el final en 16:8. Están los doce versículos. Está el "final corto", una sola frase que un códice latino africano del siglo IV o V, el Bobiense, trae en lugar de los doce versículos: "Pero ellas contaron brevemente a los que estaban con Pedro todo lo que se les había mandado. Y después de esto, Jesús mismo envió por medio de ellos, del oriente al occidente, la proclamación sagrada e incorruptible de la salvación eterna. Amén." Seis manuscritos griegos traen los dos finales, el corto y el largo, uno detrás de otro, y algunos con una nota del copista: "en algunos ejemplares se encuentra también esto". Y está el "logion de Freer": el Códice de Washington, del siglo V, inserta después del versículo 14 un diálogo donde los discípulos se disculpan de su incredulidad porque "este siglo de iniquidad está bajo Satanás", y Jesús les responde. Jerónimo conocía ese texto. Hay hasta un manuscrito armenio del año 989 que escribe antes del versículo 9 "del presbítero Aristón", quizá el Aristión que Papías menciona como discípulo del Señor. Lo que todo esto muestra es que a los copistas antiguos un evangelio que terminaba en «porque tenían miedo» les parecía imposible, y más de uno intentó rematarlo.
+No son dos opciones sino cuatro, y eso es revelador. Está el final en 16:8. Están los doce versículos. Está el "final corto", una sola frase que un códice latino africano del siglo IV o V, el Bobiense, trae en lugar de los doce versículos: "Pero ellas contaron brevemente a los que estaban con Pedro todo lo que se les había mandado. Y después de esto, Jesús mismo envió por medio de ellos, del oriente al occidente, la proclamación sagrada e incorruptible de la salvación eterna. Amén." Seis manuscritos griegos traen los dos finales, el corto y el largo, uno detrás de otro, y algunos con una nota del copista: "en algunos ejemplares se encuentra también esto". Y está el "logion de Freer": el [Códice de Washington](https://manuscripts.csntm.org/Manuscript/View/GA_032), del siglo V, inserta después del versículo 14 un diálogo donde los discípulos se disculpan de su incredulidad porque "este siglo de iniquidad está bajo Satanás", y Jesús les responde. Jerónimo conocía ese texto. Hay hasta un manuscrito armenio del año 989 que escribe antes del versículo 9 "del presbítero Aristón", quizá el Aristión que Papías menciona como discípulo del Señor. Lo que todo esto muestra es que a los copistas antiguos un evangelio que terminaba en «porque tenían miedo» les parecía imposible, y más de uno intentó rematarlo.
+
+::: lamina freer
 
 ### Por qué importa y por qué no tanto
 

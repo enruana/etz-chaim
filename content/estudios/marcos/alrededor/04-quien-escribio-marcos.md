@@ -23,9 +23,43 @@ fuentes:
     postura: "academica"
   - titulo: "R. T. France, The Gospel of Mark (NIGTC, Eerdmans, 2002)"
     postura: "confesional"
+laminas:
+  - id: "p45"
+    archivo: "p45-marcos.jpg"
+    pie: "Un fragmento del papiro Chester Beatty I (P45), de hacia el año 250, con Marcos 8:35 a 9:1: la copia más antigua que se conserva de un trozo de este evangelio. Tampoco lleva firma."
+    credito: "Papiro Chester Beatty I (P45), siglo III, dominio público, vía Wikimedia Commons"
+    url: "https://commons.wikimedia.org/wiki/File:P45_Marc_8.35-9.1.jpg"
+    ancho: "640"
+    alto: "280"
+  - id: "hierapolis"
+    archivo: "hierapolis-teatro.jpg"
+    pie: "El teatro de Hierápolis, en la actual Turquía, la ciudad donde Papías fue obispo y escribió, hacia el 110 o el 130, que Marcos fue el intérprete de Pedro."
+    credito: "Foto: Contributor ITA, CC BY-SA 3.0, vía Wikimedia Commons"
+    url: "https://commons.wikimedia.org/wiki/File:Theatre_of_Hierapolis_-_scaenae_frons.jpg"
+    ancho: "988"
+    alto: "741"
+ver:
+  - titulo: "El papiro P45, hoja por hoja (CSNTM)"
+    tipo: "manuscrito"
+    url: "https://manuscripts.csntm.org/Manuscript/View/GA_P45"
+    nota: "El manuscrito más antiguo con texto de Marcos, del siglo III, en el visor del Center for the Study of New Testament Manuscripts. En inglés."
+  - titulo: "Eusebio, Historia eclesiástica, libro III (New Advent)"
+    tipo: "texto"
+    url: "https://www.newadvent.org/fathers/250103.htm"
+    nota: "El capítulo 39 es el de Papías: ahí está el párrafo sobre Marcos, intérprete de Pedro. En inglés."
+  - titulo: "Eusebio, Historia eclesiástica, en español (Internet Archive)"
+    tipo: "texto"
+    url: "https://archive.org/details/historia-eclesiastica-eusebio"
+    nota: "Una edición bilingüe escaneada; el pasaje de Papías va en III, 39, 15."
+  - titulo: "Ireneo, Contra las herejías, libro III (New Advent)"
+    tipo: "texto"
+    url: "https://www.newadvent.org/fathers/0103301.htm"
+    nota: "El capítulo 1 trae la frase sobre Marcos, discípulo e intérprete de Pedro. En inglés."
 ---
 
 **Ningún evangelio firma.** Marcos empieza con «Principio del evangelio de Jesucristo, Hijo de Dios» (1:1) y en dieciséis capítulos nunca dice quién escribe. El "Según San Marcos" de tu Biblia es un título que le puso la iglesia. ¿Cuándo, y con qué base? Vamos por partes.
+
+::: lamina p45
 
 ### Lo que el libro dice de sí mismo
 
@@ -35,13 +69,15 @@ Hay dos pistas más finas. En la cruz, Marcos nombra a «Simón de Cirene, padre
 
 ### Papías, el que lo dijo primero
 
-El primero que pone nombre es Papías, obispo de Hierápolis, en la actual Turquía, que escribió hacia el año 110 o 130 cinco libros sobre los dichos del Señor. Los libros se perdieron, pero Eusebio de Cesarea copió este párrafo dos siglos después: "Y esto decía el presbítero: Marcos, que fue intérprete de Pedro, escribió con exactitud, aunque no en orden, cuanto recordaba de lo que el Señor dijo e hizo. Porque él no había oído al Señor ni lo había seguido, sino más tarde, como dije, a Pedro, quien daba sus enseñanzas según la necesidad, no como quien compone un relato ordenado de los dichos del Señor. Así que Marcos no se equivocó al escribir algunas cosas como las recordaba. Porque tuvo un solo cuidado: no omitir nada de lo que había oído ni falsear nada."
+El primero que pone nombre es Papías, obispo de Hierápolis, en la actual Turquía, que escribió hacia el año 110 o 130 cinco libros sobre los dichos del Señor. Los libros se perdieron, pero [Eusebio de Cesarea copió este párrafo](https://www.newadvent.org/fathers/250103.htm) dos siglos después: "Y esto decía el presbítero: Marcos, que fue intérprete de Pedro, escribió con exactitud, aunque no en orden, cuanto recordaba de lo que el Señor dijo e hizo. Porque él no había oído al Señor ni lo había seguido, sino más tarde, como dije, a Pedro, quien daba sus enseñanzas según la necesidad, no como quien compone un relato ordenado de los dichos del Señor. Así que Marcos no se equivocó al escribir algunas cosas como las recordaba. Porque tuvo un solo cuidado: no omitir nada de lo que había oído ni falsear nada."
+
+::: lamina hierapolis
 
 Tres afirmaciones: que lo escribió Marcos; que Marcos fue "intérprete" de Pedro, su traductor o su portavoz; y que no está "en orden". Y una fuente: "el presbítero", que es Juan el presbítero, un discípulo de la primera generación, lo que lleva la tradición al siglo I. Fíjate en el tono: Papías se defiende. Alguien criticaba el orden de Marcos, y él responde que la exactitud importa más que el orden.
 
 ### Los que lo repitieron
 
-Hacia el 180, Ireneo, obispo de Lyon, escribe: "Después de la partida de estos, Marcos, discípulo e intérprete de Pedro, nos transmitió también por escrito lo que Pedro predicaba". "Estos" son Pedro y Pablo; "la partida", su muerte en Roma, hacia el 64 al 67. Hacia el 200, Clemente de Alejandría cuenta otra versión: los que oían a Pedro en Roma le rogaron a Marcos que pusiera por escrito la predicación, y Pedro, al saberlo, "ni lo prohibió ni lo animó". Es decir, en vida de Pedro. Se contradicen en el cuándo y coinciden en lo demás: Roma, Pedro, Marcos. Justino, hacia el 155, cita "las memorias de Pedro" para decir que Jesús apodó a dos hermanos Hijos del trueno, y eso solo está en Marcos: «a quienes apellidó Boanerges, esto es, Hijos del trueno» (3:17). Un prólogo antiguo añade un detalle que nadie inventaría: que Marcos era *kolobodáctilo*, "el de los dedos cortos".
+Hacia el 180, [Ireneo](https://www.newadvent.org/fathers/0103301.htm), obispo de Lyon, escribe: "Después de la partida de estos, Marcos, discípulo e intérprete de Pedro, nos transmitió también por escrito lo que Pedro predicaba". "Estos" son Pedro y Pablo; "la partida", su muerte en Roma, hacia el 64 al 67. Hacia el 200, Clemente de Alejandría cuenta otra versión: los que oían a Pedro en Roma le rogaron a Marcos que pusiera por escrito la predicación, y Pedro, al saberlo, "ni lo prohibió ni lo animó". Es decir, en vida de Pedro. Se contradicen en el cuándo y coinciden en lo demás: Roma, Pedro, Marcos. Justino, hacia el 155, cita "las memorias de Pedro" para decir que Jesús apodó a dos hermanos Hijos del trueno, y eso solo está en Marcos: «a quienes apellidó Boanerges, esto es, Hijos del trueno» (3:17). Un prólogo antiguo añade un detalle que nadie inventaría: que Marcos era *kolobodáctilo*, "el de los dedos cortos".
 
 Dos datos más pesan. Ningún manuscrito de este evangelio lleva otro nombre, y ninguna iglesia, en ningún lugar, propuso otro autor. Martin Hengel hizo notar que los títulos se volvieron necesarios en cuanto una comunidad tuvo dos evangelios en el mismo estante, muy a principios del siglo II, y que si cada iglesia los hubiera bautizado por su cuenta tendríamos nombres distintos en Egipto, en Siria y en Roma. Tenemos los mismos en todas partes.
 
