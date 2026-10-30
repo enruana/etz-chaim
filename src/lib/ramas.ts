@@ -284,7 +284,7 @@ export function siguienteFolio(leidos: Set<string>): Folio | null {
   return null;
 }
 
-// "Marcos 1, 6 · Juan 1" o "Marcos" si el folio es de todo el libro.
+// "Marcos 1, 6 · Juan 1", o "Todo Marcos" si el folio es del libro entero.
 export function rotuloAnclas(f: Folio): string {
   const porLibro = new Map<string, number[]>();
   for (const a of f.capitulos) {
@@ -293,7 +293,10 @@ export function rotuloAnclas(f: Folio): string {
     porLibro.set(a.libro, caps);
   }
   return [...porLibro.entries()]
-    .map(([slug, caps]) => `${getLibro(slug)?.nombre ?? slug}${caps.length ? " " + caps.join(", ") : ""}`)
+    .map(([slug, caps]) => {
+      const nombre = getLibro(slug)?.nombre ?? slug;
+      return caps.length ? `${nombre} ${caps.join(", ")}` : `Todo ${nombre}`;
+    })
     .join(" · ");
 }
 

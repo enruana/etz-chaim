@@ -311,25 +311,36 @@
   .celda-cap.completa:hover { background: #2a2826; }
 }
 
-/* ——— Página del libro: dos vías en paralelo ——— */
+/* ——— Página del libro: los capítulos en filas, con la historia colgando de cada uno ——— */
 @layer components {
-  /* una columna; lado a lado cuando el cuerpo da el ancho (iPad vertical, escritorio) */
-  .vias-marco { container-type: inline-size; }
-  .vias { display: grid; grid-template-columns: minmax(0, 1fr); border-bottom: 1px solid var(--grafito); }
-  .via { display: flex; flex-direction: column; min-width: 0; }
-  .via-cab { display: flex; flex-direction: column; gap: 6px; padding: 12px var(--pad) 14px; background: var(--grafito); color: var(--piedra); }
-  .via-titulo { font-family: var(--font-display), "Arial Narrow", sans-serif; font-weight: 800; font-size: 2rem; line-height: 0.9; text-transform: uppercase; }
-  .via-nota { color: var(--pista); }
-  .via > .bloque { margin-top: 0; }
-  .via .rejilla-caps { margin-bottom: 0; }
-  @container (min-width: 40rem) {
-    .vias { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-    .via + .via { border-left: 1px solid var(--grafito); }
+  .fila-cap { border-bottom: 1px solid var(--grafito); }
+  .fila-cap-estudio {
+    display: grid; grid-template-columns: 2.75rem 1fr auto; align-items: center; gap: 12px;
+    min-height: 56px; padding: 9px var(--pad) 8px; text-decoration: none; color: var(--grafito);
   }
-  /* columnas estrechas (escritorio de 1280): el bloque amarillo cabe en una línea */
-  @container (min-width: 40rem) and (max-width: 50rem) {
-    .via .bloque { font-size: 1.5rem; min-height: 56px; }
-  }
+  .fila-cap-estudio:hover { background: var(--hormigon); }
+  .fila-cap-estudio > span:nth-child(2) { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .fila-cap-estudio .mono { color: var(--gris); }
+  .fila-cap.sin .celda-num { color: var(--gris); }
+  .fila-cap.sin .fila-cap-estudio { min-height: 46px; padding-block: 6px; }
+  .fila-cap.sin .fila-cap-estudio > .marca { visibility: hidden; }
+  .fila-cap.activa { background: var(--oropimente); }
+  .fila-cap.activa .fila-cap-estudio:hover { background: #ffd21f; }
+  .fila-cap.activa .mono, .fila-cap.activa .fichas-rotulo { color: var(--grafito); }
+  .fila-cap.completa { background: var(--grafito); color: var(--piedra); }
+  .fila-cap.completa .fila-cap-estudio { color: var(--piedra); }
+  .fila-cap.completa .fila-cap-estudio:hover { background: #2a2826; }
+  .fila-cap.completa .mono, .fila-cap.completa .fichas-rotulo { color: var(--pista); }
+  .fila-cap.completa .marca { border-color: var(--piedra); }
+  .fila-cap.completa .marca.on { background: var(--piedra); }
+  .fila-cap.completa .ficha { color: var(--piedra); }
+
+  /* las fichas: los folios de ese capítulo, alineados con su título */
+  .fichas { display: flex; flex-wrap: wrap; align-items: center; gap: 0 14px; padding: 0 var(--pad) 8px calc(var(--pad) + 2.75rem + 12px); }
+  .fichas-rotulo { color: var(--gris); }
+  .ficha { display: inline-flex; align-items: center; gap: 6px; min-height: 30px; text-decoration: none; color: var(--grafito); }
+  .ficha:hover { text-decoration: underline; }
+  .ficha .marca { width: 9px; height: 9px; }
 
   /* libros largos (Salmos, Génesis, Isaías): celdas más apretadas */
   .rejilla-caps.densa { grid-template-columns: repeat(auto-fill, minmax(3.5rem, 1fr)); }

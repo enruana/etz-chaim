@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { libro as getLibro, FASES } from "@/lib/canon";
 import { era as getEra, eraDeCapitulo } from "@/lib/arco";
-import { foliosDelLibroEnCapitulo, foliosTransversalesDeCapitulo } from "@/lib/ramas";
+import { clave, foliosDelLibroEnCapitulo, foliosTransversalesDeCapitulo, hrefFolio } from "@/lib/ramas";
 import { FilasFolios } from "@/components/Folios";
 import { foliosLeidos } from "@/lib/db";
 import { esTematica, html, rotuloCorto, rotuloParte, subtituloParte, type Parte } from "@/lib/studies";
@@ -33,6 +33,10 @@ export default async function CapituloPage({ params }: { params: Promise<{ libro
   const alrededor = foliosDelLibroEnCapitulo(slug, cap);
   const ramas = foliosTransversalesDeCapitulo(slug, cap);
   const leidos = alrededor.length + ramas.length > 0 ? foliosLeidos() : new Set<string>();
+  // Sin leer, primero los propios del capítulo y después los del libro entero.
+  const sinLeer = alrededor
+    .filter((f) => !leidos.has(clave(f)))
+    .sort((a, b) => Number(!a.capitulos.some((x) => x.cap === cap)) - Number(!b.capitulos.some((x) => x.cap === cap)));
   const nombre = l.nombre.toUpperCase();
   const num = dos(cap);
   const titulo = `${nombre} ${num}`;
@@ -121,14 +125,24 @@ export default async function CapituloPage({ params }: { params: Promise<{ libro
               <span>→</span>
             </Link>
           ) : (
-            cap < l.caps && (
-              <Link href={`/estudiar/${slug}/${cap + 1}`} className="bloque">
-                <span>
-                  Seguir · {l.nombre} {dos(cap + 1)}
-                </span>
-                <span>→</span>
-              </Link>
-            )
+            <>
+              {sinLeer.length > 0 && (
+                <Link href={hrefFolio(sinLeer[0])} className="bloque bloque-tinta">
+                  <span>
+                    Antes de seguir · {dos(sinLeer[0].n)} {sinLeer[0].rotulo}
+                  </span>
+                  <span>→</span>
+                </Link>
+              )}
+              {cap < l.caps && (
+                <Link href={`/estudiar/${slug}/${cap + 1}`} className="bloque">
+                  <span>
+                    Seguir · {l.nombre} {dos(cap + 1)}
+                  </span>
+                  <span>→</span>
+                </Link>
+              )}
+            </>
           )}
 
           {GRUPOS.map((g) => {
@@ -163,6 +177,41 @@ export default async function CapituloPage({ params }: { params: Promise<{ libro
             );
           })}
 
+        </>
+      ) : (
+        <section className="pad py-10">
+          <p className="mono m-0">En investigación</p>
+          <p className="serif m-0 mt-2" style={{ fontSize: "1.1875rem", lineHeight: 1.4, maxWidth: "32rem" }}>
+            El estudio de {l.nombre} {cap} todavía no está escrito. Vamos capítulo a capítulo: cuando el anterior esté
+            estudiado, investigamos el siguiente a profundidad.
+          </p>
+        </section>
+      )}
+
+      {alrededor.length > 0 && (
+        <section>
+          <Link href={`/estudiar/${slug}`} className="grupo-cab mono flex justify-between gap-3" style={{ textDecoration: "none" }}>
+            <span>Alrededor de {l.nombre} · la historia que rodea este capítulo</span>
+            <span className="shrink-0">
+              {dos(alrededor.length - sinLeer.length)}/{dos(alrededor.length)}
+            </span>
+          </Link>
+          <FilasFolios folios={alrededor} leidos={leidos} anclas={false} />
+        </section>
+      )}
+
+      {ramas.length > 0 && (
+        <section>
+          <Link href="/ramas" className="grupo-cab mono flex justify-between gap-3" style={{ textDecoration: "none" }}>
+            <span>Por las ramas · temas transversales</span>
+            <span className="shrink-0">{dos(ramas.length)}</span>
+          </Link>
+          <FilasFolios folios={ramas} leidos={leidos} anclas={false} />
+        </section>
+      )}
+
+      {e && (
+        <>
           <form
             action={e.hechas > 0 ? desmarcarTodoAction.bind(null, slug, cap) : marcarTodoAction.bind(null, slug, cap)}
             className="pad pt-2"
@@ -179,34 +228,6 @@ export default async function CapituloPage({ params }: { params: Promise<{ libro
             </details>
           )}
         </>
-      ) : (
-        <section className="pad py-10">
-          <p className="mono m-0">En investigación</p>
-          <p className="serif m-0 mt-2" style={{ fontSize: "1.1875rem", lineHeight: 1.4, maxWidth: "32rem" }}>
-            El estudio de {l.nombre} {cap} todavía no está escrito. Vamos capítulo a capítulo: cuando el anterior esté
-            estudiado, investigamos el siguiente a profundidad.
-          </p>
-        </section>
-      )}
-
-      {alrededor.length > 0 && (
-        <section>
-          <Link href={`/estudiar/${slug}`} className="grupo-cab mono flex justify-between gap-3" style={{ textDecoration: "none" }}>
-            <span>Alrededor de {l.nombre} · historia del libro</span>
-            <span className="shrink-0">{dos(alrededor.length)}</span>
-          </Link>
-          <FilasFolios folios={alrededor} leidos={leidos} anclas={false} />
-        </section>
-      )}
-
-      {ramas.length > 0 && (
-        <section>
-          <Link href="/ramas" className="grupo-cab mono flex justify-between gap-3" style={{ textDecoration: "none" }}>
-            <span>Por las ramas · temas transversales</span>
-            <span className="shrink-0">{dos(ramas.length)}</span>
-          </Link>
-          <FilasFolios folios={ramas} leidos={leidos} anclas={false} />
-        </section>
       )}
       </div>
     </main>

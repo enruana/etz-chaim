@@ -6,16 +6,17 @@ import { clave, hrefFolio, ramaDeLibro } from "@/lib/ramas";
 import { resumenProgreso } from "@/lib/progreso";
 import { foliosLeidos } from "@/lib/db";
 import { getLibroTexto, hasStudy, html } from "@/lib/studies";
+import { estadoCapitulo } from "@/lib/avance";
 import { romano } from "@/lib/romano";
 import { dos, k, talla } from "@/lib/estela";
-import { FilasFolios, FilasPendientes } from "@/components/Folios";
+import { Fichas, FilasFolios, FilasPendientes } from "@/components/Folios";
 
 export const dynamic = "force-dynamic";
 
-// La página de un libro: dos vías en paralelo, cada una con su propio
-// "siguiente paso". Vía 01, el estudio capítulo por capítulo (con la Biblia
-// abierta). Vía 02, «Alrededor de <Libro>», la historia del libro (para leer
-// sin ella). Debajo, la presentación del libro.
+// La página de un libro: un solo camino, capítulo por capítulo. De cada
+// capítulo cuelgan, como fichas, los folios de «Alrededor de <Libro>» que
+// hablan de él. Más abajo va la sección entera en orden, para leerla de
+// corrido sin Biblia a la mano, y al final la presentación del libro.
 export default async function LibroPage({ params }: { params: Promise<{ libro: string }> }) {
   const { libro: slug } = await params;
   const l = getLibro(slug);
@@ -35,8 +36,17 @@ export default async function LibroPage({ params }: { params: Promise<{ libro: s
   const pendientes = alrededor?.pendientes ?? [];
   const foliosLeidosN = folios.filter((f) => leidos.has(clave(f))).length;
   const sigFolio = folios.find((f) => !leidos.has(clave(f))) ?? null;
+  // Folios del libro entero (sin capítulo) y folios de cada capítulo.
+  const delLibro = folios.filter((f) => f.capitulos.some((a) => a.libro === slug && a.cap === null));
+  const deCap = (c: number) => folios.filter((f) => f.capitulos.some((a) => a.libro === slug && a.cap === c));
   const nombre = l.nombre.toUpperCase();
+
+  // Libros largos (Salmos, Génesis, Isaías): en filas solo los capítulos con
+  // estudio, con folios, leídos o el que sigue; el resto, en una cuadrícula.
   const denso = l.caps > 40;
+  const enFila = caps.filter((c) => !denso || hasStudy(slug, c) || p.estaCompleto(slug, c) || c === sigCap || deCap(c).length > 0);
+  const enRejilla = caps.filter((c) => !enFila.includes(c));
+  const antes = l.videos.length > 0 || delLibro.length > 0;
 
   return (
     <main className="pagina pagina-lectura">
@@ -65,111 +75,128 @@ export default async function LibroPage({ params }: { params: Promise<{ libro: s
             {l.genero} · {l.caps} {l.caps === 1 ? "capítulo" : "capítulos"} · Fase {romano(l.fase)} · {FASES[l.fase].nombre}
           </p>
           <p className="serif m-0" style={{ fontSize: "1rem", lineHeight: 1.35, color: "var(--gris)" }}>
-            Dos vías en paralelo: el estudio, con la Biblia abierta, y la historia alrededor, para cuando no la tienes a la mano.
+            Se estudia capítulo por capítulo, con la Biblia abierta. Debajo de cada capítulo cuelga la historia que lo rodea, para leer sin ella.
           </p>
         </section>
 
-        <div className="vias-marco">
-          <div className="vias">
-            {/* Vía 01: el estudio, capítulo por capítulo */}
-            <section className="via" aria-labelledby="via-estudio">
-              <header className="via-cab">
-                <p className="mono m-0 flex justify-between">
-                  <span>Vía 01</span>
-                  <span>
-                    {dos(done)}/{dos(l.caps)}
-                  </span>
-                </p>
-                <h2 id="via-estudio" className="via-titulo m-0">
-                  El estudio
-                </h2>
-                <p className="via-nota mono m-0">Capítulo por capítulo, con la Biblia abierta.</p>
-              </header>
-              <Link href={`/estudiar/${slug}/${sigCap}`} className="bloque">
+        <Link href={`/estudiar/${slug}/${sigCap}`} className="bloque">
+          <span>
+            {done >= l.caps ? "Releer" : done > 0 ? "Continuar" : "Empezar"} · {l.nombre} {dos(sigCap)}
+          </span>
+          <span>→</span>
+        </Link>
+
+        {antes && (
+          <section>
+            <p className="grupo-cab mono m-0">Antes de empezar</p>
+            {l.videos.map((v, i) => (
+              <a key={v} href={v} target="_blank" rel="noreferrer" className="fila apilada ver">
                 <span>
-                  {done >= l.caps ? "Releer" : done > 0 ? "Continuar" : "Empezar"} · {l.nombre} {dos(sigCap)}
+                  <span className="fila-titulo">
+                    El panorama de {l.nombre}
+                    {l.videos.length > 1 ? `, parte ${romano(i + 1)}` : ""}
+                  </span>
+                  <span className="mono gris">Video · Proyecto Biblia · fuera de la app</span>
+                </span>
+                <span className="mono">↗</span>
+              </a>
+            ))}
+            {delLibro.length > 0 && <FilasFolios folios={delLibro} leidos={leidos} />}
+          </section>
+        )}
+
+        <section>
+          <p className="grupo-cab mono m-0 flex justify-between">
+            <span>Capítulo por capítulo</span>
+            <span>
+              {dos(done)}/{dos(l.caps)}
+            </span>
+          </p>
+          {enFila.map((c) => {
+            const hay = hasStudy(slug, c);
+            const e = hay ? estadoCapitulo(slug, c) : null;
+            const completo = p.estaCompleto(slug, c) || !!e?.completo;
+            const sigue = c === sigCap && !completo;
+            const propios = deCap(c);
+            let estado = "";
+            if (!hay) estado = sigue ? "Sigue · por escribir" : "Por escribir";
+            else if (completo) estado = "Leído";
+            else if (e && e.hechas > 0) estado = `${sigue ? "Sigue · " : ""}${dos(e.hechas)}/${dos(e.total)} partes`;
+            else estado = sigue ? "Sigue" : e ? `${e.total} partes` : "";
+            return (
+              <div key={c} className={`fila-cap${completo ? " completa" : sigue ? " activa" : hay ? "" : " sin"}`}>
+                <Link href={`/estudiar/${slug}/${c}`} className="fila-cap-estudio" aria-label={`${l.nombre} ${c}`}>
+                  <span className="celda-num">{dos(c)}</span>
+                  <span>
+                    {e?.capitulo.lema && <span className="fila-titulo">{e.capitulo.lema}</span>}
+                    {estado && <span className="mono">{estado}</span>}
+                  </span>
+                  <span className={`marca${completo ? " on" : ""}`} aria-label={completo ? "Leído" : "Pendiente"} />
+                </Link>
+                {propios.length > 0 && <Fichas folios={propios} leidos={leidos} />}
+              </div>
+            );
+          })}
+          {enRejilla.length > 0 && (
+            <>
+              <p className="pad raya mono gris m-0 py-3">Los demás · por escribir</p>
+              <div className="rejilla-caps densa">
+                {enRejilla.map((c) => (
+                  <Link key={c} href={`/estudiar/${slug}/${c}`} className="celda-cap sin" aria-label={`${l.nombre} ${c}`}>
+                    <span className="celda-num">{dos(c)}</span>
+                    <span className="mono"></span>
+                  </Link>
+                ))}
+              </div>
+            </>
+          )}
+          {escritos < l.caps && (
+            <p className="pad raya mono gris m-0 py-3">
+              {dos(escritos)} de {l.caps} capítulos escritos · los demás van llegando
+            </p>
+          )}
+        </section>
+
+        {alrededor && (
+          <section>
+            <p className="grupo-cab mono m-0 flex justify-between gap-3">
+              <span>{alrededor.titulo} · la historia del libro</span>
+              <span className="shrink-0">{folios.length === 0 ? "Por empezar" : `${dos(foliosLeidosN)}/${dos(folios.length)}`}</span>
+            </p>
+            {folios.length > 0 && (
+              <p className="pad raya serif m-0 py-3" style={{ fontSize: "1rem", lineHeight: 1.35, color: "var(--gris)" }}>
+                Los mismos folios que cuelgan de los capítulos, aquí en orden, para leerlos de corrido sin Biblia a la mano.
+              </p>
+            )}
+            {sigFolio ? (
+              <Link href={hrefFolio(sigFolio)} className="bloque bloque-tinta">
+                <span>
+                  {foliosLeidosN > 0 ? "Seguir leyendo" : "Leer"} · {dos(sigFolio.n)} {sigFolio.rotulo}
                 </span>
                 <span>→</span>
               </Link>
-              <div className={`rejilla-caps${denso ? " densa" : ""}`}>
-                {caps.map((c) => {
-                  const completo = p.estaCompleto(slug, c);
-                  const es = activo && c === p.actual.cap;
-                  const hay = hasStudy(slug, c);
-                  return (
-                    <Link
-                      key={c}
-                      href={`/estudiar/${slug}/${c}`}
-                      className={`celda-cap${completo ? " completa" : es ? " activa" : hay ? "" : " sin"}`}
-                      aria-label={`${l.nombre} ${c}`}
-                    >
-                      <span className="celda-num">{dos(c)}</span>
-                      <span className="mono">{completo ? "Leído" : es ? "Sigue" : ""}</span>
-                    </Link>
-                  );
-                })}
-              </div>
-              {escritos < l.caps && (
-                <p className="pad raya mono gris m-0 py-3">
-                  {dos(escritos)} de {l.caps} capítulos escritos · los demás van llegando
-                </p>
-              )}
-              {l.videos.length > 0 && (
-                <div className="pad raya mono py-3">
-                  <p className="gris m-0">Antes de empezar · el panorama de Proyecto Biblia</p>
-                  <div className="flex gap-5">
-                    {l.videos.map((v, i) => (
-                      <a key={v} href={v} target="_blank" rel="noreferrer" className="flex h-11 items-center">
-                        Video {l.videos.length > 1 ? romano(i + 1) : "panorama"} ↗
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </section>
-
-            {/* Vía 02: alrededor del libro, su historia */}
-            <section className="via" aria-labelledby="via-alrededor">
-              <header className="via-cab">
-                <p className="mono m-0 flex justify-between">
-                  <span>Vía 02</span>
-                  <span>{folios.length === 0 ? "Por empezar" : `${dos(foliosLeidosN)}/${dos(folios.length)}`}</span>
-                </p>
-                <h2 id="via-alrededor" className="via-titulo m-0">
-                  {alrededor?.titulo ?? `Alrededor de ${l.nombre}`}
-                </h2>
-                <p className="via-nota mono m-0">La historia del libro, sin Biblia a la mano.</p>
-              </header>
-              {sigFolio ? (
-                <Link href={hrefFolio(sigFolio)} className="bloque">
+            ) : folios.length > 0 ? (
+              <p className="pad raya mono m-0 py-3">Al día · todos los folios leídos</p>
+            ) : null}
+            {folios.length > 0 && <FilasFolios folios={folios} leidos={leidos} />}
+            {pendientes.length > 0 && (
+              <details className="pliegue">
+                <summary className="mono">
                   <span>
-                    {foliosLeidosN > 0 ? "Continuar" : "Leer"} · {dos(sigFolio.n)} {sigFolio.rotulo}
+                    Por investigar · {dos(pendientes.length)} {pendientes.length === 1 ? "tema" : "temas"}
                   </span>
-                  <span>→</span>
-                </Link>
-              ) : folios.length > 0 ? (
-                <p className="pad raya mono m-0 py-3">Al día · todos los folios leídos</p>
-              ) : null}
-              {folios.length > 0 && <FilasFolios folios={folios} leidos={leidos} />}
-              {alrededor && pendientes.length > 0 && (
-                <details className="pliegue">
-                  <summary className="mono">
-                    <span>
-                      Por investigar · {dos(pendientes.length)} {pendientes.length === 1 ? "tema" : "temas"}
-                    </span>
-                    <span aria-hidden="true">▾</span>
-                  </summary>
-                  <FilasPendientes rama={alrededor} />
-                </details>
-              )}
-              {folios.length === 0 && pendientes.length === 0 && (
-                <p className="pad raya serif m-0 py-4" style={{ fontSize: "1rem", lineHeight: 1.35, color: "var(--gris)" }}>
-                  Todavía no hay folios de {l.nombre}. Se escriben a medida que el estudio avanza y un capítulo pide saber algo que no está en la Biblia.
-                </p>
-              )}
-            </section>
-          </div>
-        </div>
+                  <span aria-hidden="true">▾</span>
+                </summary>
+                <FilasPendientes rama={alrededor} />
+              </details>
+            )}
+            {folios.length === 0 && pendientes.length === 0 && (
+              <p className="pad raya serif m-0 py-4" style={{ fontSize: "1rem", lineHeight: 1.35, color: "var(--gris)" }}>
+                Todavía no hay folios de {l.nombre}. Se escriben a medida que el estudio avanza y un capítulo pide saber algo que no está en la Biblia.
+              </p>
+            )}
+          </section>
+        )}
 
         {(texto?.md || alrededor?.nota) && (
           <section>
