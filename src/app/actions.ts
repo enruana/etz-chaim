@@ -2,8 +2,8 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { desmarcarCapitulo, desmarcarFolio, desmarcarParte, desmarcarPartes, marcarFolio, marcarPartes } from "@/lib/db";
-import { hrefFolio, hrefRama, rama as getRama } from "@/lib/ramas";
+import { desmarcarCapitulo, desmarcarFolio, desmarcarParte, desmarcarPartes, foliosLeidos, marcarFolio, marcarPartes } from "@/lib/db";
+import { hrefFolio, hrefRama, rama as getRama, siguienteFolioEnLinea } from "@/lib/ramas";
 import { estadoCapitulo, sincronizarCapitulo } from "@/lib/avance";
 import { getCapitulo } from "@/lib/studies";
 import { calificar } from "@/lib/srs";
@@ -47,13 +47,21 @@ export async function calificarAction(id: string, rating: Rating) {
   revalidatePath("/memoria");
 }
 
-// Las ramas: marca el folio como leído y lleva al siguiente de la rama (o a la rama, si era el último).
+// Las ramas: marca el folio como leído y lleva al siguiente. En una rama
+// transversal, el siguiente de la rama (o la rama, si era el último). En
+// «Alrededor de <Libro>», el siguiente folio sin leer de la línea de lectura
+// del libro, o la página del libro cuando lo que sigue es un capítulo.
 export async function leerFolioAction(rama: string, slug: string) {
   const r = getRama(rama);
-  if (!r || !r.folios.some((f) => f.slug === slug)) return;
+  const f = r?.folios.find((x) => x.slug === slug);
+  if (!r || !f) return;
   marcarFolio(rama, slug);
   revalidatePath("/", "layout");
-  const i = r.folios.findIndex((f) => f.slug === slug);
+  if (r.libro) {
+    const sig = siguienteFolioEnLinea(f, foliosLeidos());
+    redirect(sig ? hrefFolio(sig) : hrefRama(r));
+  }
+  const i = r.folios.findIndex((x) => x.slug === slug);
   const sig = r.folios[i + 1];
   redirect(sig ? hrefFolio(sig) : hrefRama(r));
 }

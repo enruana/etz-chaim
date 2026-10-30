@@ -25,26 +25,6 @@ export function FilasFolios({ folios, leidos, anclas = true }: { folios: Folio[]
   );
 }
 
-// Las fichas: los folios que hablan de un capítulo, en una línea debajo de él.
-export function Fichas({ folios, leidos }: { folios: Folio[]; leidos: Set<string> }) {
-  return (
-    <div className="fichas mono">
-      <span className="fichas-rotulo">Alrededor</span>
-      {folios.map((f) => {
-        const leido = leidos.has(clave(f));
-        return (
-          <Link key={clave(f)} href={hrefFolio(f)} className="ficha" title={f.titulo}>
-            <i className={`marca${leido ? " on" : ""}`} aria-hidden="true" />
-            <span>
-              {dos(f.n)} {f.rotulo}
-            </span>
-          </Link>
-        );
-      })}
-    </div>
-  );
-}
-
 // Lo que falta por investigar en una rama, numerado a continuación de sus folios.
 export function FilasPendientes({ rama, max }: { rama: Rama; max?: number }) {
   const lista = max ? rama.pendientes.slice(0, max) : rama.pendientes;

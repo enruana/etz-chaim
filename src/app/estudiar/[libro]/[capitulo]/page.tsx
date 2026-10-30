@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { libro as getLibro, FASES } from "@/lib/canon";
 import { era as getEra, eraDeCapitulo } from "@/lib/arco";
-import { clave, foliosDelLibroEnCapitulo, foliosTransversalesDeCapitulo, hrefFolio } from "@/lib/ramas";
+import { clave, foliosDelLibroEnCapitulo, foliosTransversalesDeCapitulo, hrefFolio, posicionEnLibro } from "@/lib/ramas";
 import { FilasFolios } from "@/components/Folios";
 import { foliosLeidos } from "@/lib/db";
 import { esTematica, html, rotuloCorto, rotuloParte, subtituloParte, type Parte } from "@/lib/studies";
@@ -33,10 +33,11 @@ export default async function CapituloPage({ params }: { params: Promise<{ libro
   const alrededor = foliosDelLibroEnCapitulo(slug, cap);
   const ramas = foliosTransversalesDeCapitulo(slug, cap);
   const leidos = alrededor.length + ramas.length > 0 ? foliosLeidos() : new Set<string>();
-  // Sin leer, primero los propios del capítulo y después los del libro entero.
-  const sinLeer = alrededor
-    .filter((f) => !leidos.has(clave(f)))
-    .sort((a, b) => Number(!a.capitulos.some((x) => x.cap === cap)) - Number(!b.capitulos.some((x) => x.cap === cap)));
+  // Sin leer: primero los que la línea de lectura coloca tras este capítulo,
+  // luego los que solo lo mencionan, y al final los del libro entero.
+  const rango = (f: (typeof alrededor)[number]) =>
+    posicionEnLibro(f, slug) === cap ? 0 : f.capitulos.some((x) => x.libro === slug && x.cap === cap) ? 1 : 2;
+  const sinLeer = alrededor.filter((f) => !leidos.has(clave(f))).sort((a, b) => rango(a) - rango(b));
   const nombre = l.nombre.toUpperCase();
   const num = dos(cap);
   const titulo = `${nombre} ${num}`;

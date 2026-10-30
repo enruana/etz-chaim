@@ -265,6 +265,47 @@ export function foliosTransversalesDeCapitulo(libro: string, cap: number): Folio
     .filter((f) => ancladoA(f, libro, cap));
 }
 
+// La línea de lectura de un libro: los capítulos en orden y, tras cada uno,
+// los folios de «Alrededor de <Libro>» que lo nombran primero en `capitulos`.
+// Los del libro entero (o sin ancla en este libro) van antes del capítulo 1.
+export type PasoLinea = { tipo: "capitulo"; cap: number } | { tipo: "folio"; folio: Folio };
+
+export function posicionEnLibro(f: Folio, libro: string): number {
+  const a = f.capitulos.find((x) => x.libro === libro);
+  return a?.cap ?? 0;
+}
+
+export function lineaDeLibro(libro: string): PasoLinea[] {
+  const l = getLibro(libro);
+  if (!l) return [];
+  const tras = new Map<number, Folio[]>();
+  for (const f of ramaDeLibro(libro)?.folios ?? []) {
+    const pos = Math.min(posicionEnLibro(f, libro), l.caps);
+    tras.set(pos, [...(tras.get(pos) ?? []), f]);
+  }
+  const paso = (f: Folio): PasoLinea => ({ tipo: "folio", folio: f });
+  const linea: PasoLinea[] = (tras.get(0) ?? []).map(paso);
+  for (let c = 1; c <= l.caps; c++) {
+    linea.push({ tipo: "capitulo", cap: c });
+    for (const f of tras.get(c) ?? []) linea.push(paso(f));
+  }
+  return linea;
+}
+
+// Tras leer un folio de un libro: el siguiente folio sin leer que venga
+// seguido en la línea, o null si lo que sigue es un capítulo (o nada).
+export function siguienteFolioEnLinea(f: Folio, leidos: Set<string>): Folio | null {
+  if (!f.libro) return null;
+  const linea = lineaDeLibro(f.libro);
+  const i = linea.findIndex((x) => x.tipo === "folio" && x.folio.slug === f.slug);
+  for (let j = i + 1; j >= 0 && j < linea.length; j++) {
+    const x = linea[j];
+    if (x.tipo !== "folio") break;
+    if (!leidos.has(clave(x.folio))) return x.folio;
+  }
+  return null;
+}
+
 export function foliosDeEra(n: number): Folio[] {
   return todosLosFolios().filter((f) => f.eras.includes(n));
 }

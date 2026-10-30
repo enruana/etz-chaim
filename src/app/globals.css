@@ -311,7 +311,7 @@
   .celda-cap.completa:hover { background: #2a2826; }
 }
 
-/* ——— Página del libro: los capítulos en filas, con la historia colgando de cada uno ——— */
+/* ——— Página del libro: la línea de lectura, capítulos y folios en una sola lista ——— */
 @layer components {
   .fila-cap { border-bottom: 1px solid var(--grafito); }
   .fila-cap-estudio {
@@ -326,21 +326,23 @@
   .fila-cap.sin .fila-cap-estudio > .marca { visibility: hidden; }
   .fila-cap.activa { background: var(--oropimente); }
   .fila-cap.activa .fila-cap-estudio:hover { background: #ffd21f; }
-  .fila-cap.activa .mono, .fila-cap.activa .fichas-rotulo { color: var(--grafito); }
+  .fila-cap.activa .mono { color: var(--grafito); }
   .fila-cap.completa { background: var(--grafito); color: var(--piedra); }
   .fila-cap.completa .fila-cap-estudio { color: var(--piedra); }
   .fila-cap.completa .fila-cap-estudio:hover { background: #2a2826; }
-  .fila-cap.completa .mono, .fila-cap.completa .fichas-rotulo { color: var(--pista); }
+  .fila-cap.completa .mono { color: var(--pista); }
   .fila-cap.completa .marca { border-color: var(--piedra); }
   .fila-cap.completa .marca.on { background: var(--piedra); }
-  .fila-cap.completa .ficha { color: var(--piedra); }
 
-  /* las fichas: los folios de ese capítulo, alineados con su título */
-  .fichas { display: flex; flex-wrap: wrap; align-items: center; gap: 0 14px; padding: 0 var(--pad) 8px calc(var(--pad) + 2.75rem + 12px); }
-  .fichas-rotulo { color: var(--gris); }
-  .ficha { display: inline-flex; align-items: center; gap: 6px; min-height: 30px; text-decoration: none; color: var(--grafito); }
-  .ficha:hover { text-decoration: underline; }
-  .ficha .marca { width: 9px; height: 9px; }
+  /* las filas aparte: folios y videos intercalados en la línea de lectura */
+  .fila-cap.aparte { background: var(--hormigon); }
+  .fila-cap.aparte .fila-cap-estudio { min-height: 50px; padding-block: 8px 7px; }
+  .fila-cap.aparte .fila-cap-estudio:hover { background: #cbc5bb; }
+  .fila-cap.aparte .fila-titulo { font-size: 1rem; }
+  .fila-cap.aparte.activa { background: var(--oropimente); }
+  .fila-cap.aparte.activa .fila-cap-estudio:hover { background: #ffd21f; }
+  .fila-cap-tipo { font-size: 0.625rem; letter-spacing: 0.04em; color: var(--gris); }
+  .fila-cap.activa .fila-cap-tipo { color: var(--grafito); }
 
   /* libros largos (Salmos, Génesis, Isaías): celdas más apretadas */
   .rejilla-caps.densa { grid-template-columns: repeat(auto-fill, minmax(3.5rem, 1fr)); }
