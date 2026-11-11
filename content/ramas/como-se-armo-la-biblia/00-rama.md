@@ -3,7 +3,6 @@ titulo: "Cómo se armó la Biblia"
 entrada: "Qué libros entraron, cuáles se quedaron fuera, quién lo decidió y cuándo."
 orden: "1"
 pendientes:
-  - "El Pastor de Hermas, el libro que casi entra"
   - "El Apocalipsis, el libro que casi queda fuera"
   - "Qué dicen los siete libros que no están en tu Biblia"
   - "Los evangelios que no entraron: Tomás, Pedro y los otros"
