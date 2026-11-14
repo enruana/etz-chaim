@@ -3,7 +3,6 @@ titulo: "Cómo se armó la Biblia"
 entrada: "Qué libros entraron, cuáles se quedaron fuera, quién lo decidió y cuándo."
 orden: "1"
 pendientes:
-  - "Qué dicen los siete libros que no están en tu Biblia"
   - "Los evangelios que no entraron: Tomás, Pedro y los otros"
   - "¿Hubo un concilio de Jamnia?"
   - "Apostólico, ortodoxo y de todos: las reglas del canon"

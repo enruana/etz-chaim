@@ -91,7 +91,7 @@ export default async function RamaPage({ params }: { params: Promise<{ rama: str
         )}
 
         {r.pendientes.length > 0 && (
-          <section>
+          <section id="por-investigar">
             <p className="grupo-cab mono m-0 flex justify-between">
               <span>Por investigar</span>
               <span>{dos(r.pendientes.length)}</span>

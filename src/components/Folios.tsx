@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { clave, hrefFolio, NOMBRE_TIPO, rotuloAnclas, type Folio, type Rama } from "@/lib/ramas";
+import { clave, hrefFolio, hrefRama, NOMBRE_TIPO, rotuloAnclas, type Folio, type Rama } from "@/lib/ramas";
 import { dos } from "@/lib/estela";
 
 // Filas de folios con su marca de leído. `anclas` añade a qué capítulos se ata.
@@ -25,20 +25,40 @@ export function FilasFolios({ folios, leidos, anclas = true }: { folios: Folio[]
   );
 }
 
-// Lo que falta por investigar en una rama, numerado a continuación de sus folios.
-export function FilasPendientes({ rama, max }: { rama: Rama; max?: number }) {
-  const lista = max ? rama.pendientes.slice(0, max) : rama.pendientes;
+// Lo que falta por investigar en una rama: temas, no folios todavía (el orden puede cambiar),
+// así que no llevan número de folio.
+export function FilasPendientes({ rama }: { rama: Rama }) {
+  const n = rama.pendientes.length;
   return (
     <>
-      {lista.map((t, i) => (
+      {rama.pendientes.map((t, i) => (
         <div key={t} className="fila apilada pendiente">
           <span>
             <span className="fila-titulo">{t}</span>
-            <span className="mono gris">Folio {dos(rama.folios.length + i + 1)} · En investigación</span>
+            <span className="mono gris">
+              Tema {dos(i + 1)} de {dos(n)} · Por investigar
+            </span>
           </span>
-          <span className="marca pendiente" aria-label="En investigación" />
+          <span className="marca pendiente" aria-label="Por investigar" />
         </div>
       ))}
     </>
+  );
+}
+
+// En el índice de ramas: una sola fila con el siguiente tema por investigar y cuántos hay en la lista.
+export function FilaPorInvestigar({ rama }: { rama: Rama }) {
+  const n = rama.pendientes.length;
+  if (n === 0) return null;
+  return (
+    <Link href={`${hrefRama(rama)}#por-investigar`} className="fila apilada pendiente enlace">
+      <span>
+        <span className="fila-titulo">{rama.pendientes[0]}</span>
+        <span className="mono gris">
+          Siguiente por investigar · {dos(n)} {n === 1 ? "tema" : "temas"} en la lista
+        </span>
+      </span>
+      <span className="marca pendiente" aria-label="Por investigar" />
+    </Link>
   );
 }

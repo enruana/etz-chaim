@@ -265,6 +265,8 @@
   .fila.pendiente { cursor: default; }
   .fila.pendiente:hover { background: none; }
   .fila.pendiente .fila-titulo { color: var(--gris); }
+  .fila.pendiente.enlace { cursor: pointer; text-decoration: none; }
+  .fila.pendiente.enlace:hover { background: var(--hormigon); }
   .anclas { display: flex; flex-wrap: wrap; gap: 4px 16px; }
   .posturas { margin: 1.4em 0; border-top: 1px solid var(--grafito); }
   .postura { display: grid; grid-template-columns: 1fr; gap: 4px 18px; padding: 12px 0 14px; border-bottom: 1px solid var(--grafito); }

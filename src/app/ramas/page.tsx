@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { clave, hrefFolio, ramas, siguienteFolio } from "@/lib/ramas";
-import { FilasFolios, FilasPendientes } from "@/components/Folios";
+import { FilaPorInvestigar, FilasFolios } from "@/components/Folios";
 import { foliosLeidos } from "@/lib/db";
 import { dos, k, talla } from "@/lib/estela";
 
@@ -70,7 +70,7 @@ export default function Ramas() {
                 {r.entrada}
               </p>
               <FilasFolios folios={r.folios} leidos={leidos} />
-              <FilasPendientes rama={r} max={2} />
+              <FilaPorInvestigar rama={r} />
             </section>
           );
         })}
