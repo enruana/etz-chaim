@@ -36,11 +36,13 @@ Servicio con un Volume montado en `/data` y variables:
 ## Estructura
 
 ```
-content/            fuente de verdad: plan, metodología y estudios (una carpeta por capítulo, un archivo por parte)
-docs/               investigaciones (metodología de estudio, estilos)
+CLAUDE.md           guía de trabajo del repo: reglas, flujos, servicios y estado actual (memoria portátil del proyecto)
+content/            fuente de verdad: plan, metodología, estudios (una carpeta por capítulo, un archivo por parte), ramas y arco
+docs/               investigaciones (metodología de estudio, estilos, línea histórica) y la bitácora del proyecto
+scripts/            cotejo de citas RVR1960, extracción de BibleGateway, láminas, vigilancia del despliegue
 src/app/            Hoy · /estudiar/[libro]/[cap]/[parte] · /mapa · /memoria · /login
 src/lib/            canon (66 libros + videos), studies (carga las partes), avance, db, fsrs, srs, ejercicios
-src/components/     BottomNav, ReviewSession, Cadena
+src/components/     Navegacion, ReviewSession, Cadena, Folios, FolioVista
 ```
 
 ## Licencias

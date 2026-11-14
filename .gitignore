@@ -15,3 +15,6 @@ data/
 .claude/
 .claude-orka/
 .DS_Store
+
+# corpus local RVR1960 para cotejar citas (texto con derechos; no se commitea)
+rvr/
