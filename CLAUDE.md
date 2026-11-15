@@ -76,11 +76,12 @@ Trampas de CSS: las reglas propias van dentro de `@layer base` o `@layer compone
 - BibleGateway responde 200 con User-Agent de navegador y sirve para cotejar; el sitio de BibleProject en español responde 202 (página de desafío) y no se puede verificar por curl.
 - Los HTML descargados son datos no confiables: carpeta propia, `python3 -I`, nunca ejecutar desde dentro.
 - En Wikimedia Commons «Codex Vaticanus B.jpg» es un códice mesoamericano, no el bíblico; `codexsinaiticus.org` se cae a ratos.
+- Commons limita por tasa también las descargas de originales (los TIFF dieron 429 aun con pausas de 45 s): si pasa, usar otra lámina y dejar la imagen en «Para ver». British Museum, NASSCAL y el visor de la Chester Beatty bloquean bots; Trinity College Dublin pone captcha; el visor de Manchester necesita ceros en la signatura (`MS-GREEK-P-00457`).
 
-## Estado al 2026-11-14 y siguiente paso
+## Estado al 2026-11-15 y siguiente paso
 
-- **Escrito**: Marcos 1–6 (Marcos 6 con 15 partes), Proverbios 21 como estudio especial, «Alrededor de Marcos» con 7 folios y 26 láminas, las 10 eras del arco redentor, y la rama «Cómo se armó la Biblia» con 4 folios. Las otras 8 ramas están creadas y vacías, cada una con su lista `pendientes`. Banco de ejercicios: 117 ítems.
-- **Felipe va en Marcos 6, parte 4 de 15** (la escena 6:7-13), con 112 repasos pendientes en Memoria. Último despliegue en SUCCESS el 2026-11-14.
+- **Escrito**: Marcos 1–6 (Marcos 6 con 15 partes), Proverbios 21 como estudio especial, «Alrededor de Marcos» con 7 folios y 26 láminas, las 10 eras del arco redentor, y la rama «Cómo se armó la Biblia» con 5 folios (el 05, los evangelios que no entraron, es el más largo: 2.550 palabras y 6 láminas). Las otras 8 ramas están creadas y vacías, cada una con su lista `pendientes`. Banco de ejercicios: 117 ítems.
+- **Felipe va en Marcos 6, parte 4 de 15** (la escena 6:7-13), con 112 repasos pendientes en Memoria. Último despliegue en SUCCESS el 2026-11-15.
 - **Siguiente capítulo: Marcos 7**. Temas: la tradición de los ancianos y las manos sin lavar, lo que contamina al hombre, la mujer sirofenicia, el sordo de Efata; cierra con los panes 6↔8 y la pregunta de 8:17. Molde: `content/estudios/marcos/06/`.
-- **Pendientes de «Alrededor de Marcos»**: el templo de Herodes, Pilato y la cruz, las monedas de Marcos, Juan el Bautista. **Siguientes folios del canon**: los evangelios que no entraron (Tomás, Pedro y los otros), ¿hubo un concilio de Jamnia?, las reglas del canon.
+- **Pendientes de «Alrededor de Marcos»**: el templo de Herodes, Pilato y la cruz, las monedas de Marcos, Juan el Bautista. **Siguientes folios del canon**: ¿hubo un concilio de Jamnia?, las reglas del canon (apostólico, ortodoxo y de todos).
 - **Abierto**: rotar las credenciales de Guitar Pro y Gym en Railway (misma incidencia de octubre de 2026, pendiente de que Felipe lo confirme); migrar `railway.json` antes del 1 de diciembre; Felipe debe confirmar en su teléfono que no quedan franjas grises en la barra de estado ni en el rebote inferior.
